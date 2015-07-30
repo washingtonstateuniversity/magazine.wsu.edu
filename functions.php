@@ -24,7 +24,7 @@ class WSU_Magazine_Theme {
 	 * Load "plugins" included with the theme.
 	 */
 	public function load_plugins() {
-
+		require_once( dirname( __FILE__ ) . '/includes/class-magazine-issue.php' );
 	}
 }
 
