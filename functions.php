@@ -16,6 +16,7 @@ class WSU_Magazine_Theme {
 		if ( ! isset( self::$instance ) ) {
 			self::$instance = new WSU_Magazine_Theme;
 			self::$instance->load_plugins();
+			self::$instance->setup_hooks();
 		}
 		return self::$instance;
 	}
@@ -25,6 +26,14 @@ class WSU_Magazine_Theme {
 	 */
 	public function load_plugins() {
 		require_once( dirname( __FILE__ ) . '/includes/class-magazine-issue.php' );
+	}
+
+	public function setup_hooks() {
+		add_action( 'admin_init', array( $this, 'editor_style' ) );
+	}
+
+	public function editor_style() {
+		add_editor_style( 'css/editor-style.css' );
 	}
 }
 

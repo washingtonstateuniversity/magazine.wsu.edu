@@ -23,7 +23,7 @@ class WSU_Magazine_Issue {
 	}
 
 	/**
-	 * Load "plugins" included with the theme.
+	 * Setup hooks for the plugin.
 	 */
 	public function setup_hooks() {
 		add_action( 'init', array( $this, 'register_content_type' ) );
