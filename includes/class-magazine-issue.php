@@ -6,6 +6,9 @@ class WSU_Magazine_Issue {
 	 */
 	private static $instance;
 
+	/**
+	 * @var string Slug for tracking the post type of a magazine issue.
+	 */
 	public $content_type_slug = 'wsu_magazine_issue';
 
 	/**
@@ -34,9 +37,42 @@ class WSU_Magazine_Issue {
 		add_action( 'init', array( $this, 'register_content_type' ) );
 		add_action( 'init', array( $this, 'register_taxonomy' ) );
 	}
-	
+
+	/**
+	 * Register a content type to track information about magazine issues.
+	 */
 	public function register_content_type() {
-		$args = array();
+		$labels = array(
+			'name' => 'Magazine Issues',
+			'singular_name' => 'Magazine Issue',
+			'all_items' => 'All Magazine Issues',
+			'view_item' => 'View Issue',
+			'add_new_item' => 'Add New Issue',
+			'add_new' => 'Add New',
+			'edit_item' => 'Edit Issue',
+			'update_item' => 'Update Issue',
+			'search_items' => 'Search Issues',
+			'not_found' => 'No issues found',
+			'not_found_in_trash' => 'No issues found in Trash',
+		);
+
+		$args = array(
+			'labels' => $labels,
+			'description' => 'Issues of the WSU Magazine.',
+			'public' => true,
+			'hierarchical' => false,
+			'menu_position' => 5,
+			'menu_icon' => 'dashicons-book-alt',
+			'supports' => array(
+				'title',
+				'editor',
+				'thumbnail',
+				'revisions',
+			),
+			'taxonomies' => array(),
+			'has_archive' => true,
+			'rewrite' => false,
+		);
 		register_post_type( $this->content_type_slug, $args );
 	}
 
