@@ -82,15 +82,15 @@ class WSU_Magazine_Issue {
 	 */
 	public function register_taxonomy() {
 		$labels = array(
-			'name'          => 'Issue',
-			'singular_name' => 'Issue',
-			'search_items'  => 'Search Issues',
-			'all_items'     => 'All Issues',
-			'edit_item'     => 'Edit Issue',
-			'update_item'   => 'Update Issue',
-			'add_new_item'  => 'Add New Issue',
-			'new_item_name' => 'New Issue Name',
-			'menu_name'     => 'Issue Taxonomy',
+			'name'          => 'Issue Label',
+			'singular_name' => 'Issue Label',
+			'search_items'  => 'Search Issue Labels',
+			'all_items'     => 'All Issue Labels',
+			'edit_item'     => 'Edit Issue Label',
+			'update_item'   => 'Update Issue Label',
+			'add_new_item'  => 'Add New Issue Label',
+			'new_item_name' => 'New Issue Label Name',
+			'menu_name'     => 'Issue Labels',
 		);
 		$args = array(
 			'labels'            => $labels,
