@@ -27,6 +27,7 @@ class WSU_Magazine_Theme {
 	public function load_plugins() {
 		require_once( dirname( __FILE__ ) . '/includes/class-magazine-author.php' );
 		require_once( dirname( __FILE__ ) . '/includes/class-magazine-article.php' );
+		require_once( dirname( __FILE__ ) . '/includes/class-magazine-web-extra.php' );
 		require_once( dirname( __FILE__ ) . '/includes/class-magazine-issue.php' );
 	}
 
