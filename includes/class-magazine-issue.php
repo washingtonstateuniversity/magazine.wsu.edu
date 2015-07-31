@@ -103,6 +103,7 @@ class WSU_Magazine_Issue {
 			'query_var'         => $this->taxonomy_slug,
 		);
 		register_taxonomy( $this->taxonomy_slug, $this->content_type_slug, $args );
+		register_taxonomy_for_object_type( $this->taxonomy_slug, 'post' );
 	}
 }
 
