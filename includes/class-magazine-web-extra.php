@@ -29,7 +29,7 @@ class WSU_Magazine_Web_Extra {
 	 * Setup hooks for the plugin.
 	 */
 	public function setup_hooks() {
-		add_action( 'init', array( $this, 'register_content_type' ) );
+		add_action( 'init', array( $this, 'register_content_type' ), 12 );
 	}
 
 	/**
@@ -63,11 +63,15 @@ class WSU_Magazine_Web_Extra {
 				'thumbnail',
 				'revisions',
 			),
-			'taxonomies' => array(),
+			'taxonomies' => array(
+				'post_tag',
+				'category',
+			),
 			'has_archive' => true,
 			'rewrite' => false,
 		);
 		register_post_type( $this->content_type_slug, $args );
+		register_taxonomy_for_object_type( 'wsuwp_university_category', $this->content_type_slug );
 	}
 }
 
