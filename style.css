@@ -7,3 +7,210 @@
  Template:       spine
  Version:        0.1.0
 */
+
+/* Old WSM styles to preserve in 2015 redesign */
+/* Utility classes */
+.bold {
+	font-weight: bold;
+}
+
+.italic {
+	font-style: italic;
+}
+
+.small {
+	font-size: .9em;
+	line-height: normal;
+	padding: 2px 0 5px 0;
+}
+
+.extra-bold {
+	font-weight: bolder;
+}
+
+.larger {
+	font-size: larger;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+.smallcaps {
+	font-variant: small-caps;
+}
+
+.indent {
+	margin: 0 50px;
+}
+
+.right {
+	float: right;
+}
+
+.left {
+	float: left;
+}
+
+.crimson-border {
+	border: 1px solid #9b2437;
+	padding: 10px;
+}
+
+.middle {
+	vertical-align: middle;
+}
+
+.small-box {
+	margin: 0 10px 10px 10px;
+	max-width: 250px;
+}
+
+.small-box img {
+	max-width: 100%;
+}
+
+.image340 {
+	max-width: 340px;
+	height: auto;
+}
+
+/* COLORS */
+.color1, .red {
+	color: #c60c30;
+}
+
+.color2, .crimson {
+	color: #9b2437;
+}
+
+.color3, .wsm-gray {
+	color: #667178;
+}
+
+.color4, .light-gray {
+	color: #798389;
+}
+
+.color5, .lighter-gray {
+	color: #aab1b4;
+}
+
+.dark-gray {
+	color: #1d2124;
+}
+
+.color6, .green {
+	color: #bfc720;
+}
+
+.color7, .yellow {
+	color: #fec34e;
+}
+
+.color8, .winter-blue {
+	color: #194f78;
+}
+
+.color9, .winter-blue-light {
+	color: #5f96bf;
+}
+
+.color10, .beige {
+	color: #e4dac1;
+}
+
+.color11, .aqua {
+	color: #3cb6ce;
+}
+
+.color12, .orange {
+	color: #ef9234;
+}
+
+.color13, .teal {
+	color: #066f68;
+}
+
+.color14, .warm-gray-light {
+	color: #65645c;
+}
+
+.color15, .warm-gray-medium {
+	color: #262b2d;
+}
+
+.color17, .color16, .warm-gray-dark {
+	color: #505353;
+}
+
+.color18, .warm-gray-darkest {
+	color: #464845;
+}
+
+.color19, .white {
+	color: #FFF;
+}
+
+.color20, .black {
+	color: #000;
+}
+
+.fall, .Fall {
+	color: #EF9234;
+}
+
+.winter {
+	color: #194F78;
+}
+
+.winter-light, .Winter {
+	color: #5F96BF;
+}
+
+.spring, .Spring {
+	color: #BFC720;
+}
+
+.summer, .Summer {
+	color: #FEC34E;
+}
+
+.fall-bg {
+	background: #ea8d2f;
+}
+
+.winter-bg {
+	background: #194F78;
+}
+
+.spring-bg {
+	background: #b4bb25;
+}
+
+.summer-bg {
+	background: #e9ac3b;
+}
+
+/* Inline text styles */
+.section-head {
+	text-transform: uppercase;
+	font-weight: bold;
+	color: #9b2437;
+}
+
+.space-line-above {
+	margin-top: 10px;
+}
+
+.space-line-below {
+	margin-bottom: 10px;
+}
+
+.top-space {
+	margin-top: 5px;
+}
+
+.bottom-space {
+	margin-bottom: 5px;
+}
