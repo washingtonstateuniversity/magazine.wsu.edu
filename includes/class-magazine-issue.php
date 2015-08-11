@@ -127,6 +127,23 @@ class WSU_Magazine_Issue {
 
 		return $body_classes;
 	}
+
+	/**
+	 * Retrieve the issue name for the current article or issue view.
+	 *
+	 * @return string
+	 */
+	public function get_issue_name() {
+		if ( is_singular() ) {
+			$issues = wp_get_object_terms( get_the_ID(), $this->taxonomy_slug );
+
+			if ( 1 >= count( $issues ) ) {
+				return $issues[0]->name;
+			}
+		}
+
+		return '';
+	}
 }
 
 add_action( 'after_setup_theme', 'WSU_Magazine_Issue', 11 );
@@ -137,4 +154,9 @@ add_action( 'after_setup_theme', 'WSU_Magazine_Issue', 11 );
  */
 function WSU_Magazine_Issue() {
 	return WSU_Magazine_Issue::get_instance();
+}
+
+function magazine_get_issue_name() {
+	$magazine_issue = WSU_Magazine_Issue();
+	return $magazine_issue->get_issue_name();
 }
