@@ -28,6 +28,8 @@ if ( spine_get_option( 'main_header_show' ) == 'true' ) :
 
 		</div>
 	</header>
-	<?php get_template_part('parts/social_share_bar');
+<?php
 
-	 endif; ?>
+get_template_part( 'parts/social_share_bar' );
+
+endif;
