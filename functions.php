@@ -34,10 +34,15 @@ class WSU_Magazine_Theme {
 
 	public function setup_hooks() {
 		add_action( 'admin_init', array( $this, 'editor_style' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 	}
 
 	public function editor_style() {
 		add_editor_style( 'css/editor-style.css' );
+	}
+
+	public function enqueue_scripts() {
+		wp_enqueue_script( 'wsu-magazine-typekit', 'https://use.typekit.net/roi0hte.js', array(), false, false );
 	}
 }
 
