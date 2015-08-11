@@ -23,11 +23,15 @@ if ( spine_get_option( 'main_header_show' ) == 'true' ) :
 	<header class="main-header">
 		<div class="header-group hgroup">
 			<h1 class="h1-header" data-sitename="<?php echo $spine_main_header_values['site_name']; ?>" data-pagetitle="<?php echo $spine_main_header_values['page_title']; ?>" data-posttitle="<?php echo $spine_main_header_values['post_title']; ?>" data-default="<?php echo esc_html($spine_main_header_values['sub_header_default']); ?>" data-alternate="<?php echo esc_html($spine_main_header_values['sub_header_alternate']); ?>"><?php echo strip_tags( $spine_main_header_values['sub_header_default'], '<a>' ); ?></h1>
-			<!--Author(s) populate only if it is a post TODO -->
-			<cite class="article-author" role="author">Author Name</cite>
+
+			<?php if ( is_singular() ) : ?>
+			<cite class="article-author" role="author"><?php echo esc_html( magazine_get_author() ); ?></cite>
+			<?php endif; ?>
 
 		</div>
 	</header>
-	<?php get_template_part('parts/social_share_bar');
+<?php
 
-	 endif; ?>
+get_template_part( 'parts/social-share-bar' );
+
+endif;
