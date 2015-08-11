@@ -32,6 +32,6 @@ if ( spine_get_option( 'main_header_show' ) == 'true' ) :
 	</header>
 <?php
 
-get_template_part( 'parts/social_share_bar' );
+get_template_part( 'parts/social-share-bar' );
 
 endif;
