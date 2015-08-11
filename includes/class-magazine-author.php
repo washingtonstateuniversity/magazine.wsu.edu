@@ -86,3 +86,16 @@ add_action( 'after_setup_theme', 'WSU_Magazine_Author', 11 );
 function WSU_Magazine_Author() {
 	return WSU_Magazine_Author::get_instance();
 }
+
+/**
+ * @param int $post_id ID of the post to retrieve an author for.
+ *
+ * @return string Author name.
+ */
+function magazine_get_author( $post_id = 0 ) {
+	if ( 0 === absint( $post_id ) ) {
+		$post_id = get_the_ID();
+	}
+
+	return get_the_author();
+}
