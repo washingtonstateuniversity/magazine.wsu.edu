@@ -36,6 +36,7 @@ class WSU_Magazine_Issue {
 	public function setup_hooks() {
 		add_action( 'init', array( $this, 'register_content_type' ) );
 		add_action( 'init', array( $this, 'register_taxonomy' ) );
+		add_filter( 'body_class', array( $this, 'season_body_class' ) );
 	}
 
 	/**
@@ -106,6 +107,43 @@ class WSU_Magazine_Issue {
 		register_taxonomy_for_object_type( $this->taxonomy_slug, 'post' );
 		register_taxonomy_for_object_type( $this->taxonomy_slug, 'wsu_magazine_we' );
 	}
+
+	/**
+	 * Add season to the list of body classes for individual articles and individual issues.
+	 *
+	 * @param array $body_classes List of current body classes.
+	 *
+	 * @return array Modified list of body classes.
+	 */
+	public function season_body_class( $body_classes ) {
+		if ( is_singular() ) {
+			$issues = wp_get_object_terms( get_the_ID(), $this->taxonomy_slug );
+
+			if ( 1 >= count( $issues ) ) {
+				$issue = explode( ' ', $issues[0]->name );
+				$body_classes[] = 'season-' . esc_attr( strtolower( $issue[0] ) );
+			}
+		}
+
+		return $body_classes;
+	}
+
+	/**
+	 * Retrieve the issue name for the current article or issue view.
+	 *
+	 * @return string
+	 */
+	public function get_issue_name() {
+		if ( is_singular() ) {
+			$issues = wp_get_object_terms( get_the_ID(), $this->taxonomy_slug );
+
+			if ( 1 >= count( $issues ) ) {
+				return $issues[0]->name;
+			}
+		}
+
+		return '';
+	}
 }
 
 add_action( 'after_setup_theme', 'WSU_Magazine_Issue', 11 );
@@ -116,4 +154,9 @@ add_action( 'after_setup_theme', 'WSU_Magazine_Issue', 11 );
  */
 function WSU_Magazine_Issue() {
 	return WSU_Magazine_Issue::get_instance();
+}
+
+function magazine_get_issue_name() {
+	$magazine_issue = WSU_Magazine_Issue();
+	return $magazine_issue->get_issue_name();
 }
