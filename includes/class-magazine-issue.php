@@ -38,6 +38,8 @@ class WSU_Magazine_Issue {
 		add_action( 'init', array( $this, 'register_taxonomy' ) );
 		add_filter( 'body_class', array( $this, 'season_body_class' ) );
 		add_action( 'admin_init', array( $this, 'register_builder_support' ) );
+		add_filter( 'spine_builder_force_builder', array( $this, 'force_builder' ) );
+		add_filter( 'make_will_be_builder_page', array( $this, 'force_builder' ) );
 	}
 
 	/**
@@ -151,6 +153,15 @@ class WSU_Magazine_Issue {
 	 */
 	public function register_builder_support() {
 		add_post_type_support( $this->content_type_slug, 'make-builder' );
+	}
+
+	/**
+	 * Force builder to be used on every magazine issue.
+	 *
+	 * @return bool True if the magazine issue content type. False if not.
+	 */
+	public function force_builder() {
+		return $this->content_type_slug === get_post_type();
 	}
 }
 
