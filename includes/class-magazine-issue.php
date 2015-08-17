@@ -37,6 +37,7 @@ class WSU_Magazine_Issue {
 		add_action( 'init', array( $this, 'register_content_type' ) );
 		add_action( 'init', array( $this, 'register_taxonomy' ) );
 		add_filter( 'body_class', array( $this, 'season_body_class' ) );
+		add_action( 'admin_init', array( $this, 'register_builder_support' ) );
 	}
 
 	/**
@@ -143,6 +144,13 @@ class WSU_Magazine_Issue {
 		}
 
 		return '';
+	}
+
+	/**
+	 * Add support for the page builder to magazine issues.
+	 */
+	public function register_builder_support() {
+		add_post_type_support( $this->content_type_slug, 'make-builder' );
 	}
 }
 
