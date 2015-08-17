@@ -76,7 +76,7 @@ class WSU_Magazine_Issue {
 			),
 			'taxonomies' => array(),
 			'has_archive' => true,
-			'rewrite' => false,
+			'rewrite' => array( 'slug' => 'issue' ),
 		);
 		register_post_type( $this->content_type_slug, $args );
 	}
@@ -100,11 +100,11 @@ class WSU_Magazine_Issue {
 		$args = array(
 			'labels'            => $labels,
 			'description'       => 'The magazine issue taxonomy attached to articles and issues.',
-			'public'            => true,
+			'public'            => false,
 			'hierarchical'      => true,
 			'show_ui'           => true,
 			'show_in_menu'      => true,
-			'rewrite'           => true,
+			'rewrite'           => false,
 			'query_var'         => $this->taxonomy_slug,
 		);
 		register_taxonomy( $this->taxonomy_slug, $this->content_type_slug, $args );
