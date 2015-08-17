@@ -28,7 +28,7 @@ body {
 main {
 	margin: 0 auto;
 	width: 100%;
-	max-width: 770px;
+	max-width: 1188px;
 }
 
 /* site-header */
@@ -46,7 +46,7 @@ main {
 	display: inline-block;
 }
 .site-header-issue {
-	background: orange;
+	background: #5e6a71;
 	/* this will need to be moved and based on the issue (season) color */
 	color: #fff;
 	display: -webkit-box;
@@ -66,6 +66,50 @@ main {
 	text-transform: uppercase;
 	width: 140px;
 }
+
+/* ----- set season color for all imheriting elements ----- */
+
+
+/* header issue name background color */
+
+.season-spring .site-header-issue {
+	background: #8f7e35;
+}
+.season-summer .site-header-issue {
+	background: #c69214;
+}
+.season-fall .site-header-issue {
+	background: #b67233;
+}
+.season-winter .site-header-issue {
+	background: #4f868e;
+}
+
+/* author, highlight and h3 text color */
+
+.season-spring .highlight,
+.season-spring h3,
+.season-spring cite a {
+	color: #8f7e35;
+}
+.season-summer .highlight,
+.season-summer h3,
+.season-summer cite a {
+	color: #c69214;
+}
+.season-fall .highlight,
+.season-fall h3,
+.season-fall cite a {
+	color: #b67233;
+}
+.season-winter .highlight,
+.season-winter h3,
+.season-winter cite a {
+	color: #4f868e;
+}
+
+/* ---- END Season inheritance ---- */
+
 .site-header-logo {
 	position: absolute;
 	z-index: 2;
@@ -86,11 +130,12 @@ main {
 .has-featured-image .main-header {
 	background-position: center center;
 	background-size: cover;
-	height: 330px;
+	height: 380px;
 }
 .main-header .header-group {
 	padding: 1.5rem 1.5rem 1rem;
 	width: 100%;
+	max-width: 100%;
 	background: rgba(70, 78, 84, .7);
 	box-sizing: border-box;
 }
@@ -108,9 +153,10 @@ main {
 	padding: 0!important;
 }
 
-/* Article body */
+/* Article styles */
 
-.article-body {
+.article-body,
+.article-footer-inner-wrap {
 	margin: 0 auto;
 	width: 100%;
 	max-width: 640px;
@@ -119,6 +165,64 @@ main {
 	font-family: palatino;
 	font-size: 1.3rem;
 	line-height: 1.5;
+}
+.article-footer {
+	background: #d7dadb;
+	border: none;
+	padding: 2rem 0;
+}
+.article-footer dl {
+	display: inline-block;
+	vertical-align: top;
+}
+.article-footer dl.tagged {
+	margin-left: 3rem;
+}
+.article-footer dl dt,
+.article-footer dl dd {
+	display: block;
+}
+.article-footer dl dd::after {
+	content: "";
+}
+
+/* ----- Main Footer ----- */
+
+.main-footer {
+	background: #2a3033;
+}
+.magazine-nav {
+	padding: 2rem 2rem 0;
+}
+.wsu-nav {
+	padding: 1rem 2rem;
+}
+.magazine-nav,
+.wsu-nav {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+}
+.magazine-nav a {}
+.wsu-nav a {
+	font-size: .8rem;
+}
+.magazine-nav a,
+.wsu-nav a {
+	color: #d7dadb;
+	text-transform: uppercase;
+}
+.main-footer .wsu-logo {
+	margin: 2rem 0 1rem;
+	text-align: center;
+}
+.main-footer .wsu-nav {
+	background: #981e32;
 }
 
 /* ----- Old WSM styles to preserve in 2015 redesign ----- */
@@ -275,7 +379,8 @@ main {
 	color: #BFC720;
 }
 .summer,
-.Summer {
+.Summer,
+{
 	color: #FEC34E;
 }
 .fall-bg {
