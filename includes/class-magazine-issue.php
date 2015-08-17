@@ -40,6 +40,7 @@ class WSU_Magazine_Issue {
 		add_action( 'admin_init', array( $this, 'register_builder_support' ) );
 		add_filter( 'spine_builder_force_builder', array( $this, 'force_builder' ) );
 		add_filter( 'make_will_be_builder_page', array( $this, 'force_builder' ) );
+		add_action( 'pre_get_posts', array( $this, 'front_page_issue' ) );
 	}
 
 	/**
@@ -162,6 +163,18 @@ class WSU_Magazine_Issue {
 	 */
 	public function force_builder() {
 		return $this->content_type_slug === get_post_type();
+	}
+
+	/**
+	 * Set the front page to display the most recent magazine issue.
+	 *
+	 * @param WP_Query $query
+	 */
+	public function front_page_issue( $query ) {
+		if ( $query->is_main_query() && $query->is_home ) {
+			$query->set( 'post_type', $this->content_type_slug );
+			$query->set( 'posts_per_page', 1 );
+		}
 	}
 }
 
