@@ -159,10 +159,16 @@ class WSU_Magazine_Issue {
 	/**
 	 * Force builder to be used on every magazine issue.
 	 *
+	 * @param bool $use_builder Whether the page builder show be used.
+	 *
 	 * @return bool True if the magazine issue content type. False if not.
 	 */
-	public function force_builder() {
-		return $this->content_type_slug === get_post_type();
+	public function force_builder( $use_builder ) {
+		if ( $this->content_type_slug === get_post_type() ) {
+			return true;
+		}
+
+		return $use_builder;
 	}
 
 	/**
