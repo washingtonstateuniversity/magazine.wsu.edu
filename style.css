@@ -133,11 +133,16 @@ main {
 	height: 380px;
 }
 .main-header .header-group {
+	background: rgba(70, 78, 84, 1);
+	box-sizing: border-box;
 	padding: 1.5rem 1.5rem 1rem;
+	position: relative;
 	width: 100%;
 	max-width: 100%;
+}
+.has-featured-image .main-header .header-group {
 	background: rgba(70, 78, 84, .7);
-	box-sizing: border-box;
+	position: absolute;
 }
 
 /* Social sharing bar */
@@ -156,7 +161,8 @@ main {
 /* Article styles */
 
 .article-body,
-.article-footer-inner-wrap {
+.article-footer-inner-wrap,
+.archive section {
 	margin: 0 auto;
 	width: 100%;
 	max-width: 640px;
@@ -223,6 +229,12 @@ main {
 }
 .main-footer .wsu-nav {
 	background: #981e32;
+}
+
+/* ----- archive pages ----- */
+
+.archive .article-footer {
+	display: none;
 }
 
 /* ----- Old WSM styles to preserve in 2015 redesign ----- */
