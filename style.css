@@ -173,10 +173,12 @@ main {
 	line-height: 1.5;
 }
 .article-footer {
-	background: #d7dadb;
+	/*	background: #d7dadb;*/
 	border: none;
 	padding: 2rem 0;
 }
+
+/*
 .article-footer dl {
 	display: inline-block;
 	vertical-align: top;
@@ -190,7 +192,8 @@ main {
 }
 .article-footer dl dd::after {
 	content: "";
-}
+}*/
+
 
 /* ----- Main Footer ----- */
 
