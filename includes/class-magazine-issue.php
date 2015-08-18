@@ -112,6 +112,16 @@ class WSU_Magazine_Issue {
 		register_taxonomy_for_object_type( $this->taxonomy_slug, 'wsu_magazine_we' );
 	}
 
+	public function get_issue_season( $post_id ) {
+		$issues = wp_get_object_terms( $post_id, $this->taxonomy_slug );
+		if ( 1 >= count( $issues ) ) {
+			$issue = explode( ' ', $issues[0]->name );
+			return $issue;
+		}
+
+		return '';
+	}
+
 	/**
 	 * Add season to the list of body classes for individual articles and individual issues.
 	 *
@@ -138,12 +148,10 @@ class WSU_Magazine_Issue {
 	 * @return string
 	 */
 	public function get_issue_name() {
-		if ( is_singular() ) {
-			$issues = wp_get_object_terms( get_the_ID(), $this->taxonomy_slug );
+		$issues = wp_get_object_terms( get_the_ID(), $this->taxonomy_slug );
 
-			if ( 1 >= count( $issues ) ) {
-				return $issues[0]->name;
-			}
+		if ( 1 >= count( $issues ) ) {
+			return $issues[0]->name;
 		}
 
 		return '';
@@ -197,4 +205,15 @@ function WSU_Magazine_Issue() {
 function magazine_get_issue_name() {
 	$magazine_issue = WSU_Magazine_Issue();
 	return $magazine_issue->get_issue_name();
+}
+
+function magazine_get_issue_season_class( $post_id, $prefix = '' ) {
+	$magazine_issue = WSU_Magazine_Issue();
+	$season = $magazine_issue->get_issue_season( $post_id );
+
+	if ( ! empty( $season[0] ) ) {
+		return esc_attr( $prefix . 'season-' . strtolower( $season[0] ) );
+	}
+
+	return '';
 }
