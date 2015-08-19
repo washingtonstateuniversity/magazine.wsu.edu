@@ -42,7 +42,8 @@ class WSU_Magazine_Theme {
 	}
 
 	public function enqueue_scripts() {
-		wp_enqueue_script( 'wsu-magazine-typekit', 'https://use.typekit.net/roi0hte.js', array(), false, false );
+		wp_enqueue_script( 'wsu-magazine-typekit', 'https://use.typekit.net/auo5wsi.js', array(), false, false );
+		wp_enqueue_script( 'wsu-magainze-typekit-load', get_stylesheet_directory_uri() . '/js/magazine-primary.js', array(), false, true );
 	}
 }
 
