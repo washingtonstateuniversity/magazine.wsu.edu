@@ -30,6 +30,7 @@ class WSU_Magazine_Section {
 	 */
 	public function setup_hooks() {
 		add_action( 'init', array( $this, 'register_taxonomy' ) );
+		add_filter( 'wsu_home_headlines_after_title', array( $this, 'display_home_headlines_section' ), 10, 2 );
 	}
 
 	/**
@@ -58,6 +59,26 @@ class WSU_Magazine_Section {
 			'query_var'         => $this->taxonomy_slug,
 		);
 		register_taxonomy( $this->taxonomy_slug, array( 'post', 'wsu_magazine_we' ), $args );
+	}
+
+	/**
+	 * Filter the home headline block to include the section of this article if it is available.
+	 *
+	 * @param string $content Current content being displayed after title.
+	 * @param array  $atts    Arguments passed for the original shortcode usage.
+	 *
+	 * @return string Modified content to display.
+	 */
+	public function display_home_headlines_section( $content, $atts ) {
+		$post_id = absint( $atts['id'] );
+
+		$sections = wp_get_object_terms( $post_id, $this->taxonomy_slug );
+
+		if ( isset( $sections[0] ) && isset( $sections[0]->name ) ) {
+			return '<div class="article-section">' . esc_html( $sections[0]->name ) . '</div>';
+		}
+
+		return '';
 	}
 }
 
