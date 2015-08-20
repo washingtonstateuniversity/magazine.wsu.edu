@@ -114,7 +114,7 @@ class WSU_Magazine_Issue {
 
 	public function get_issue_season( $post_id ) {
 		$issues = wp_get_object_terms( $post_id, $this->taxonomy_slug );
-		if ( 1 >= count( $issues ) ) {
+		if ( ! empty( $issues ) && 1 >= count( $issues ) ) {
 			$issue = explode( ' ', $issues[0]->name );
 			return $issue;
 		}
@@ -150,7 +150,7 @@ class WSU_Magazine_Issue {
 	public function get_issue_name() {
 		$issues = wp_get_object_terms( get_the_ID(), $this->taxonomy_slug );
 
-		if ( 1 >= count( $issues ) ) {
+		if ( ! empty( $issues ) && 1 >= count( $issues ) ) {
 			return $issues[0]->name;
 		}
 
