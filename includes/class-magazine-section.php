@@ -50,11 +50,11 @@ class WSU_Magazine_Section {
 		$args = array(
 			'labels'            => $labels,
 			'description'       => 'The magazine section taxonomy attached to articles and web extras.',
-			'public'            => false,
+			'public'            => true,
 			'hierarchical'      => true,
 			'show_ui'           => true,
 			'show_in_menu'      => true,
-			'rewrite'           => false,
+			'rewrite'           => array( 'slug' => 'section' ),
 			'query_var'         => $this->taxonomy_slug,
 		);
 		register_taxonomy( $this->taxonomy_slug, array( 'post', 'wsu_magazine_we' ), $args );
