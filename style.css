@@ -9,6 +9,19 @@
 */
 
 
+/* ----- delete once current issue color shows up on homepage ----- */
+
+.home .highlight,
+.home h3,
+.home cite,
+.home cite a,
+.home .article-section {
+	color: #b67233;
+}
+.home .site-header-issue {
+	background: #b67233;
+}
+
 /* ----- Spine overrides ----- */
 
 body {
@@ -22,6 +35,10 @@ body {
 #spine {
 	display: none;
 }
+#binder {
+	width: 100%;
+	max-width: 990px;
+}
 
 /* ------ Theme buildout ----- */
 
@@ -30,6 +47,102 @@ main {
 	width: 100%;
 	max-width: 1188px;
 }
+.hybrid main {
+	width: 100%;
+}
+.page main {
+	padding-bottom: 3rem;
+}
+.article-body {
+	max-width: 792px;
+}
+.row.single .column {
+	width: 100%;
+}
+.row.halves .column {
+	width: 50%;
+}
+
+/* ----- typograpgy and other elements ----- */
+
+p,
+ul,
+ol {
+	font-size: 1rem;
+}
+h1,
+h2 {
+	font-family: "museo-slab";
+	letter-spacing: 0;
+}
+h1 {
+	font-weight: 900;
+}
+h2 {
+	font-weight: 300;
+	text-transform: uppercase;
+	font-size: 1.2rem;
+	margin-bottom: .5rem;
+}
+figure {
+	width: 100% !important;
+	margin-bottom: 1rem;
+}
+figcaption {
+	font-style: italic;
+}
+
+/* ----- set season color for all imheriting elements ----- */
+
+
+/* header issue name background color */
+
+.season-spring .site-header-issue {
+	background: #8f7e35;
+}
+.season-summer .site-header-issue {
+	background: #c69214;
+}
+.season-fall .site-header-issue {
+	background: #b67233;
+}
+.season-winter .site-header-issue {
+	background: #4f868e;
+}
+
+/* author, highlight and h3 text color */
+
+.season-spring .highlight,
+.season-spring h3,
+.season-spring cite,
+.season-spring cite a,
+.season-spring .article-section {
+	color: #8f7e35;
+}
+.season-summer .highlight,
+.season-summer h3,
+.season-summer cite,
+.season-summer cite a,
+.season-summer .article-section {
+	color: #c69214;
+}
+.season-fall .highlight,
+.season-fall h3,
+.season-fall cite,
+.season-fall cite a,
+.season-fall .article-section {
+	color: #b67233;
+}
+.season-winter .highlight,
+.season-winter h3,
+.season-winter cite,
+.season-winter cite a,
+.season-winter .article-section {
+	color: #4f868e;
+}
+
+/* ---- END Season inheritance ---- */
+
 
 /* site-header */
 
@@ -66,58 +179,43 @@ main {
 	text-transform: uppercase;
 	width: 140px;
 }
-
-/* ----- set season color for all imheriting elements ----- */
-
-
-/* header issue name background color */
-
-.season-spring .site-header-issue {
-	background: #8f7e35;
+.site-header-nav {
+	width: calc(100% - (275px + 35px + 140px));
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-justify-content: space-around;
+	-ms-flex-pack: distribute;
+	justify-content: space-around;
 }
-.season-summer .site-header-issue {
-	background: #c69214;
+.site-header-nav a {
+	color: #d7dadb;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
+	justify-content: center;
 }
-.season-fall .site-header-issue {
-	background: #b67233;
-}
-.season-winter .site-header-issue {
-	background: #4f868e;
-}
-
-/* author, highlight and h3 text color */
-
-.season-spring .highlight,
-.season-spring h3,
-.season-spring cite a {
-	color: #8f7e35;
-}
-.season-summer .highlight,
-.season-summer h3,
-.season-summer cite a {
-	color: #c69214;
-}
-.season-fall .highlight,
-.season-fall h3,
-.season-fall cite a {
+.site-header-nav a:hover {
 	color: #b67233;
 }
-.season-winter .highlight,
-.season-winter h3,
-.season-winter cite a {
-	color: #4f868e;
-}
-
-/* ---- END Season inheritance ---- */
-
 .site-header-logo {
 	position: absolute;
 	z-index: 2;
 	right: 35px;
-	bottom: -53px;
+	bottom: -62px;
 }
 .site-header-logo img {
-	width: 236px;
+	width: auto;
 }
 
 /* main-header */
@@ -125,24 +223,34 @@ main {
 .main-header {
 	background: #5e6a71;
 	color: #fff;
-	height: 65px;
+	height: auto;
 }
 .has-featured-image .main-header {
 	background-position: center center;
 	background-size: cover;
-	height: 380px;
+	height: 450px;
 }
 .main-header .header-group {
-	background: rgba(70, 78, 84, 1);
+	background: none;
 	box-sizing: border-box;
+	color: #eff0f1;
 	padding: 1.5rem 1.5rem 1rem;
 	position: relative;
 	width: 100%;
 	max-width: 100%;
+	bottom: -3.1rem;
+}
+.page .main-header .header-group {
+	bottom: auto;
 }
 .has-featured-image .main-header .header-group {
 	background: rgba(70, 78, 84, .7);
+	color: #fff;
 	position: absolute;
+	bottom: 0;
+}
+.page .main-header cite {
+	display: none;
 }
 
 /* Social sharing bar */
@@ -162,15 +270,17 @@ main {
 
 .article-body,
 .article-footer-inner-wrap,
-.archive section {
+.archive section,
+.page .single .one {
 	margin: 0 auto;
 	width: 100%;
 	max-width: 640px;
 }
 .article-body p:first-child {
-	font-family: palatino;
+	font-family: "museo-slab";
 	font-size: 1.3rem;
 	line-height: 1.5;
+	font-weight: 300;
 }
 .article-footer {
 	/*	background: #d7dadb;*/
@@ -195,16 +305,71 @@ main {
 }*/
 
 
+/* inline sidebar content */
+
+.article-sidebar p,
+.article-sidebar img,
+.article-sidebar figure,
+.article-sidebar ul,
+.article-sidebar ol {
+	color: #fff;
+	display: none;
+}
+.article-sidebar h2 {
+	padding: 1rem 4rem;
+	color: #fff;
+	margin: 0;
+}
+.article-sidebar {
+	background: #5e6a71;
+	padding: 1rem 2rem;
+	margin: 1rem 0 2rem;
+	cursor: pointer;
+	position: relative;
+}
+.article-sidebar-open p,
+.article-sidebar-open img,
+.article-sidebar-open figure,
+.article-sidebar-open ul,
+.article-sidebar-open ol {
+	display: block;
+}
+.article-sidebar h2:before {
+	content: "+";
+	font-size: 4rem;
+	position: absolute;
+	left: 2rem;
+	margin-top: -.3rem;
+}
+.article-sidebar.article-sidebar-open h2:before {
+	content: "-";
+}
+.article-sidebar-open h2 {
+	margin-bottom: 2rem;
+}
+.article-sidebar a {
+	color: inherit;
+	text-decoration: underline;
+}
+.article-endcontent {
+	margin: 1rem 0;
+	padding: 1.5rem 0 0;
+	border: 1px solid #d7dadb;
+	border-left: none;
+	border-right: none;
+	color: #981e32;
+}
+
 /* ----- Main Footer ----- */
 
 .main-footer {
 	background: #2a3033;
 }
 .magazine-nav {
-	padding: 2rem 2rem 0;
+	padding: 2rem 0 0;
 }
 .wsu-nav {
-	padding: 1rem 2rem;
+	padding: 1rem 0;
 }
 .magazine-nav,
 .wsu-nav {
@@ -225,6 +390,11 @@ main {
 .wsu-nav a {
 	color: #d7dadb;
 	text-transform: uppercase;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	-ms-flex: 1;
+	flex: 1;
+	text-align: center;
 }
 .main-footer .wsu-logo {
 	margin: 2rem 0 1rem;
@@ -238,6 +408,216 @@ main {
 
 .archive .article-footer {
 	display: none;
+}
+
+/* archive pages */
+
+.archive .main-header .header-group {
+	padding-left: 10%;
+}
+.article-footer .author-info {
+	display: none;
+}
+.article-footer {
+	margin: 0 auto;
+	width: 100%;
+	max-width: 640px;
+}
+.main-footer.archive-footer {
+	background: none;
+	padding: 1rem 0;
+}
+.archive article.post {
+	content: "";
+	display: table;
+	clear: both;
+}
+figure.article-thumbnail {
+	float: left;
+	padding: 0;
+	margin: 0;
+}
+figure.article-thumbnail img {
+	padding: 0 2rem 1rem 0;
+	margin: 0;
+}
+.archive section {
+	max-width: 100%;
+	padding: 0 10%;
+	box-sizing: border-box;
+	background: #eff0f1;
+}
+.archive .issue-head {
+	margin-top: .5rem;
+}
+.attachment-spine-thumbnail_size {
+	width: 150px;
+	height: 150px;
+}
+.prevnext .column.one {
+	width: 100% !important;
+	box-sizing: border-box;
+	text-align: left;
+	padding: 0 !important;
+}
+
+/* ----- Issue pages and Home page----- */
+
+.home section h2,
+.single-wsu_magazine_issue section h2 {
+	font-size: 1.6rem;
+	font-weight: 900;
+	text-transform: none;
+}
+.home section.secondary-articles h2,
+.single-wsu_magazine_issue section.secondary-articles h2 {
+	color: #5e6a71;
+	font-size: 1.2rem;
+}
+.home header.main-header,
+.single-wsu_magazine_issue header.main-header {
+	display: none;
+}
+.home .spine-social-channels,
+.single-wsu_magazine_issue .spine-social-channels {
+	display: none;
+}
+.home .article-body,
+.single-wsu_magazine_issue .article-body {
+	max-width: 100%;
+	/* padding: 0; */
+	/* margin: 0; */
+}
+.home .column.one,
+.single-wsu_magazine_issue .column.one {
+	padding: 0;
+}
+.home .column.one p,
+.home .column.two p,
+.single-wsu_magazine_issue .column.one p,
+.single-wsu_magazine_issue .column.two p {
+	display: none;
+}
+.headline-has-background {
+	height: ;
+	background-size: cover;
+	margin-bottom: 10px;
+	position: relative;
+	padding-bottom: 60%;
+}
+.home section:first-child .one a > div,
+.single-wsu_magazine_issue section:first-child .one a > div {
+	height: 450px;
+	background-size: cover;
+	padding-bottom: 0;
+	text-align: right;
+}
+.home section:first-child .home-headline-head-wrapper,
+.single-wsu_magazine_issue section:first-child .home-headline-head-wrapper {
+	background: none;
+}
+.home section.halves .one,
+.single-wsu_magazine_issue section.halves .one {
+	padding-right: 5px;
+}
+.home section.halves .two,
+.single-wsu_magazine_issue section.halves .two {
+	padding-left: 5px;
+}
+.home-headline-head-wrapper {
+	background: rgba(42, 48, 51, .7);
+	color: #fff;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 1rem 2rem 1rem 1rem;
+}
+.row.single .home-subtitle {
+	display: block;
+}
+.home-subtitle {
+	display: none;
+}
+.column:hover .home-subtitle {
+	display: block;
+}
+.secondary-articles .headline-has-background {
+	background-color: #f8f1eb;
+	background-size: 33%;
+	background-repeat: no-repeat;
+	padding-bottom: 32%;
+}
+.secondary-articles .headline-has-background:hover {
+	background-color: #eddccc;
+}
+.secondary-articles .home-headline-head-wrapper {
+	background: none;
+	padding-left: calc(33% + 15px);
+	padding-top: 0;
+	top: 0;
+}
+.secondary-articles .home-subtitle {
+	color: #2a3033;
+	display: block;
+	font-weight: 300;
+}
+.article-section {
+	font-size: .8rem;
+	text-transform: uppercase;
+	line-height: 1;
+}
+h2 + .article-section {
+	margin-top: -.5rem;
+}
+.secondary-articles .home-headline-head-wrapper {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+}
+.secondary-articles .article-section {
+	-webkit-box-ordinal-group: 2;
+	-webkit-order: 1;
+	-ms-flex-order: 1;
+	order: 1;
+	margin-top: .6rem;
+}
+.secondary-articles h2 {
+	padding: .5rem 0 0;
+	-webkit-box-ordinal-group: 3;
+	-webkit-order: 2;
+	-ms-flex-order: 2;
+	order: 2;
+}
+.secondary-articles .home-subtitle {
+	-webkit-box-ordinal-group: 4;
+	-webkit-order: 3;
+	-ms-flex-order: 3;
+	order: 3;
+}
+
+/* ----- past issues list ----- */
+
+
+/* List of past issues with thumbnails of covers */
+
+.past-issues-list {
+	list-style-type: none;
+}
+.past-issues-list li {
+	width: 118px;
+	height: 143px;
+	padding: 10px 10px 10px 20px;
+	font-size: 1em;
+	text-align: center;
+	display: block;
+	float: left;
 }
 
 /* ----- Old WSM styles to preserve in 2015 redesign ----- */
@@ -432,3 +812,27 @@ main {
 }
 
 /* ----- END OF - Old WSM styles to preserve in 2015 redesign ----- */
+
+
+/* ----- Responsive adjustments ----- */
+
+@media screen and (max-width: 989px) {
+	#binder main {
+		margin-left: 0;
+		margin-top: 0;
+	}
+}
+@media screen and (max-width: 791px) {
+	#binder.fluid main,
+	#binder.hybrid main {
+		margin-top: 0;
+	}
+	.home section.halves .one,
+	.single-wsu_magazine_issue section.halves .one {
+		padding-right: 0;
+	}
+	.home section.halves .two,
+	.single-wsu_magazine_issue section.halves .two {
+		padding-left: 0;
+	}
+}
