@@ -7,7 +7,7 @@
 			<?php echo esc_html( magazine_get_issue_name() ); ?>
 		</div>
 		<nav class="site-header-nav sh-item">
-			<a class="nav-emag" href="https://stage.magazine.wsu.edu/e-magazine/">eMag</a>
+			<a class="nav-emag" href="https://stage.magazine.wsu.edu/e-magazine/">eMAG</a>
 			<a class="nav-media" href="https://stage.magazine.wsu.edu/video/">Media</a>
 			<a class="nav-search" href="#">Search</a>
 			<a class="nav-issues" href="https://stage.magazine.wsu.edu/past-issues/">Issues</a>
