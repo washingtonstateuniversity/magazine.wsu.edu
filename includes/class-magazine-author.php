@@ -59,7 +59,7 @@ class WSU_Magazine_Author {
 		$args = array(
 			'labels' => $labels,
 			'description' => 'Authors of articles in the WSU Magazine.',
-			'public' => true,
+			'public' => false,
 			'hierarchical' => false,
 			'menu_position' => 8,
 			'menu_icon' => 'dashicons-groups',
