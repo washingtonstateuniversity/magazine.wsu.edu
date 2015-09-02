@@ -42,6 +42,7 @@ class WSU_Magazine_Theme {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		add_filter( 'pre_site_option_upload_filetypes', array( $this, 'set_upload_filetypes' ), 11, 1 );
 		add_filter( 'upload_mimes', array( $this, 'set_mime_types' ), 11, 1 );
+		add_shortcode( 'magazine_search_form', array( $this, 'display_magazine_search_form' ) );
 	}
 
 	public function editor_style() {
@@ -81,6 +82,15 @@ class WSU_Magazine_Theme {
 		}
 
 		return $mime_types;
+	}
+
+	/**
+	 * Display a search form with a short code when requested.
+	 *
+	 * @return string|void
+	 */
+	public function display_magazine_search_form() {
+		return get_search_form( false );
 	}
 }
 
