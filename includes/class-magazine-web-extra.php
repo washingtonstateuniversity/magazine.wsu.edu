@@ -62,6 +62,7 @@ class WSU_Magazine_Web_Extra {
 				'editor',
 				'thumbnail',
 				'revisions',
+				'author',
 			),
 			'taxonomies' => array(
 				'post_tag',
