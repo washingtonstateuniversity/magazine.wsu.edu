@@ -5,7 +5,7 @@
  Author:         WSU University Communications
  Author URI:     https://web.wsu.edu/
  Template:       spine
- Version:        0.6.4
+ Version:        0.6.5
 */
 
 
@@ -883,6 +883,14 @@ h2 + .article-section {
 	.site-header-nav {
 		width: calc(100% - 325px);
 	}
+	.secondary-articles .home-subtitle {
+		line-height: 1.2;
+		font-size: .8rem;
+	}
+	.article-body {
+		padding: 0 2rem;
+		box-sizing: border-box;
+	}
 }
 @media screen and (max-width: 650px) {
 	.sh-item {
@@ -897,5 +905,17 @@ h2 + .article-section {
 		right: auto;
 		bottom: auto;
 		padding: 2rem;
+	}
+	.magazine-nav,
+	.wsu-nav {
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-webkit-flex-direction: column;
+		-ms-flex-direction: column;
+		flex-direction: column;
+	}
+	.magazine-nav a,
+	.wsu-nav a {
+		padding: .25rem;
 	}
 }
