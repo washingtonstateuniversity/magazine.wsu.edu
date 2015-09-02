@@ -205,10 +205,16 @@ class WSU_Magazine_Issue {
 		return '';
 	}
 
+	/**
+	 * Return the current page view's issue URL. If this is the front page or an issue
+	 * page, don't return a URL as we're already there.
+	 *
+	 * @return bool|false|string
+	 */
 	public function get_issue_url() {
 		$object_id = $this->get_current_issue_id();
 
-		if ( is_front_page() ) {
+		if ( is_front_page() || is_singular( $this->content_type_slug ) ) {
 			return false;
 		}
 
