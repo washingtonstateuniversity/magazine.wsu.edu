@@ -54,6 +54,8 @@ class WSU_Magazine_Photo {
 			'labels' => $labels,
 			'description' => 'Photos associated with magazine articles.',
 			'public' => true,
+			'publicly_queryable' => false,
+			'exclude_from_search' => true,
 			'hierarchical' => false,
 			'menu_position' => 5,
 			'menu_icon' => 'dashicons-format-image',
