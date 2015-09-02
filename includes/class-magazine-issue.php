@@ -192,6 +192,16 @@ class WSU_Magazine_Issue {
 		return '';
 	}
 
+	public function get_issue_url() {
+		$object_id = $this->get_current_issue_id();
+
+		if ( is_front_page() ) {
+			return false;
+		}
+
+		return get_the_permalink( $object_id );
+	}
+
 	/**
 	 * Add support for the page builder to magazine issues.
 	 */
@@ -240,6 +250,11 @@ function WSU_Magazine_Issue() {
 function magazine_get_issue_name() {
 	$magazine_issue = WSU_Magazine_Issue();
 	return $magazine_issue->get_issue_name();
+}
+
+function magazine_get_issue_url() {
+	$magazine_issue = WSU_Magazine_Issue();
+	return $magazine_issue->get_issue_url();
 }
 
 function magazine_get_issue_season_class( $post_id, $prefix = '' ) {

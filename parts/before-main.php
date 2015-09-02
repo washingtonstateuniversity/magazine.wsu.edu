@@ -4,7 +4,13 @@
 
 	<header class="site-header">
 		<div class="site-header-issue sh-item">
-			<?php echo esc_html( magazine_get_issue_name() ); ?>
+			<?php
+			if ( $issue_url = magazine_get_issue_url() ) {
+				echo '<a href="' . esc_url( $issue_url ) . '">' . esc_html( magazine_get_issue_name() ) . '</a>';
+			} else {
+				echo esc_html( magazine_get_issue_name() );
+			}
+			?>
 		</div>
 		<nav class="site-header-nav sh-item">
 			<a class="nav-emag" href="https://stage.magazine.wsu.edu/e-magazine/"><span><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
