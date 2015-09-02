@@ -35,7 +35,7 @@ class WSU_Magazine_Issue {
 	 */
 	public function setup_hooks() {
 		add_action( 'init', array( $this, 'register_content_type' ) );
-		add_action( 'init', array( $this, 'register_taxonomy' ) );
+		add_action( 'init', array( $this, 'register_taxonomy' ), 15 );
 		add_filter( 'body_class', array( $this, 'season_body_class' ) );
 		add_action( 'admin_init', array( $this, 'register_builder_support' ) );
 		add_filter( 'spine_builder_force_builder', array( $this, 'force_builder' ) );
