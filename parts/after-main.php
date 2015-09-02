@@ -1,9 +1,9 @@
 <footer class="main-footer">
 	<nav class="magazine-nav">
-		<a href="https://magazine.wsu.edu">Current Issue</a>
-		<a href="https://magazine.wsu.edu/about">About <em>WSM</em></a>
-		<a href="https://magazine.wsu.edu/advertising">Advertising</a>
-		<a href="https://magazine.wsu.edu/contact">Contact</a>
+		<a href="<?php echo esc_url( home_url() ); ?>">Current Issue</a>
+		<a href="<?php echo esc_url( home_url( '/about/' ) ); ?>">About <em>WSM</em></a>
+		<a href="<?php echo esc_url( home_url( '/advertising' ) ); ?>">Advertising</a>
+		<a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Contact</a>
 		<a href="http://wsm.wsu.edu/ourstory/index.php?title=Main_Page">Our Story</a>
 	</nav>
 	<div class="wsu-logo"><img src="https://wsu.edu/wp-content/themes/wsu-home/images/wsu-home-logo.svg"></div>
