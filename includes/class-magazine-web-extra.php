@@ -73,6 +73,15 @@ class WSU_Magazine_Web_Extra {
 		);
 		register_post_type( $this->content_type_slug, $args );
 		register_taxonomy_for_object_type( 'wsuwp_university_category', $this->content_type_slug );
+
+		if ( class_exists( 'MultiPostThumbnails' ) ) {
+			$thumbnail_args = array(
+				'label' => 'Thumbnail Image',
+				'id' => 'thumbnail-image',
+				'post_type' => $this->content_type_slug,
+			);
+			new MultiPostThumbnails( $thumbnail_args );
+		}
 	}
 }
 
