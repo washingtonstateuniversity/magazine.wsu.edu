@@ -69,7 +69,7 @@ class WSU_Magazine_Web_Extra {
 				'category',
 			),
 			'has_archive' => true,
-			'rewrite' => false,
+			'rewrite' => array( 'slug' => 'web-extra' ),
 		);
 		register_post_type( $this->content_type_slug, $args );
 		register_taxonomy_for_object_type( 'wsuwp_university_category', $this->content_type_slug );
