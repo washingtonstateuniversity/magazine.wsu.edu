@@ -128,15 +128,28 @@ class WSU_Magazine_Issue {
 	 * @return false|int The integer ID of the issue if found, false if not available.
 	 */
 	public function get_current_issue_id() {
-		if ( is_singular() && ! is_page() ) {
-			return get_the_ID();
-		}
-
 		$args = array(
 			'post_type' => $this->content_type_slug,
 			'posts_per_page' => 1,
 			'fields' => 'ids',
 		);
+
+		if ( is_singular() && ! is_page() ) {
+			$issues = wp_get_object_terms( get_the_ID(), $this->taxonomy_slug );
+
+			if ( 0 == count( $issues ) ) {
+				return false;
+			}
+
+			$args['tax_query'] = array(
+				array(
+					'taxonomy' => $this->taxonomy_slug,
+					'field' => 'term_id',
+					'terms' => $issues[0]->term_id,
+				),
+			);
+		}
+
 		$issue = get_posts( $args );
 
 		if ( ! empty( $issue ) ) {
