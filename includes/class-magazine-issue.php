@@ -123,6 +123,30 @@ class WSU_Magazine_Issue {
 	}
 
 	/**
+	 * Determine the issue associated with the current page view.
+	 *
+	 * @return false|int The integer ID of the issue if found, false if not available.
+	 */
+	public function get_current_issue_id() {
+		if ( is_singular() && ! is_page() ) {
+			return get_the_ID();
+		}
+
+		$args = array(
+			'post_type' => $this->content_type_slug,
+			'posts_per_page' => 1,
+			'fields' => 'ids',
+		);
+		$issue = get_posts( $args );
+
+		if ( ! empty( $issue ) ) {
+			return $issue[0];
+		}
+
+		return false;
+	}
+
+	/**
 	 * Add season to the list of body classes for individual articles and individual issues.
 	 *
 	 * @param array $body_classes List of current body classes.
@@ -130,25 +154,36 @@ class WSU_Magazine_Issue {
 	 * @return array Modified list of body classes.
 	 */
 	public function season_body_class( $body_classes ) {
-		if ( is_singular() ) {
-			$issues = wp_get_object_terms( get_the_ID(), $this->taxonomy_slug );
+		$object_id = $this->get_current_issue_id();
 
-			if ( 1 >= count( $issues ) ) {
-				$issue = explode( ' ', $issues[0]->name );
-				$body_classes[] = 'season-' . esc_attr( strtolower( $issue[0] ) );
-			}
+		if ( false === $object_id ) {
+			return $body_classes;
+		}
+
+		$issues = wp_get_object_terms( $object_id, $this->taxonomy_slug );
+
+		if ( 1 >= count( $issues ) ) {
+			$issue = explode( ' ', $issues[0]->name );
+			$body_classes[] = 'season-' . esc_attr( strtolower( $issue[0] ) );
 		}
 
 		return $body_classes;
 	}
 
 	/**
-	 * Retrieve the issue name for the current article or issue view.
+	 * Retrieve the issue name for the current article or issue view. If an issue
+	 * is not assigned, return the most current issue.
 	 *
 	 * @return string
 	 */
 	public function get_issue_name() {
-		$issues = wp_get_object_terms( get_the_ID(), $this->taxonomy_slug );
+		$object_id = $this->get_current_issue_id();
+
+		if ( false === $object_id ) {
+			return '';
+		}
+
+		$issues = wp_get_object_terms( $object_id, $this->taxonomy_slug );
 
 		if ( ! empty( $issues ) && 1 >= count( $issues ) ) {
 			return $issues[0]->name;
