@@ -2,12 +2,12 @@
 	//this is where the top site header content will be populated
 ?>
 
-    <header class="site-header">
-        <div class="site-header-issue sh-item">
-            <?php echo esc_html( magazine_get_issue_name() ); ?>
-        </div>
-        <nav class="site-header-nav sh-item">
-            <a class="nav-emag" href="https://stage.magazine.wsu.edu/e-magazine/"><span><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	<header class="site-header">
+		<div class="site-header-issue sh-item">
+			<?php echo esc_html( magazine_get_issue_name() ); ?>
+		</div>
+		<nav class="site-header-nav sh-item">
+			<a class="nav-emag" href="https://stage.magazine.wsu.edu/e-magazine/"><span><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="21.086px" height="15.968px" viewBox="0 0 21.086 15.968" enable-background="new 0 0 21.086 15.968" xml:space="preserve">
 <path d="M20.669,0.393c-3.28-0.52-6.579-0.523-9.862-0.015C7.524-0.13,4.005-0.126,0.725,0.393L0,0.487v15.481l0.989-0.129
 	c3.172-0.502,6.646-0.502,9.818,0c3.172-0.502,6.425-0.502,9.599,0l0.68,0.129V0.487L20.669,0.393z M5.623,14.054
@@ -16,8 +16,8 @@
 	V14.332z"/>
 </svg>
  </span>eMAG</a>
-            <a class="nav-media" href="https://stage.magazine.wsu.edu/video/">
-                <span><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+			<a class="nav-media" href="https://stage.magazine.wsu.edu/video/">
+				<span><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="18.611px" height="14.486px" viewBox="0 0 18.611 14.486" enable-background="new 0 0 18.611 14.486" xml:space="preserve">
 <g>
 	<path d="M9.325,14.486c-0.006,0-0.013,0-0.02,0s-0.013,0-0.019,0H9.325z"/>
@@ -35,9 +35,9 @@
 </g>
 </svg>
 </span> Media
-            </a>
-            <a class="nav-search" href="#">
-                <span><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+			</a>
+			<a class="nav-search" href="#">
+				<span><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="15.262px" height="14.884px" viewBox="0 0 15.262 14.884" enable-background="new 0 0 15.262 14.884" xml:space="preserve">
 <path d="M4.891,1.779C2.953,3.717,2.6,6.637,3.827,8.935l-3.388,3.388c-0.586,0.586-0.586,1.536,0,2.122s1.535,0.586,2.121,0
 	l3.291-3.291c2.357,1.552,5.557,1.291,7.631-0.783c2.373-2.373,2.373-6.219,0-8.592C11.109-0.594,7.264-0.593,4.891,1.779z
@@ -45,9 +45,9 @@
 	/>
 </svg>
 </span> Search
-            </a>
-            <a class="nav-issues" href="https://stage.magazine.wsu.edu/past-issues/">
-                <span><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+			</a>
+			<a class="nav-issues" href="https://stage.magazine.wsu.edu/past-issues/">
+				<span><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="17px" height="17px" viewBox="0 0 17 17" enable-background="new 0 0 17 17" xml:space="preserve">
 <g>
 	<g>
@@ -57,9 +57,9 @@
 	<polygon points="5,3 14,3 14,2 3,2 3,15 5,15 	"/>
 </g>
 </svg></span> Issues
-            </a>
-            <a class="nav-connect" href="#">
-                <span><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+			</a>
+			<a class="nav-connect" href="https://stage.magazine.wsu.edu/connect/">
+				<span><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="13.652px" height="14.62px" viewBox="0 0 13.652 14.62" enable-background="new 0 0 13.652 14.62" xml:space="preserve">
 <path d="M11.178,9.671c-0.6,0-1.15,0.213-1.578,0.568L4.938,7.548C4.944,7.47,4.949,7.39,4.949,7.31S4.944,7.15,4.938,7.072
 	L9.6,4.381c0.428,0.355,0.979,0.569,1.578,0.569c1.367,0,2.475-1.108,2.475-2.475C13.652,1.108,12.545,0,11.178,0
@@ -69,7 +69,7 @@
 	z"/>
 </svg>
 </span> Connect
-            </a>
-        </nav>
-        <div class="site-header-logo sh-item"><a href="https://stage.magazine.wsu.edu"><img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/images/WSM_logo.svg' ); ?>" alt="Washington State Magazine"></a></div>
-    </header>
+			</a>
+		</nav>
+		<div class="site-header-logo sh-item"><a href="https://stage.magazine.wsu.edu"><img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/images/WSM_logo.svg' ); ?>" alt="Washington State Magazine"></a></div>
+	</header>
