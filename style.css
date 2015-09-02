@@ -5,7 +5,7 @@
  Author:         WSU University Communications
  Author URI:     https://web.wsu.edu/
  Template:       spine
- Version:        0.6.8
+ Version:        0.6.9
 */
 
 
@@ -306,7 +306,7 @@ figcaption.wp-caption-text {
 	width: 100%;
 	max-width: 640px;
 }
-.article-body p:first-child {
+.article-body > p:first-child {
 	font-family: "museo-slab";
 	font-size: 1.3rem;
 	line-height: 1.5;
