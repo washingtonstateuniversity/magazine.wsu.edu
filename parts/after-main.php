@@ -6,7 +6,7 @@
 		<a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Contact</a>
 		<a href="http://wsm.wsu.edu/ourstory/index.php?title=Main_Page">Our Story</a>
 	</nav>
-	<div class="wsu-logo"><img src="https://wsu.edu/wp-content/themes/wsu-home/images/wsu-home-logo.svg"></div>
+	<div class="wsu-logo"><img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/images/wsu-home-logo.svg' ); ?>"></div>
 	<nav class="wsu-nav">
 		<a href="https://wsu.edu">WSU Home</a>
 		<a href="https://news.wsu.edu">News</a>
