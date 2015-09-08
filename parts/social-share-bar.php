@@ -4,5 +4,6 @@
 			<li class="twitter-channel"><a href="https://twitter.com/intent/tweet?text=<?php echo urlencode( esc_attr( spine_get_title() ) ); ?>&url=<?php echo esc_url( get_the_permalink() ); ?>&via=wsmagazine">Twitter</a></li>
 			<li class="pinterest-channel"><a href="https://www.pinterest.com/pin/create/button/?url=<?php echo esc_url( get_the_permalink() ); ?>">Pinterest</a></li>
 			<li class="googleplus-channel"><a href="https://plus.google.com/share?url=<?php echo esc_url( get_the_permalink() ); ?>">Google+</a></li>
+			<li class="by-email"><a href="mailto:?subject=<?php echo rawurlencode( esc_attr( spine_get_title() ) ); ?>&body=<?php echo esc_url( get_the_permalink() ); ?>">Email</a></li>
 		</ul>
 	</div>
