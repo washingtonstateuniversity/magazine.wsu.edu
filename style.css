@@ -5,7 +5,7 @@
  Author:         WSU University Communications
  Author URI:     https://web.wsu.edu/
  Template:       spine
- Version:        0.6.14
+ Version:        0.6.15
 */
 
 
@@ -85,19 +85,22 @@ h2 {
 	margin-bottom: .5rem;
 }
 figure {
-	width: 100% !important;
+	/* width: 100% !important; */
 	margin-bottom: 1rem;
 	position: relative;
 }
 figcaption.wp-caption-text {
 	position: absolute;
-	top: 0;
+	bottom: 0;
 	padding: 1rem 2rem;
 	color: #fff;
 	background: rgba(0, 0, 0, .6);
 	width: 100%;
 	box-sizing: border-box;
 	font-size: .8rem;
+}
+.gallery figcaption.wp-caption-text {
+	top: 0;
 }
 
 /* ----- set season color for all imheriting elements ----- */
@@ -295,7 +298,6 @@ figcaption.wp-caption-text {
 	font-size: 1.2rem;
 	padding: 0!important;
 }
-
 .spine-social-channels .social-share-bar .by-email a:before {
 	content: "@";
 }
