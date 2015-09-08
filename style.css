@@ -296,6 +296,10 @@ figcaption.wp-caption-text {
 	padding: 0!important;
 }
 
+.spine-social-channels .social-share-bar .by-email a:before {
+	content: "@";
+}
+
 /* Article styles */
 
 .article-body,
