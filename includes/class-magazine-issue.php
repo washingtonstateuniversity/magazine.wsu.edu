@@ -187,10 +187,15 @@ class WSU_Magazine_Issue {
 	 * Retrieve the issue name for the current article or issue view. If an issue
 	 * is not assigned, return the most current issue.
 	 *
-	 * @return string
+	 * @param int $object_id ID of the object associated with an issue.
+	 *
+	 * @return string Issue name.
 	 */
-	public function get_issue_name() {
-		$object_id = $this->get_current_issue_id();
+	public function get_issue_name( $object_id = 0 ) {
+
+		if ( 0 === $object_id ) {
+			$object_id = $this->get_current_issue_id();
+		}
 
 		if ( false === $object_id ) {
 			return '';
@@ -266,9 +271,9 @@ function WSU_Magazine_Issue() {
 	return WSU_Magazine_Issue::get_instance();
 }
 
-function magazine_get_issue_name() {
+function magazine_get_issue_name( $post_id = 0 ) {
 	$magazine_issue = WSU_Magazine_Issue();
-	return $magazine_issue->get_issue_name();
+	return $magazine_issue->get_issue_name( $post_id );
 }
 
 function magazine_get_issue_url() {
