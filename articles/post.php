@@ -46,29 +46,35 @@
 
 	<footer class="article-footer">
 		<?php
+
+		$post_category_display_combined = array();
+
 		// Display site level categories attached to the post.
 		if ( has_category() ) {
-			echo '<dl class="categorized">';
 			foreach( get_the_category() as $category ) {
-				echo '<dd><a href="' . get_category_link( $category->cat_ID ) . '">' . $category->cat_name . '</a></dd>';
+				$post_category_display_combined[] = '<dd><a href="' . get_category_link( $category->cat_ID ) . '">' . $category->cat_name . '</a></dd>';
 			}
-			echo '</dl>';
 		}
 
 		// Display University categories attached to the post.
 		if ( has_term( '', 'wsuwp_university_category' ) ) {
 			$university_category_terms = get_the_terms( get_the_ID(), 'wsuwp_university_category' );
 			if ( ! is_wp_error( $university_category_terms ) ) {
-				echo '<dl class="university-categorized">';
-
 				foreach ( $university_category_terms as $term ) {
 					$term_link = get_term_link( $term->term_id, 'wsuwp_university_category' );
 					if ( ! is_wp_error( $term_link ) ) {
-						echo '<dd><a href="' . esc_url( $term_link ) . '">' . $term->name . '</a></dd>';
+						$post_category_display_combined[] = '<dd><a href="' . esc_url( $term_link ) . '">' . $term->name . '</a></dd>';
 					}
 				}
-				echo '</dl>';
 			}
+		}
+
+		if ( ! empty( $post_category_display_combined ) ) {
+			echo '<dl class="categorized">';
+			foreach( $post_category_display_combined as $post_category_display ) {
+				echo $post_category_display;
+			}
+			echo '</dl>';
 		}
 
 		// Display University tags attached to the post.
