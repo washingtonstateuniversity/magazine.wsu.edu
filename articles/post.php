@@ -4,7 +4,7 @@
 	<figure class="article-thumbnail">
 		<a href="<?php the_permalink(); ?>"><?php spine_the_thumbnail_image(); ?></a>
 	</figure>
-	<div class="issue-head <?php echo magazine_get_issue_season_class( get_the_ID(), 'article-' ); ?>"><?php echo magazine_get_issue_name(); ?></div>
+	<div class="issue-head <?php echo magazine_get_issue_season_class( get_the_ID(), 'article-' ); ?>"><?php echo magazine_get_issue_name( get_the_ID() ); ?></div>
 <?php endif; ?>
 
 	<header class="article-header">
