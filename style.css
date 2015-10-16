@@ -257,7 +257,6 @@ figcaption.wp-caption-text {
 	height: auto;
 }
 .has-featured-image .main-header {
-	background-position: center center;
 	background-size: cover;
 	height: 450px;
 }
