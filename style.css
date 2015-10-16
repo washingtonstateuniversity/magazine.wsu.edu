@@ -5,7 +5,7 @@
  Author:         WSU University Communications
  Author URI:     https://web.wsu.edu/
  Template:       spine
- Version:        0.6.19
+ Version:        0.7.0
 */
 
 
@@ -257,7 +257,6 @@ figcaption.wp-caption-text {
 	height: auto;
 }
 .has-featured-image .main-header {
-	background-position: center center;
 	background-size: cover;
 	height: 450px;
 }
