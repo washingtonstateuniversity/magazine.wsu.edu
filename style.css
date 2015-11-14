@@ -372,14 +372,15 @@ figcaption.wp-caption-text {
 	display: block;
 }
 .article-sidebar h2:before {
-	content: "+";
+	content: url(https://magazine.wsu.edu/wp-content/themes/wsu-magazine-theme/images/plus_icon.svg);
 	font-size: 4rem;
 	position: absolute;
 	left: 2rem;
-	margin-top: -.3rem;
+	margin-top: .8rem;
+	fill: #fff;
 }
 .article-sidebar.article-sidebar-open h2:before {
-	content: "-";
+	content: url(https://magazine.wsu.edu/wp-content/themes/wsu-magazine-theme/images/minus_icon.svg);
 }
 .article-sidebar-open h2 {
 	margin-bottom: 2rem;
