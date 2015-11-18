@@ -104,6 +104,7 @@ class WSU_Magazine_Issue {
 			'hierarchical'      => false,
 			'show_ui'           => true,
 			'show_in_menu'      => true,
+			'show_admin_column' => true,
 			'rewrite'           => false,
 			'query_var'         => $this->taxonomy_slug,
 		);
