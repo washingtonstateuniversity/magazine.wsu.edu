@@ -101,7 +101,7 @@ class WSU_Magazine_Issue {
 			'labels'            => $labels,
 			'description'       => 'The magazine issue taxonomy attached to articles and issues.',
 			'public'            => false,
-			'hierarchical'      => true,
+			'hierarchical'      => false,
 			'show_ui'           => true,
 			'show_in_menu'      => true,
 			'rewrite'           => false,
