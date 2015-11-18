@@ -14,7 +14,7 @@ class WSU_Magazine_Issue {
 	/**
 	 * @var string Slug for tracking the taxonomy of a magazine issue.
 	 */
-	public $taxonomy_slug = 'wsu_magazine_issue';
+	public $taxonomy_slug = 'wsu_mag_issue_tax';
 
 	/**
 	 * Maintain and return the one instance and initiate hooks when
@@ -101,9 +101,10 @@ class WSU_Magazine_Issue {
 			'labels'            => $labels,
 			'description'       => 'The magazine issue taxonomy attached to articles and issues.',
 			'public'            => false,
-			'hierarchical'      => true,
+			'hierarchical'      => false,
 			'show_ui'           => true,
 			'show_in_menu'      => true,
+			'show_admin_column' => true,
 			'rewrite'           => false,
 			'query_var'         => $this->taxonomy_slug,
 		);
