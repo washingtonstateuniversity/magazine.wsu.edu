@@ -14,7 +14,7 @@ class WSU_Magazine_Issue {
 	/**
 	 * @var string Slug for tracking the taxonomy of a magazine issue.
 	 */
-	public $taxonomy_slug = 'wsu_magazine_issue';
+	public $taxonomy_slug = 'wsu_mag_issue_tax';
 
 	/**
 	 * Maintain and return the one instance and initiate hooks when
