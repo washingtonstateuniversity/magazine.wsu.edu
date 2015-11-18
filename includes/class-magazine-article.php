@@ -29,6 +29,30 @@ class WSU_Magazine_Article {
 	 * Setup hooks for the plugin.
 	 */
 	public function setup_hooks() {
+		add_action( 'restrict_manage_posts', array( $this, 'add_issue_filter' ) );
+	}
+
+	/**
+	 * Add a filter on the posts list table to selectively view articles by their issue.
+	 */
+	public function add_issue_filter() {
+		global $typenow;
+
+		if ( 'post' !== $typenow ) {
+			return;
+		}
+
+		$taxonomy = get_taxonomy( WSU_Magazine_Issue()->taxonomy_slug );
+		wp_dropdown_categories( array(
+			'show_option_all' => 'All issues',
+			'taxonomy'        => $taxonomy->name,
+			'name'            => $taxonomy->name,
+			'orderby'         => 'name',
+			'selected'        => isset( $_GET[ $taxonomy->name ] ) ? $_GET[ $taxonomy->name ] : '',
+			'show_count'      => true,
+			'hide_empty'      => true,
+			'value_field'     => 'slug',
+		) );
 	}
 }
 
