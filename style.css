@@ -522,6 +522,10 @@ figure.article-thumbnail img {
 	height: 145px;
 }
 
+.has-featured-image .automatic-issue .main-header {
+	height: 450px;
+}
+
 .single-wsu_magazine_issue .automatic-issue .header-group {
 	display: none;
 }
