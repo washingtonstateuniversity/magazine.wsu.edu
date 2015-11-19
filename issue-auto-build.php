@@ -42,13 +42,15 @@ $wsu_magazine_section = WSU_Magazine_Section();
 
 					if ( $thumbnail_src ) {
 						$background_image = 'style="background-image: url(' . esc_url( $thumbnail_src ) . ');"';
+						$extra_class = '';
 					} else {
 						$background_image = '';
+						$extra_class = ' no-thumbnail';
 					}
 					?>
 					<div class="column <?php echo $column_class[ $column ]; ?>">
 						<a class="home-link-wrap wsu-home-palette-text-default " href="<?php echo esc_url( get_the_permalink( $article->ID ) ); ?>">
-							<div <?php echo $background_image; ?> class="home-headline headline-has-background">
+							<div <?php echo $background_image; ?> class="home-headline headline-has-background<?php echo $extra_class; ?>">
 								<div>
 									<div class="home-headline-head-wrapper">
 										<h2><?php echo esc_html( get_the_title( $article->ID ) ); ?></h2>
