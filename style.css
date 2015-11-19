@@ -544,14 +544,14 @@ figure.article-thumbnail img {
 	padding-bottom: 60%;
 }
 .home section:first-child .one a > div,
-.single-wsu_magazine_issue section:first-child .one a > div {
+.single-wsu_magazine_issue section.single:first-child .one a > div {
 	height: 450px;
 	background-size: cover;
 	padding-bottom: 0;
 	text-align: right;
 }
 .home section:first-child .home-headline-head-wrapper,
-.single-wsu_magazine_issue section:first-child .home-headline-head-wrapper {
+.single-wsu_magazine_issue section.single:first-child .home-headline-head-wrapper {
 	background: none;
 }
 .home section.halves .one,
