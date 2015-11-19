@@ -516,6 +516,20 @@ figure.article-thumbnail img {
 .single-wsu_magazine_issue header.main-header {
 	display: none;
 }
+
+.single-wsu_magazine_issue .automatic-issue .main-header {
+	display: block;
+	height: 145px;
+}
+
+.has-featured-image .automatic-issue .main-header {
+	height: 450px;
+}
+
+.single-wsu_magazine_issue .automatic-issue .header-group {
+	display: none;
+}
+
 .home .spine-social-channels,
 .single-wsu_magazine_issue .spine-social-channels {
 	display: none;
@@ -544,14 +558,14 @@ figure.article-thumbnail img {
 	padding-bottom: 60%;
 }
 .home section:first-child .one a > div,
-.single-wsu_magazine_issue section:first-child .one a > div {
+.single-wsu_magazine_issue section.single:first-child .one a > div {
 	height: 450px;
 	background-size: cover;
 	padding-bottom: 0;
 	text-align: right;
 }
 .home section:first-child .home-headline-head-wrapper,
-.single-wsu_magazine_issue section:first-child .home-headline-head-wrapper {
+.single-wsu_magazine_issue section.single:first-child .home-headline-head-wrapper {
 	background: none;
 }
 .home section.halves .one,
@@ -595,6 +609,12 @@ figure.article-thumbnail img {
 	padding-top: 0;
 	top: 0;
 }
+
+.no-thumbnail .home-headline-head-wrapper {
+	padding-left: 10px;
+	padding-right: calc(33% + 10px);
+}
+
 .secondary-articles .home-subtitle {
 	color: #2a3033;
 	display: block;

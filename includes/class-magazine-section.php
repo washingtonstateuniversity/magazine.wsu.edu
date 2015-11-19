@@ -72,10 +72,27 @@ class WSU_Magazine_Section {
 	public function display_home_headlines_section( $content, $atts ) {
 		$post_id = absint( $atts['id'] );
 
+		$section_name = $this->get_article_section( $post_id );
+
+		if ( ! empty( $section_name ) ) {
+			return '<div class="article-section">' . esc_html( $section_name ) . '</div>';
+		}
+
+		return '';
+	}
+
+	/**
+	 * Retrieve the name of a section for a given article.
+	 *
+	 * @param $post_id
+	 *
+	 * @return string
+	 */
+	public function get_article_section( $post_id ) {
 		$sections = wp_get_object_terms( $post_id, $this->taxonomy_slug );
 
 		if ( isset( $sections[0] ) && isset( $sections[0]->name ) ) {
-			return '<div class="article-section">' . esc_html( $sections[0]->name ) . '</div>';
+			return $sections[0]->name;
 		}
 
 		return '';
