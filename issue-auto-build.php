@@ -53,7 +53,7 @@ $wsu_magazine_section = WSU_Magazine_Section();
 							<div <?php echo $background_image; ?> class="home-headline headline-has-background<?php echo $extra_class; ?>">
 								<div>
 									<div class="home-headline-head-wrapper">
-										<h2><?php echo esc_html( get_the_title( $article->ID ) ); ?></h2>
+										<h2><?php echo strip_tags( get_the_title( $article->ID ), '<em><strong>' ); ?></h2>
 										<div class="article-section"><?php echo esc_html( $wsu_magazine_section->get_article_section( $article->ID ) ); ?></div>
 										<div class="home-subtitle"></div>
 									</div>
