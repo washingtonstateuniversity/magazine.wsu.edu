@@ -237,16 +237,26 @@ class WSU_Magazine_Issue {
 	/**
 	 * Force builder to be used on every magazine issue.
 	 *
+	 * Hides the checkbox to disable the builder if an issue has been saved
+	 * with the builder interface already. In the future, this will be removed
+	 * in favor of a new issue building interface.
+	 *
 	 * @param bool $use_builder Whether the page builder show be used.
 	 *
 	 * @return bool True if the magazine issue content type. False if not.
 	 */
 	public function force_builder( $use_builder ) {
-		if ( $this->content_type_slug === get_post_type() ) {
-			return true;
+		if ( $this->content_type_slug !== get_post_type() ) {
+			return $use_builder;
 		}
 
-		return $use_builder;
+		$using_builder = get_post_meta( get_the_ID(), '_ttfmake-use-builder', true );
+
+		if ( $using_builder ) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/**
