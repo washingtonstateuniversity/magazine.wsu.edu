@@ -516,6 +516,16 @@ figure.article-thumbnail img {
 .single-wsu_magazine_issue header.main-header {
 	display: none;
 }
+
+.single-wsu_magazine_issue .automatic-issue .main-header {
+	display: block;
+	height: 145px;
+}
+
+.single-wsu_magazine_issue .automatic-issue .header-group {
+	display: none;
+}
+
 .home .spine-social-channels,
 .single-wsu_magazine_issue .spine-social-channels {
 	display: none;
