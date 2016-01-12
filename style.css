@@ -285,10 +285,15 @@ figcaption.wp-caption-text {
 
 /* Social sharing bar */
 
+.spine-social-channels {
+	position: relative;
+	height: 55px;
+}
 .social-share-bar {
 	margin: 1.5rem 2rem .5rem;
 	padding: 0;
 	float: right;
+	bottom: auto;
 }
 .spine-social-channels .social-share-bar li a {
 	color: #8d959a;
@@ -516,20 +521,16 @@ figure.article-thumbnail img {
 .single-wsu_magazine_issue header.main-header {
 	display: none;
 }
-
 .single-wsu_magazine_issue .automatic-issue .main-header {
 	display: block;
 	height: 145px;
 }
-
 .has-featured-image .automatic-issue .main-header {
 	height: 450px;
 }
-
 .single-wsu_magazine_issue .automatic-issue .header-group {
 	display: none;
 }
-
 .home .spine-social-channels,
 .single-wsu_magazine_issue .spine-social-channels {
 	display: none;
@@ -609,12 +610,10 @@ figure.article-thumbnail img {
 	padding-top: 0;
 	top: 0;
 }
-
 .no-thumbnail .home-headline-head-wrapper {
 	padding-left: 10px;
 	padding-right: calc(33% + 10px);
 }
-
 .secondary-articles .home-subtitle {
 	color: #2a3033;
 	display: block;
