@@ -256,6 +256,11 @@ figcaption.wp-caption-text {
 	color: #fff;
 	height: auto;
 }
+
+.error404 .main-header {
+	height: 102px;
+}
+
 .has-featured-image .main-header {
 	background-size: cover;
 	height: 450px;
