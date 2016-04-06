@@ -964,3 +964,375 @@ h2 + .article-section {
 		max-width: 100%;
 	}
 }
+
+/* ----- From Edit CSS plugin ----- */
+/* end content is the same color as the link color*/
+.article-endcontent a {
+	text-decoration: underline;
+}
+
+.article-sidebar h2:before {
+	margin-top: -.75rem;
+}
+
+/**/
+.magazine-nav a:hover,
+.wsu-nav a:hover {
+	text-decoration: underline;
+}
+
+/* site header background and overlay */
+#binder {
+	position: relative;
+}
+
+.home .site-header,
+.single-wsu_magazine_issue .site-header {
+	background: rgba(0,0,0,.7);
+	position: absolute;
+	width: 100%;
+	z-index: 5;
+}
+
+.site-header-nav {
+	width: calc(100% - (275px + 35px + 200px));
+}
+
+.site-header-nav a {
+	color: #8d959a;
+}
+
+.site-header-nav a span svg {
+	fill: #8d959a;
+}
+
+.site-header-nav a:hover {
+	color: #d7dadb;
+}
+
+.site-header-nav a:hover span svg {
+	fill: #d7dadb;
+}
+
+/* Winter */
+.season-winter .site-header-nav a.nav-emag {
+	color: #4f868e;
+}
+
+.season-winter .site-header-nav a.nav-emag span svg {
+	fill: #4f868e;
+}
+
+.season-winter .site-header-nav a.nav-emag:hover {
+	color: #00a5bd;
+}
+
+.season-winter .site-header-nav a.nav-emag:hover span svg {
+	fill: #00a5bd;
+}
+
+/* single page override */
+.page .single .one {
+	padding: 0 !important;
+}
+
+.row.single .column {
+	width: 100%;
+	max-width: 640px;
+	margin: 0 auto;
+	float: none;
+}
+
+.home .row.single .column,
+.single-wsu_magazine_issue .row.single .column {
+	max-width: 100%;
+}
+
+.archive .main-header .header-group {
+	padding-left: 1.5rem;
+}
+
+/* archive pages quick work */
+.archive article.post,
+.search article.post {
+	padding: 1rem 0 2.5rem;
+	margin-bottom: 1rem;
+	border-bottom: 1px solid #efefef;
+}
+
+/*.archive main figure,
+.archive main img,
+.search main figure,
+.search main img {
+	display: none;
+}
+*/
+.archive article.post {
+	width: 100%;
+}
+
+.archive section {
+	background: none;
+}
+
+.archive .main-header .header-group {
+	bottom: 0;
+}
+
+.search .main-header .header-group {
+	bottom: auto;
+}
+
+/*author hover fix on non featured image stories*/
+.main-header a:hover {
+	color: #981e32;
+}
+
+blockquote {
+	padding: 3rem;
+}
+
+.has-featured-image .main-header a:hover {
+	color: #fff;
+}
+
+.has-featured-image .main-header .header-group,
+.home-headline-head-wrapper {
+	background: rgba(0,0,0,.7);
+}
+
+.secondary-articles .headline-has-background {
+	background-color: #edf3f4;
+	-webkit-transition: background-color .3s ease;
+	transition: background-color .3s ease;
+}
+
+.secondary-articles .headline-has-background:hover {
+	background-color: #e3dfcd;
+}
+
+.season-fall .secondary-articles .headline-has-background {
+	background-color: #f8f1eb;
+}
+
+.season-fall .secondary-articles .headline-has-background:hover {
+	background-color: #eddccc;
+}
+
+.season-fall .secondary-articles .web-extra .headline-has-background {
+	background-color: #eddccc;
+}
+
+.season-fall .secondary-articles .web-extra .headline-has-background:hover {
+	background-color: #ddbea1;
+}
+
+.season-winter .secondary-articles .headline-has-background {
+	background-color: #edf3f4;
+}
+
+.season-winter .secondary-articles .headline-has-background:hover {
+	background-color: #d3e1e3;
+}
+
+.season-winter .secondary-articles .web-extra .headline-has-background {
+	background-color: #d3e1e3;
+}
+
+.season-winter .secondary-articles .web-extra .headline-has-background:hover {
+	background-color: #aec7cb;
+}
+
+.season-spring .secondary-articles .headline-has-background {
+	background-color: #f4f2eb;
+}
+
+.season-spring .secondary-articles .headline-has-background:hover {
+	background-color: #e3dfcd;
+}
+
+.season-spring .secondary-articles .web-extra .headline-has-background {
+	background-color: #e3dfcd;
+}
+
+.season-spring .secondary-articles .web-extra .headline-has-background:hover {
+	background-color: #cbc4a2;
+}
+
+.season-summer .secondary-articles .headline-has-background {
+	background-color: #f9f4e7;
+}
+
+.season-summer .secondary-articles .headline-has-background:hover {
+	background-color: #f1e4c4;
+}
+
+.season-summer .secondary-articles .web-extra .headline-has-background {
+	background-color: #f1e4c4;
+}
+
+.season-summer .secondary-articles .web-extra .headline-has-background:hover {
+	background-color: #e5cd93;
+}
+
+/* issue link on top left of page */
+.site-header-issue a {
+	color: #fff;
+}
+
+.site-header-issue a:hover {
+	color: #bdbdbd;
+}
+
+/* web extras on article pages */
+.post .web-extra {
+	margin-top: 1.5rem;
+}
+
+.post .web-extra p.highlight {
+	padding-bottom: 0;
+}
+
+.post .web-extra h2 {
+	text-transform: none;
+}
+
+/*  end content  */
+p.article-endcontent {
+	padding: 1.5rem 0;
+}
+
+p.article-endcontent a {
+	text-decoration: underline;
+}
+
+/* - Gallery - */
+.gallery {
+	display: block;
+	margin: 1rem 0 2rem;
+}
+
+figure {
+	margin: 0;
+	max-width: 100%;
+}
+
+figure img {
+	display: block;
+}
+
+.gallery img {
+	width: 100%;
+	border: none;
+}
+
+.gallery .gallery-item {
+	margin: 0;
+}
+
+figcaption.wp-caption-text {
+	position: relative;
+	background: rgba(0,0,0,.85);
+	line-height: 1.2;
+}
+
+.sss {
+	height: 0;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	display: block;
+/*overflow: hidden;*/
+}
+
+.ssslide {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+	overflow: hidden;
+}
+
+.ssslide img {
+	max-width: 100%;
+	height: auto;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	display: block;
+}
+
+.sssnext, .sssprev {
+	width: 25px;
+	height: 100%;
+	margin: 0;
+	position: absolute;
+	top: 0;
+}
+
+.sssprev {
+	left: -1.8rem;
+	background: url('https://magazine.wsu.edu/wp-content/themes/wsu-magazine-theme/images/left-arrow_icon.svg') no-repeat;
+	background-position: 10px;
+}
+
+.sssnext {
+	right: -1.8rem;
+	background: url('https://magazine.wsu.edu/wp-content/themes/wsu-magazine-theme/images/right-arrow_icon.svg') no-repeat;
+	background-position: 5px;
+}
+
+.sssprev:hover, .sssnext:hover {
+	cursor: pointer;
+}
+
+@media screen and (max-width: 950px) {
+	.home section.secondary-articles h2, .single-wsu_magazine_issue section.secondary-articles h2 {
+		font-size: .9rem;
+	}
+}
+
+@media screen and (max-width: 850px) {
+	.site-header-nav {
+		width: calc(100% - (325px + 35px));
+	}
+}
+
+@media screen and (max-width: 650px) {
+	.home .site-header, .single-wsu_magazine_issue .site-header {
+		background: none;
+		position: relative;
+	}
+
+	.home section:first-child .one a > div, .single-wsu_magazine_issue section:first-child .one a > div {
+		margin-top: -93px;
+	}
+
+	.row.single .column,
+	.article-footer,
+	.page .row.single .column {
+		padding-left: 1.5rem !important;
+		padding-right: 1.5rem !important;
+		box-sizing: border-box;
+	}
+
+	.single-post .row.single .column {
+		padding: 0 !important;
+	}
+
+	.home .row.single .column,
+	.single-wsu_magazine_issue .row.single .column {
+		padding: 0 !important;
+	}
+
+	.main-header .header-group {
+		bottom: auto;
+	}
+
+	.social-share-bar {
+		float: none;
+	}
+}
