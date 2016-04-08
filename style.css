@@ -8,87 +8,75 @@
  Version:        0.8.2
 */
 
-
-/* ----- delete once current issue color shows up on homepage ----- */
-
-.home .highlight,
-.home h3,
-.home cite,
-.home cite a,
-.home .article-section {
-	color: #b67233;
+/* Spine overrides */
+html {
+	background-color: #fff;
 }
-.home .site-header-issue {
-	background: #b67233;
-}
-
-/* ----- Spine overrides ----- */
 
 body {
-	background: #fff!important;
 	color: #2a3033;
 	line-height: 1.5;
 }
 
-/* Magazine theme doesn't use verticle navigation */
-
-#spine {
-	display: none;
-}
 #binder {
-	width: 100%;
 	max-width: 990px;
+	position: relative;
+	width: 100%;
 }
-
-/* ------ Theme buildout ----- */
 
 main {
 	margin: 0 auto;
 	width: 100%;
 	max-width: 1188px;
 }
-.hybrid main {
-	width: 100%;
-}
+
 .page main {
 	padding-bottom: 3rem;
 }
-.article-body {
-	max-width: 792px;
-}
+
 .row.single .column {
-	width: 100%;
-}
-.row.halves .column {
-	width: 50%;
+	max-width: 640px;
+	margin: 0 auto;
+	float: none;
 }
 
-/* ----- typograpgy and other elements ----- */
+.page .single .column.one {
+	padding: 0;
+}
 
+#spine {
+	display: none;
+}
+
+/* Typography and other elements */
 p,
 ul,
 ol {
 	font-size: 1rem;
 }
+
 h1,
 h2 {
 	font-family: "museo-slab";
 	letter-spacing: 0;
 }
+
 h1 {
 	font-weight: 900;
 }
+
 h2 {
 	font-weight: 300;
 	text-transform: uppercase;
 	font-size: 1.2rem;
 	margin-bottom: .5rem;
 }
+
 figure {
-	/* width: 100% !important; */
 	margin-bottom: 1rem;
 	position: relative;
 }
+
 figcaption.wp-caption-text {
 	position: absolute;
 	bottom: 0;
@@ -99,27 +87,27 @@ figcaption.wp-caption-text {
 	box-sizing: border-box;
 	font-size: .8rem;
 }
-.gallery figcaption.wp-caption-text {}
 
-/* ----- set season color for all imheriting elements ----- */
+blockquote {
+	padding: 3rem;
+}
 
-
-/* header issue name background color */
-
+/* Season colors */
 .season-spring .site-header-issue {
 	background: #8f7e35;
 }
+
 .season-summer .site-header-issue {
 	background: #c69214;
 }
+
 .season-fall .site-header-issue {
 	background: #b67233;
 }
+
 .season-winter .site-header-issue {
 	background: #4f868e;
 }
-
-/* author, highlight and h3 text color */
 
 .season-spring .highlight,
 .season-spring h3,
@@ -128,6 +116,7 @@ figcaption.wp-caption-text {
 .season-spring .article-section {
 	color: #8f7e35;
 }
+
 .season-summer .highlight,
 .season-summer h3,
 .season-summer cite,
@@ -135,6 +124,7 @@ figcaption.wp-caption-text {
 .season-summer .article-section {
 	color: #c69214;
 }
+
 .season-fall .highlight,
 .season-fall h3,
 .season-fall cite,
@@ -142,6 +132,7 @@ figcaption.wp-caption-text {
 .season-fall .article-section {
 	color: #b67233;
 }
+
 .season-winter .highlight,
 .season-winter h3,
 .season-winter cite,
@@ -150,11 +141,75 @@ figcaption.wp-caption-text {
 	color: #4f868e;
 }
 
-/* ---- END Season inheritance ---- */
+.season-winter .site-header-nav a.nav-emag {
+	color: #4f868e;
+}
 
+.season-winter .site-header-nav a.nav-emag span svg {
+	fill: #4f868e;
+}
 
-/* site-header */
+.season-winter .site-header-nav a.nav-emag:hover {
+	color: #00a5bd;
+}
 
+.season-winter .site-header-nav a.nav-emag:hover span svg {
+	fill: #00a5bd;
+}
+
+.season-fall .secondary-articles .headline-has-background {
+	background-color: #f8f1eb;
+}
+
+.season-fall .secondary-articles .headline-has-background:hover,
+.season-fall .secondary-articles .web-extra .headline-has-background {
+	background-color: #eddccc;
+}
+
+.season-fall .secondary-articles .web-extra .headline-has-background:hover {
+	background-color: #ddbea1;
+}
+
+.season-winter .secondary-articles .headline-has-background {
+	background-color: #edf3f4;
+}
+
+.season-winter .secondary-articles .headline-has-background:hover,
+.season-winter .secondary-articles .web-extra .headline-has-background {
+	background-color: #d3e1e3;
+}
+
+.season-winter .secondary-articles .web-extra .headline-has-background:hover {
+	background-color: #aec7cb;
+}
+
+.season-spring .secondary-articles .headline-has-background {
+	background-color: #f4f2eb;
+}
+
+.season-spring .secondary-articles .headline-has-background:hover,
+.season-spring .secondary-articles .web-extra .headline-has-background {
+	background-color: #e3dfcd;
+}
+
+.season-spring .secondary-articles .web-extra .headline-has-background:hover {
+	background-color: #cbc4a2;
+}
+
+.season-summer .secondary-articles .headline-has-background {
+	background-color: #f9f4e7;
+}
+
+.season-summer .secondary-articles .headline-has-background:hover,
+.season-summer .secondary-articles .web-extra .headline-has-background {
+	background-color: #f1e4c4;
+}
+
+.season-summer .secondary-articles .web-extra .headline-has-background:hover {
+	background-color: #e5cd93;
+}
+
+/* Site header */
 .site-header {
 	background: #2a3033;
 	display: -webkit-box;
@@ -164,12 +219,13 @@ figcaption.wp-caption-text {
 	height: 65px;
 	position: relative;
 }
+
 .sh-item {
 	display: inline-block;
 }
+
 .site-header-issue {
 	background: #5e6a71;
-	/* this will need to be moved and based on the issue (season) color */
 	color: #fff;
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -188,6 +244,15 @@ figcaption.wp-caption-text {
 	text-transform: uppercase;
 	width: 140px;
 }
+
+.site-header-issue a {
+	color: #fff;
+}
+
+.site-header-issue a:hover {
+	color: #bdbdbd;
+}
+
 .site-header-nav {
 	width: calc(100% - (275px + 35px + 200px));
 	display: -webkit-box;
@@ -198,8 +263,10 @@ figcaption.wp-caption-text {
 	-ms-flex-pack: distribute;
 	justify-content: space-around;
 }
+
 .site-header-nav a {
-	color: #d7dadb;
+	color: #8d959a;
+	font-size: .8rem;
 	font-weight: 300;
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -214,46 +281,48 @@ figcaption.wp-caption-text {
 	-webkit-justify-content: center;
 	-ms-flex-pack: center;
 	justify-content: center;
+	padding-top: 1rem;
+	text-transform: uppercase;
 	-webkit-transition: color .3s ease;
 	transition: color .3s ease;
 }
-.site-header-nav a span {
+
+.site-header-nav a.nav-emag:first-letter {
+	text-transform: lowercase; /* Doesn't seem to work */
+}
+
+.site-header-nav a:hover {
+	color: #d7dadb;
+}
+
+.site-header-nav span {
 	text-align: center;
 }
-.site-header-nav a span svg {
-	fill: #d7dadb;
+
+.site-header-nav span svg {
+	fill: #8d959a;
 	-webkit-transition: fill .3s ease;
 	transition: fill .3s ease;
 }
-.site-header-nav a:hover {
-	color: #b67233;
-}
+
 .site-header-nav a:hover span svg {
-	fill: #b67233;
+	fill: #d7dadb;
 }
-.site-header-nav a {
-	font-size: .8rem;
-	padding-top: 1rem;
-	text-transform: uppercase;
-}
-.site-header-nav a.nav-emag:first-letter {
-	text-transform: lowercase;
-}
+
 .site-header-logo {
 	position: absolute;
 	z-index: 2;
 	right: 35px;
 	bottom: -62px;
 }
+
 .site-header-logo img {
 	width: auto;
 }
 
-/* main-header */
 
+/* Main header */
 .main-header {
-	background: #5e6a71;
-	color: #fff;
 	height: auto;
 }
 
@@ -265,6 +334,7 @@ figcaption.wp-caption-text {
 	background-size: cover;
 	height: 450px;
 }
+
 .main-header .header-group {
 	background: none;
 	box-sizing: border-box;
@@ -275,84 +345,62 @@ figcaption.wp-caption-text {
 	max-width: calc(100% - 200px);
 	bottom: -3.1rem;
 }
-.page .main-header .header-group {
+
+.archive .main-header .header-group,
+.page .main-header .header-group,
+.search .main-header .header-group {
 	bottom: -1.8rem;
 }
+
 .has-featured-image .main-header .header-group {
 	background: rgba(0, 0, 0, .7);
 	color: #fff;
 	position: absolute;
 	bottom: 0;
 }
+
 .page .main-header cite {
 	display: none;
 }
 
-/* Social sharing bar */
+.main-header a:hover {
+	color: #981e32;
+}
 
+.has-featured-image .main-header a:hover {
+	color: #fff;
+}
+
+/* Social sharing bar */
 .spine-social-channels {
 	position: relative;
 	height: 55px;
 }
+
 .social-share-bar {
 	margin: 1.5rem 2rem .5rem;
 	padding: 0;
 	float: right;
 	bottom: auto;
 }
+
 .spine-social-channels .social-share-bar li a {
 	color: #8d959a;
 	font-size: 1.2rem;
 	padding: 0!important;
 }
+
 .spine-social-channels .social-share-bar .by-email a:before {
 	content: "@";
 }
 
-/* Article styles */
-
-.article-body,
-.article-footer-inner-wrap,
-.archive section,
-.page .single .one {
-	margin: 0 auto;
-	width: 100%;
-	max-width: 640px;
-	float: none;
-}
-.page .single .one {
-	padding: 0;
-}
+/* Articles */
 .article-body > p:first-child {
 	font-family: "museo-slab";
 	font-size: 1.3rem;
 	line-height: 1.5;
 	font-weight: 300;
 }
-.article-footer {
-	/*	background: #d7dadb;*/
-	border: none;
-	padding: 2rem 0;
-}
-
-/*
-.article-footer dl {
-	display: inline-block;
-	vertical-align: top;
-}
-.article-footer dl.tagged {
-	margin-left: 3rem;
-}
-.article-footer dl dt,
-.article-footer dl dd {
-	display: block;
-}
-.article-footer dl dd::after {
-	content: "";
-}*/
-
-
-/* inline sidebar content */
 
 .article-sidebar p,
 .article-sidebar img,
@@ -362,11 +410,13 @@ figcaption.wp-caption-text {
 	color: #fff;
 	display: none;
 }
+
 .article-sidebar h2 {
 	padding: 1rem 4rem;
 	color: #fff;
 	margin: 0;
 }
+
 .article-sidebar {
 	background: #5e6a71;
 	padding: 1rem 2rem;
@@ -374,6 +424,7 @@ figcaption.wp-caption-text {
 	cursor: pointer;
 	position: relative;
 }
+
 .article-sidebar-open p,
 .article-sidebar-open img,
 .article-sidebar-open figure,
@@ -381,24 +432,37 @@ figcaption.wp-caption-text {
 .article-sidebar-open ol {
 	display: block;
 }
+
 .article-sidebar h2:before {
 	content: url(https://magazine.wsu.edu/wp-content/themes/wsu-magazine-theme/images/plus_icon.svg);
 	font-size: 4rem;
 	position: absolute;
 	left: 2rem;
-	margin-top: .8rem;
+	margin-top: .8rem; margin-top: -.75rem;
 	fill: #fff;
 }
+
 .article-sidebar.article-sidebar-open h2:before {
 	content: url(https://magazine.wsu.edu/wp-content/themes/wsu-magazine-theme/images/minus_icon.svg);
 }
+
 .article-sidebar-open h2 {
 	margin-bottom: 2rem;
 }
+
 .article-sidebar a {
 	color: inherit;
 	text-decoration: underline;
 }
+
+p.article-endcontent {
+	padding: 1.5rem 0;
+}
+
+p.article-endcontent a {
+	text-decoration: underline;
+}
+
 .article-endcontent {
 	margin: 1rem 0;
 	padding: 1.5rem 0 0;
@@ -408,783 +472,10 @@ figcaption.wp-caption-text {
 	color: #981e32;
 }
 
-/* ----- Main Footer ----- */
-
-.main-footer {
-	background: #2a3033;
-}
-.magazine-nav {
-	padding: 2rem 0 0;
-}
-.wsu-nav {
-	padding: 1rem 0;
-}
-.magazine-nav,
-.wsu-nav {
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-pack: justify;
-	-webkit-justify-content: space-between;
-	-ms-flex-pack: justify;
-	justify-content: space-between;
-}
-.magazine-nav a {}
-.wsu-nav a {
-	font-size: .8rem;
-}
-.magazine-nav a,
-.wsu-nav a {
-	color: #d7dadb;
-	text-transform: uppercase;
-	-webkit-box-flex: 1;
-	-webkit-flex: 1;
-	-ms-flex: 1;
-	flex: 1;
-	text-align: center;
-}
-.main-footer .wsu-logo {
-	margin: 2rem 0 1rem;
-	text-align: center;
-}
-.main-footer .wsu-nav {
-	background: #981e32;
-}
-
-/* ----- archive pages ----- */
-
-.archive .article-footer {
-	display: none;
-}
-
-/* archive pages */
-
-.archive .main-header .header-group {
-	padding-left: 10%;
-}
-.article-footer .author-info {
-	display: none;
-}
-.article-footer {
-	margin: 0 auto;
-	width: 100%;
-	max-width: 640px;
-}
-.main-footer.archive-footer {
-	background: none;
-	padding: 1rem 0;
-}
-.archive article.post {
-	content: "";
-	display: table;
-	clear: both;
-}
-figure.article-thumbnail {
-	float: left;
-	padding: 0;
-	margin: 0;
-}
-figure.article-thumbnail img {
-	padding: 0 2rem 1rem 0;
-	margin: 0;
-}
-.archive section {
-	max-width: 100%;
-	padding: 0 10%;
-	box-sizing: border-box;
-	background: #eff0f1;
-}
-.archive .issue-head {
-	margin-top: .5rem;
-}
-.attachment-spine-thumbnail_size {
-	width: 150px;
-	height: 150px;
-}
-.prevnext .column.one {
-	width: 100% !important;
-	box-sizing: border-box;
-	text-align: left;
-	padding: 0 !important;
-}
-
-/* ----- Issue pages and Home page----- */
-
-.home section h2,
-.single-wsu_magazine_issue section h2 {
-	font-size: 1.6rem;
-	font-weight: 900;
-	text-transform: none;
-}
-.home section.secondary-articles h2,
-.single-wsu_magazine_issue section.secondary-articles h2 {
-	color: #5e6a71;
-	font-size: 1.2rem;
-}
-.home header.main-header,
-.single-wsu_magazine_issue header.main-header {
-	display: none;
-}
-.single-wsu_magazine_issue .automatic-issue .main-header {
-	display: block;
-	height: 145px;
-}
-.has-featured-image .automatic-issue .main-header {
-	height: 450px;
-}
-.single-wsu_magazine_issue .automatic-issue .header-group {
-	display: none;
-}
-.home .spine-social-channels,
-.single-wsu_magazine_issue .spine-social-channels {
-	display: none;
-}
-.home .article-body,
-.single-wsu_magazine_issue .article-body {
-	max-width: 100%;
-	/* padding: 0; */
-	/* margin: 0; */
-}
-.home .column.one,
-.single-wsu_magazine_issue .column.one {
-	padding: 0;
-}
-.home .column.one p,
-.home .column.two p,
-.single-wsu_magazine_issue .column.one p,
-.single-wsu_magazine_issue .column.two p {
-	display: none;
-}
-.headline-has-background {
-	height: ;
-	background-size: cover;
-	margin-bottom: 10px;
-	position: relative;
-	padding-bottom: 60%;
-}
-.home section:first-child .one a > div,
-.single-wsu_magazine_issue section.single:first-child .one a > div {
-	height: 450px;
-	background-size: cover;
-	padding-bottom: 0;
-	text-align: right;
-}
-.home section:first-child .home-headline-head-wrapper,
-.single-wsu_magazine_issue section.single:first-child .home-headline-head-wrapper {
-	background: none;
-}
-.home section.halves .one,
-.single-wsu_magazine_issue section.halves .one {
-	padding-right: 5px;
-}
-.home section.halves .two,
-.single-wsu_magazine_issue section.halves .two {
-	padding-left: 5px;
-}
-.home-headline-head-wrapper {
-	background: rgba(42, 48, 51, .7);
-	color: #fff;
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-	box-sizing: border-box;
-	padding: 1rem 2rem 1rem 1rem;
-}
-.row.single .home-subtitle {
-	display: block;
-}
-.home-subtitle {
-	display: none;
-}
-.column:hover .home-subtitle {
-	display: block;
-}
-.secondary-articles .headline-has-background {
-	background-color: #f8f1eb;
-	background-size: 33%;
-	background-repeat: no-repeat;
-	padding-bottom: 32%;
-}
-.secondary-articles .headline-has-background:hover {
-	background-color: #eddccc;
-}
-.secondary-articles .home-headline-head-wrapper {
-	background: none;
-	padding-left: calc(33% + 15px);
-	padding-top: 0;
-	top: 0;
-}
-.no-thumbnail .home-headline-head-wrapper {
-	padding-left: 10px;
-	padding-right: calc(33% + 10px);
-}
-.secondary-articles .home-subtitle {
-	color: #2a3033;
-	display: block;
-	font-weight: 300;
-}
-.article-section {
-	font-size: .8rem;
-	text-transform: uppercase;
-	line-height: 1;
-}
-h2 + .article-section {
-	margin-top: -.5rem;
-}
-.secondary-articles .home-headline-head-wrapper {
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-orient: vertical;
-	-webkit-box-direction: normal;
-	-webkit-flex-direction: column;
-	-ms-flex-direction: column;
-	flex-direction: column;
-}
-.secondary-articles .article-section {
-	-webkit-box-ordinal-group: 2;
-	-webkit-order: 1;
-	-ms-flex-order: 1;
-	order: 1;
-	margin-top: .6rem;
-}
-.secondary-articles h2 {
-	padding: .5rem 0 0;
-	-webkit-box-ordinal-group: 3;
-	-webkit-order: 2;
-	-ms-flex-order: 2;
-	order: 2;
-}
-.secondary-articles .home-subtitle {
-	-webkit-box-ordinal-group: 4;
-	-webkit-order: 3;
-	-ms-flex-order: 3;
-	order: 3;
-}
-
-/* ----- past issues list ----- */
-
-
-/* List of past issues with thumbnails of covers */
-
-.past-issues-list {
-	list-style-type: none;
-}
-.past-issues-list li {
-	width: 118px;
-	height: 143px;
-	padding: 10px 10px 10px 20px;
-	font-size: 1em;
-	text-align: center;
-	display: block;
-	float: left;
-}
-
-/* ----- Old WSM styles to preserve in 2015 redesign ----- */
-
-
-/* Utility classes */
-
-.bold {
-	font-weight: bold;
-}
-.italic {
-	font-style: italic;
-}
-.small {
-	font-size: .9em;
-	line-height: normal;
-	padding: 2px 0 5px 0;
-}
-.extra-bold {
-	font-weight: bolder;
-}
-.larger {
-	font-size: larger;
-}
-.uppercase {
-	text-transform: uppercase;
-}
-.smallcaps {
-	font-variant: small-caps;
-}
-.indent {
-	margin: 0 50px;
-}
-.right {
-	float: right;
-}
-.left {
-	float: left;
-}
-.crimson-border {
-	border: 1px solid #9b2437;
-	padding: 10px;
-}
-.middle {
-	vertical-align: middle;
-}
-.small-box {
-	margin: 0 10px 10px 10px;
-	max-width: 250px;
-}
-.small-box img {
-	max-width: 100%;
-}
-.image340 {
-	max-width: 340px;
-	height: auto;
-}
-
-/* COLORS */
-
-.color1,
-.red {
-	color: #c60c30;
-}
-.color2,
-.crimson {
-	color: #9b2437;
-}
-.color3,
-.wsm-gray {
-	color: #667178;
-}
-.color4,
-.light-gray {
-	color: #798389;
-}
-.color5,
-.lighter-gray {
-	color: #aab1b4;
-}
-.dark-gray {
-	color: #1d2124;
-}
-.color6,
-.green {
-	color: #bfc720;
-}
-.color7,
-.yellow {
-	color: #fec34e;
-}
-.color8,
-.winter-blue {
-	color: #194f78;
-}
-.color9,
-.winter-blue-light {
-	color: #5f96bf;
-}
-.color10,
-.beige {
-	color: #e4dac1;
-}
-.color11,
-.aqua {
-	color: #3cb6ce;
-}
-.color12,
-.orange {
-	color: #ef9234;
-}
-.color13,
-.teal {
-	color: #066f68;
-}
-.color14,
-.warm-gray-light {
-	color: #65645c;
-}
-.color15,
-.warm-gray-medium {
-	color: #262b2d;
-}
-.color17,
-.color16,
-.warm-gray-dark {
-	color: #505353;
-}
-.color18,
-.warm-gray-darkest {
-	color: #464845;
-}
-.color19,
-.white {
-	color: #FFF;
-}
-.color20,
-.black {
-	color: #000;
-}
-.fall,
-.Fall {
-	color: #EF9234;
-}
-.winter {
-	color: #194F78;
-}
-.winter-light,
-.Winter {
-	color: #5F96BF;
-}
-.spring,
-.Spring {
-	color: #BFC720;
-}
-.summer,
-.Summer,
-{
-	color: #FEC34E;
-}
-.fall-bg {
-	background: #ea8d2f;
-}
-.winter-bg {
-	background: #194F78;
-}
-.spring-bg {
-	background: #b4bb25;
-}
-.summer-bg {
-	background: #e9ac3b;
-}
-
-/* Inline text styles */
-
-.section-head {
-	text-transform: uppercase;
-	font-weight: bold;
-	color: #9b2437;
-}
-.space-line-above {
-	margin-top: 10px;
-}
-.space-line-below {
-	margin-bottom: 10px;
-}
-.top-space {
-	margin-top: 5px;
-}
-.bottom-space {
-	margin-bottom: 5px;
-}
-.size-lt-medium img.size-medium.alignleft,
-.size-lt-medium img.size-medium.alignright,
-.size-lt-medium img.size-large.alignleft,
-.size-lt-medium img.size-large.alignright {
-	width: auto;
-	height: auto;
-	clear: none;
-	float: none;
-	margin: 0 1rem 0 0;
-}
-
-/* ----- END OF - Old WSM styles to preserve in 2015 redesign ----- */
-
-
-/* ----- Responsive adjustments ----- */
-
-@media screen and (max-width: 989px) {
-	#binder main {
-		margin-left: 0;
-		margin-top: 0;
-	}
-}
-@media screen and (max-width: 791px) {
-	#binder.fluid main,
-	#binder.hybrid main {
-		margin-top: 0;
-	}
-	.home section.halves .one,
-	.single-wsu_magazine_issue section.halves .one {
-		padding-right: 0;
-	}
-	.home section.halves .two,
-	.single-wsu_magazine_issue section.halves .two {
-		padding-left: 0;
-	}
-}
-@media screen and (max-width: 850px) {
-	.site-header {
-		-webkit-flex-flow: row wrap;
-		-ms-flex-flow: row wrap;
-		flex-flow: row wrap;
-		height: auto;
-	}
-	.site-header-issue {
-		-webkit-box-flex: 1;
-		-webkit-flex: 1 100%;
-		-ms-flex: 1 100%;
-		flex: 1 100%;
-		height: 40px;
-	}
-	.site-header-nav {
-		width: calc(100% - 325px);
-	}
-	.secondary-articles .home-subtitle {
-		line-height: 1.2;
-		font-size: .8rem;
-	}
-	.article-body {
-		padding: 0 2rem;
-		box-sizing: border-box;
-	}
-}
-@media screen and (max-width: 650px) {
-	.sh-item {
-		-webkit-box-flex: 1;
-		-webkit-flex: 1 100%;
-		-ms-flex: 1 100%;
-		flex: 1 100%;
-	}
-	.site-header-logo {
-		position: relative;
-		text-align: right;
-		right: auto;
-		bottom: auto;
-		padding: 2rem;
-	}
-	.magazine-nav,
-	.wsu-nav {
-		-webkit-box-orient: vertical;
-		-webkit-box-direction: normal;
-		-webkit-flex-direction: column;
-		-ms-flex-direction: column;
-		flex-direction: column;
-	}
-	.magazine-nav a,
-	.wsu-nav a {
-		padding: .25rem;
-	}
-	.main-header .header-group {
-		max-width: 100%;
-	}
-}
-
-/* ----- From Edit CSS plugin ----- */
-/* end content is the same color as the link color*/
 .article-endcontent a {
 	text-decoration: underline;
 }
 
-.article-sidebar h2:before {
-	margin-top: -.75rem;
-}
-
-/**/
-.magazine-nav a:hover,
-.wsu-nav a:hover {
-	text-decoration: underline;
-}
-
-/* site header background and overlay */
-#binder {
-	position: relative;
-}
-
-.home .site-header,
-.single-wsu_magazine_issue .site-header {
-	background: rgba(0,0,0,.7);
-	position: absolute;
-	width: 100%;
-	z-index: 5;
-}
-
-.site-header-nav {
-	width: calc(100% - (275px + 35px + 200px));
-}
-
-.site-header-nav a {
-	color: #8d959a;
-}
-
-.site-header-nav a span svg {
-	fill: #8d959a;
-}
-
-.site-header-nav a:hover {
-	color: #d7dadb;
-}
-
-.site-header-nav a:hover span svg {
-	fill: #d7dadb;
-}
-
-/* Winter */
-.season-winter .site-header-nav a.nav-emag {
-	color: #4f868e;
-}
-
-.season-winter .site-header-nav a.nav-emag span svg {
-	fill: #4f868e;
-}
-
-.season-winter .site-header-nav a.nav-emag:hover {
-	color: #00a5bd;
-}
-
-.season-winter .site-header-nav a.nav-emag:hover span svg {
-	fill: #00a5bd;
-}
-
-/* single page override */
-.page .single .one {
-	padding: 0 !important;
-}
-
-.row.single .column {
-	width: 100%;
-	max-width: 640px;
-	margin: 0 auto;
-	float: none;
-}
-
-.home .row.single .column,
-.single-wsu_magazine_issue .row.single .column {
-	max-width: 100%;
-}
-
-.archive .main-header .header-group {
-	padding-left: 1.5rem;
-}
-
-/* archive pages quick work */
-.archive article.post,
-.search article.post {
-	padding: 1rem 0 2.5rem;
-	margin-bottom: 1rem;
-	border-bottom: 1px solid #efefef;
-}
-
-/*.archive main figure,
-.archive main img,
-.search main figure,
-.search main img {
-	display: none;
-}
-*/
-.archive article.post {
-	width: 100%;
-}
-
-.archive section {
-	background: none;
-}
-
-.archive .main-header .header-group {
-	bottom: 0;
-}
-
-.search .main-header .header-group {
-	bottom: auto;
-}
-
-/*author hover fix on non featured image stories*/
-.main-header a:hover {
-	color: #981e32;
-}
-
-blockquote {
-	padding: 3rem;
-}
-
-.has-featured-image .main-header a:hover {
-	color: #fff;
-}
-
-.has-featured-image .main-header .header-group,
-.home-headline-head-wrapper {
-	background: rgba(0,0,0,.7);
-}
-
-.secondary-articles .headline-has-background {
-	background-color: #edf3f4;
-	-webkit-transition: background-color .3s ease;
-	transition: background-color .3s ease;
-}
-
-.secondary-articles .headline-has-background:hover {
-	background-color: #e3dfcd;
-}
-
-.season-fall .secondary-articles .headline-has-background {
-	background-color: #f8f1eb;
-}
-
-.season-fall .secondary-articles .headline-has-background:hover {
-	background-color: #eddccc;
-}
-
-.season-fall .secondary-articles .web-extra .headline-has-background {
-	background-color: #eddccc;
-}
-
-.season-fall .secondary-articles .web-extra .headline-has-background:hover {
-	background-color: #ddbea1;
-}
-
-.season-winter .secondary-articles .headline-has-background {
-	background-color: #edf3f4;
-}
-
-.season-winter .secondary-articles .headline-has-background:hover {
-	background-color: #d3e1e3;
-}
-
-.season-winter .secondary-articles .web-extra .headline-has-background {
-	background-color: #d3e1e3;
-}
-
-.season-winter .secondary-articles .web-extra .headline-has-background:hover {
-	background-color: #aec7cb;
-}
-
-.season-spring .secondary-articles .headline-has-background {
-	background-color: #f4f2eb;
-}
-
-.season-spring .secondary-articles .headline-has-background:hover {
-	background-color: #e3dfcd;
-}
-
-.season-spring .secondary-articles .web-extra .headline-has-background {
-	background-color: #e3dfcd;
-}
-
-.season-spring .secondary-articles .web-extra .headline-has-background:hover {
-	background-color: #cbc4a2;
-}
-
-.season-summer .secondary-articles .headline-has-background {
-	background-color: #f9f4e7;
-}
-
-.season-summer .secondary-articles .headline-has-background:hover {
-	background-color: #f1e4c4;
-}
-
-.season-summer .secondary-articles .web-extra .headline-has-background {
-	background-color: #f1e4c4;
-}
-
-.season-summer .secondary-articles .web-extra .headline-has-background:hover {
-	background-color: #e5cd93;
-}
-
-/* issue link on top left of page */
-.site-header-issue a {
-	color: #fff;
-}
-
-.site-header-issue a:hover {
-	color: #bdbdbd;
-}
-
-/* web extras on article pages */
 .post .web-extra {
 	margin-top: 1.5rem;
 }
@@ -1197,16 +488,34 @@ blockquote {
 	text-transform: none;
 }
 
-/*  end content  */
-p.article-endcontent {
-	padding: 1.5rem 0;
+.article-footer {
+	border: none;
+	margin: 0 auto;
+	max-width: 640px;
+	padding: 2rem 0;
+	width: 100%;
 }
 
-p.article-endcontent a {
-	text-decoration: underline;
+.article-footer .author-info {
+	display: none;
 }
 
-/* - Gallery - */
+/* Past issues list */
+.past-issues-list {
+	list-style-type: none;
+}
+
+.past-issues-list li {
+	width: 118px;
+	height: 143px;
+	padding: 10px 10px 10px 20px;
+	font-size: 1em;
+	text-align: center;
+	display: block;
+	float: left;
+}
+
+/* Gallery and slideshow */
 .gallery {
 	display: block;
 	margin: 1rem 0 2rem;
@@ -1226,10 +535,6 @@ figure img {
 	border: none;
 }
 
-.gallery .gallery-item {
-	margin: 0;
-}
-
 figcaption.wp-caption-text {
 	position: relative;
 	background: rgba(0,0,0,.85);
@@ -1242,16 +547,16 @@ figcaption.wp-caption-text {
 	padding: 0;
 	position: relative;
 	display: block;
-/*overflow: hidden;*/
 }
 
-.ssslide {
+.sss .ssslide {
 	width: 100%;
-	margin: 0;
+	margin: 0 auto;
 	padding: 0;
 	position: absolute;
 	top: 0;
 	left: 0;
+	right: 0;
 	display: none;
 	overflow: hidden;
 }
@@ -1289,50 +594,653 @@ figcaption.wp-caption-text {
 	cursor: pointer;
 }
 
+/* Main Footer */
+.main-footer {
+	background: #2a3033;
+}
+
+.magazine-nav {
+	padding: 2rem 0 0;
+}
+
+.wsu-nav {
+	padding: 1rem 0;
+}
+
+.magazine-nav,
+.wsu-nav {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+}
+
+.wsu-nav a {
+	font-size: .8rem;
+}
+
+.magazine-nav a,
+.wsu-nav a {
+	color: #d7dadb;
+	text-transform: uppercase;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	-ms-flex: 1;
+	flex: 1;
+	text-align: center;
+}
+
+.magazine-nav a:hover,
+.wsu-nav a:hover {
+	text-decoration: underline;
+}
+
+.main-footer .wsu-logo {
+	margin: 2rem 0 1rem;
+	text-align: center;
+}
+
+.main-footer .wsu-nav {
+	background: #981e32;
+}
+
+/* Archives */
+.archive section {
+	box-sizing: border-box;
+	float: none;
+	max-width: 100%;
+	padding: 0 10%;
+}
+
+.archive article.post,
+.search article.post {
+	padding: 1rem 0 2.5rem;
+	margin-bottom: 1rem;
+	border-bottom: 1px solid #efefef;
+}
+
+.archive article.post {
+	width: 100%;
+}
+
+figure.article-thumbnail {
+	float: left;
+	padding: 0;
+	margin: 0;
+}
+
+figure.article-thumbnail img {
+	padding: 0 2rem 1rem 0;
+	margin: 0;
+}
+
+.archive .issue-head {
+	margin-top: .5rem;
+}
+
+.attachment-spine-thumbnail_size {
+	width: 150px;
+	height: 150px;
+}
+
+.archive .article-footer {
+	display: none;
+}
+
+.main-footer.archive-footer {
+	background: none;
+	padding: 1rem 0;
+}
+
+.fluid .row.side-right.prevnext .column.one {
+	width: 100%;
+	box-sizing: border-box;
+	text-align: left;
+	padding: 0;
+}
+
+/* Home and Issue pages */
+.home .site-header,
+.single-wsu_magazine_issue .site-header {
+	background: rgba(0,0,0,.7);
+	position: absolute;
+	width: 100%;
+	z-index: 1;
+}
+
+.home .main-header,
+.single-wsu_magazine_issue .main-header {
+	display: none;
+}
+
+.single-wsu_magazine_issue .automatic-issue .main-header {
+	display: block;
+	height: 145px;
+}
+
+.has-featured-image .automatic-issue .main-header {
+	height: 450px;
+}
+
+.single-wsu_magazine_issue .automatic-issue .header-group {
+	display: none;
+}
+
+.home .spine-social-channels,
+.single-wsu_magazine_issue .spine-social-channels {
+	display: none;
+}
+
+.home .row.single .column,
+.single-wsu_magazine_issue .row.single .column {
+	max-width: 100%;
+}
+
+.home .halves .one,
+.single-wsu_magazine_issue .halves .one {
+	padding-right: 5px;
+}
+
+.home .halves .two,
+.single-wsu_magazine_issue .halves .two {
+	padding-left: 5px;
+}
+
+.home .article-body,
+.single-wsu_magazine_issue .article-body {
+	max-width: 100%;
+}
+
+.headline-has-background {
+	background-size: cover;
+	margin-bottom: 10px;
+	position: relative;
+	padding-bottom: 60%;
+}
+
+.home section:first-child .one a > div,
+.single-wsu_magazine_issue section.single:first-child .one a > div {
+	height: 450px;
+	padding-bottom: 0;
+	text-align: right;
+}
+
+.secondary-articles .headline-has-background {
+	background-color: #edf3f4;
+	background-size: 33%;
+	background-repeat: no-repeat;
+	padding-bottom: 32%;
+	-webkit-transition: background-color .3s ease;
+	transition: background-color .3s ease;
+}
+
+.secondary-articles .headline-has-background:hover {
+	background-color: #e3dfcd;
+}
+
+.home-headline-head-wrapper {
+	background: rgba(0,0,0,.7);
+	color: #fff;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 1rem 2rem 1rem 1rem;
+}
+
+.home section:first-child .home-headline-head-wrapper,
+.single-wsu_magazine_issue section.single:first-child .home-headline-head-wrapper {
+	background: none;
+}
+
+.secondary-articles .home-headline-head-wrapper {
+	background: none;
+	padding-left: calc(33% + 15px);
+	padding-top: 0;
+	top: 0;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+}
+
+.no-thumbnail .home-headline-head-wrapper {
+	padding-left: 10px;
+	padding-right: calc(33% + 10px);
+}
+
+.home section h2,
+.single-wsu_magazine_issue section h2 {
+	font-size: 1.6rem;
+	font-weight: 900;
+	text-transform: none;
+}
+
+.home section.secondary-articles h2,
+.single-wsu_magazine_issue section.secondary-articles h2 {
+	color: #5e6a71;
+	font-size: 1.2rem;
+}
+
+.secondary-articles h2 {
+	padding: .5rem 0 0;
+	-webkit-box-ordinal-group: 3;
+	-webkit-order: 2;
+	-ms-flex-order: 2;
+	order: 2;
+}
+
+.article-section {
+	color: #5e6a71;
+	font-size: .8rem;
+	text-transform: uppercase;
+	line-height: 1;
+}
+
+h2 + .article-section {
+	margin-top: -.5rem;
+}
+
+.secondary-articles .article-section {
+	-webkit-box-ordinal-group: 2;
+	-webkit-order: 1;
+	-ms-flex-order: 1;
+	order: 1;
+	margin-top: .6rem;
+}
+
+.row.single .home-subtitle,
+.column:hover .home-subtitle {
+	display: block;
+}
+
+.home-subtitle {
+	display: none;
+}
+
+.secondary-articles .home-subtitle {
+	color: #2a3033;
+	display: block;
+	font-weight: 300;
+	-webkit-box-ordinal-group: 4;
+	-webkit-order: 3;
+	-ms-flex-order: 3;
+	order: 3;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 989px) {
+	#binder main {
+		margin-left: 0;
+		margin-top: 0;
+	}
+
+}
+
 @media screen and (max-width: 950px) {
-	.home section.secondary-articles h2, .single-wsu_magazine_issue section.secondary-articles h2 {
+	.home section.secondary-articles h2,
+	.single-wsu_magazine_issue section.secondary-articles h2 {
 		font-size: .9rem;
 	}
+
 }
 
 @media screen and (max-width: 850px) {
+	.site-header {
+		-webkit-flex-flow: row wrap;
+		-ms-flex-flow: row wrap;
+		flex-flow: row wrap;
+		height: auto;
+	}
+
+	.site-header-issue {
+		-webkit-box-flex: 1;
+		-webkit-flex: 1 100%;
+		-ms-flex: 1 100%;
+		flex: 1 100%;
+		height: 40px;
+	}
+
 	.site-header-nav {
 		width: calc(100% - (325px + 35px));
 	}
+
+	.secondary-articles .home-subtitle {
+		line-height: 1.2;
+		font-size: .8rem;
+	}
+
+	.article-body {
+		padding: 0 2rem;
+		box-sizing: border-box;
+	}
+
+}
+
+@media screen and (max-width: 791px) {
+	#binder.fluid main {
+		margin-top: 0;
+	}
+
+	.home .halves .column,
+	.single-wsu_magazine_issue .halves .column {
+		padding: 0;
+	}
+
 }
 
 @media screen and (max-width: 650px) {
-	.home .site-header, .single-wsu_magazine_issue .site-header {
+	.home .site-header,
+	.single-wsu_magazine_issue .site-header {
 		background: none;
 		position: relative;
 	}
 
-	.home section:first-child .one a > div, .single-wsu_magazine_issue section:first-child .one a > div {
-		margin-top: -93px;
+	.sh-item {
+		-webkit-box-flex: 1;
+		-webkit-flex: 1 100%;
+		-ms-flex: 1 100%;
+		flex: 1 100%;
 	}
 
-	.row.single .column,
-	.article-footer,
-	.page .row.single .column {
-		padding-left: 1.5rem !important;
-		padding-right: 1.5rem !important;
-		box-sizing: border-box;
-	}
-
-	.single-post .row.single .column {
-		padding: 0 !important;
-	}
-
-	.home .row.single .column,
-	.single-wsu_magazine_issue .row.single .column {
-		padding: 0 !important;
+	.site-header-logo {
+		position: relative;
+		text-align: right;
+		right: auto;
+		bottom: auto;
+		padding: 2rem;
 	}
 
 	.main-header .header-group {
 		bottom: auto;
+		max-width: 100%;
 	}
 
 	.social-share-bar {
 		float: none;
 	}
+
+	.home section:first-child .one a > div,
+	.single-wsu_magazine_issue section:first-child .one a > div {
+		margin-top: -93px;
+	}
+
+	.page .single .column.one {
+		box-sizing: border-box;
+		padding-left: 1.5rem;
+		padding-right: 1.5rem;
+	}
+
+	.home .single .column,
+	.single-wsu_magazine_issue .single .column,
+	.single-post .single .column {
+		padding: 0;
+	}
+
+	.magazine-nav,
+	.wsu-nav {
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-webkit-flex-direction: column;
+		-ms-flex-direction: column;
+		flex-direction: column;
+	}
+
+	.magazine-nav a,
+	.wsu-nav a {
+		padding: .25rem;
+	}
+
+}
+
+/* Old WSM styles to preserve in 2015 redesign */
+
+/* Utility classes */
+.bold {
+	font-weight: bold;
+}
+
+.italic {
+	font-style: italic;
+}
+
+.small {
+	font-size: .9em;
+	line-height: normal;
+	padding: 2px 0 5px 0;
+}
+
+.extra-bold {
+	font-weight: bolder;
+}
+
+.larger {
+	font-size: larger;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+.smallcaps {
+	font-variant: small-caps;
+}
+
+.indent {
+	margin: 0 50px;
+}
+
+.right {
+	float: right;
+}
+
+.left {
+	float: left;
+}
+
+.crimson-border {
+	border: 1px solid #9b2437;
+	padding: 10px;
+}
+
+.middle {
+	vertical-align: middle;
+}
+
+.small-box {
+	margin: 0 10px 10px 10px;
+	max-width: 250px;
+}
+
+.small-box img {
+	max-width: 100%;
+}
+
+.image340 {
+	max-width: 340px;
+	height: auto;
+}
+
+/* Colors */
+.color1,
+.red {
+	color: #c60c30;
+}
+
+.color2,
+.crimson {
+	color: #9b2437;
+}
+
+.color3,
+.wsm-gray {
+	color: #667178;
+}
+
+.color4,
+.light-gray {
+	color: #798389;
+}
+
+.color5,
+.lighter-gray {
+	color: #aab1b4;
+}
+
+.dark-gray {
+	color: #1d2124;
+}
+
+.color6,
+.green {
+	color: #bfc720;
+}
+
+.color7,
+.yellow {
+	color: #fec34e;
+}
+
+.color8,
+.winter-blue {
+	color: #194f78;
+}
+
+.color9,
+.winter-blue-light {
+	color: #5f96bf;
+}
+
+.color10,
+.beige {
+	color: #e4dac1;
+}
+
+.color11,
+.aqua {
+	color: #3cb6ce;
+}
+
+.color12,
+.orange {
+	color: #ef9234;
+}
+
+.color13,
+.teal {
+	color: #066f68;
+}
+
+.color14,
+.warm-gray-light {
+	color: #65645c;
+}
+
+.color15,
+.warm-gray-medium {
+	color: #262b2d;
+}
+
+.color17,
+.color16,
+.warm-gray-dark {
+	color: #505353;
+}
+
+.color18,
+.warm-gray-darkest {
+	color: #464845;
+}
+
+.color19,
+.white {
+	color: #FFF;
+}
+
+.color20,
+.black {
+	color: #000;
+}
+
+.fall,
+.Fall {
+	color: #EF9234;
+}
+
+.winter {
+	color: #194F78;
+}
+
+.winter-light,
+.Winter {
+	color: #5F96BF;
+}
+
+.spring,
+.Spring {
+	color: #BFC720;
+}
+
+.summer,
+.Summer {
+	color: #FEC34E;
+}
+
+.fall-bg {
+	background: #ea8d2f;
+}
+
+.winter-bg {
+	background: #194F78;
+}
+
+.spring-bg {
+	background: #b4bb25;
+}
+
+.summer-bg {
+	background: #e9ac3b;
+}
+
+/* Inline text styles */
+.section-head {
+	text-transform: uppercase;
+	font-weight: bold;
+	color: #9b2437;
+}
+
+.space-line-above {
+	margin-top: 10px;
+}
+
+.space-line-below {
+	margin-bottom: 10px;
+}
+
+.top-space {
+	margin-top: 5px;
+}
+
+.bottom-space {
+	margin-bottom: 5px;
+}
+
+.size-lt-medium img.size-medium.alignleft,
+.size-lt-medium img.size-medium.alignright,
+.size-lt-medium img.size-large.alignleft,
+.size-lt-medium img.size-large.alignright {
+	width: auto;
+	height: auto;
+	clear: none;
+	float: none;
+	margin: 0 1rem 0 0;
 }
