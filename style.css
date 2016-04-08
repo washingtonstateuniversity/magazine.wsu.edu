@@ -789,7 +789,7 @@ figure.article-thumbnail img {
 	bottom: 0;
 	width: 100%;
 	box-sizing: border-box;
-	padding: 1rem 2rem 1rem 1rem;
+	padding: 0 2rem 1rem 1rem;
 }
 
 .home section:first-child .home-headline-head-wrapper,
@@ -800,7 +800,6 @@ figure.article-thumbnail img {
 .secondary-articles .home-headline-head-wrapper {
 	background: none;
 	padding-left: calc(33% + 15px);
-	padding-top: 0;
 	top: 0;
 	display: -webkit-box;
 	display: -webkit-flex;
