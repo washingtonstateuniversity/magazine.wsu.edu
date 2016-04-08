@@ -312,12 +312,12 @@ blockquote {
 .site-header-logo {
 	position: absolute;
 	z-index: 2;
-	right: 35px;
-	bottom: -62px;
+	right: 35px; right: 24px;
+	bottom: -62px; bottom: -70px;
 }
 
 .site-header-logo img {
-	width: auto;
+	width: auto; width: 318px;
 }
 
 
@@ -971,7 +971,7 @@ h2 + .article-section {
 
 	.home section:first-child .one a > div,
 	.single-wsu_magazine_issue section:first-child .one a > div {
-		margin-top: -93px;
+		margin-top: -103px;
 	}
 
 	.page .single .column.one {
@@ -1000,6 +1000,17 @@ h2 + .article-section {
 		padding: .25rem;
 	}
 
+}
+
+@media screen and (max-width: 382px) {
+	.site-header-logo img {
+    	width: auto;
+    }
+    .home section:first-child .one a > div,
+    .single-wsu_magazine_issue section:first-child .one a > div {
+    	margin-top: -94px;
+    }
+}
 }
 
 /* Old WSM styles to preserve in 2015 redesign */
