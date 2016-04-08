@@ -945,6 +945,12 @@ h2 + .article-section {
 		position: relative;
 	}
 
+	.single-post.has-featured-image .site-header,
+	.single-wsu_magazine_we.has-featured-image .site-header,
+	.page.has-featured-image .site-header {
+		height: 188px;
+	}
+
 	.sh-item {
 		-webkit-box-flex: 1;
 		-webkit-flex: 1 100%;
