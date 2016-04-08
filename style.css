@@ -433,17 +433,12 @@ blockquote {
 	display: block;
 }
 
-.article-sidebar h2:before {
-	content: url(https://magazine.wsu.edu/wp-content/themes/wsu-magazine-theme/images/plus_icon.svg);
-	font-size: 4rem;
-	position: absolute;
-	left: 2rem;
-	margin-top: .8rem; margin-top: -.75rem;
-	fill: #fff;
+.article-sidebar h2 {
+	background: url(images/plus_icon.svg) left 46% no-repeat;
 }
 
-.article-sidebar.article-sidebar-open h2:before {
-	content: url(https://magazine.wsu.edu/wp-content/themes/wsu-magazine-theme/images/minus_icon.svg);
+.article-sidebar.article-sidebar-open h2 {
+	background-image: url(images/minus_icon.svg);
 }
 
 .article-sidebar-open h2 {
