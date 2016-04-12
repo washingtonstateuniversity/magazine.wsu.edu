@@ -42,6 +42,7 @@ class WSU_Magazine_Issue {
 		add_filter( 'make_will_be_builder_page', array( $this, 'force_builder' ) );
 		add_action( 'pre_get_posts', array( $this, 'front_page_issue' ) );
 		add_action( 'restrict_manage_posts', array( $this, 'filter_media_by_issue' ) );
+		add_filter( 'attachment_fields_to_edit', array( $this, 'media_modal_issue_labels' ), 16, 2 );
 	}
 
 	/**
@@ -97,6 +98,7 @@ class WSU_Magazine_Issue {
 			'add_new_item'  => 'Add New Issue Label',
 			'new_item_name' => 'New Issue Label Name',
 			'menu_name'     => 'Issue Labels',
+			'separate_items_with_commas' => 'Separate issue labels with commas'
 		);
 		$args = array(
 			'labels'            => $labels,
@@ -108,11 +110,12 @@ class WSU_Magazine_Issue {
 			'show_admin_column' => true,
 			'rewrite'           => false,
 			'query_var'         => $this->taxonomy_slug,
+			'update_count_callback' => '_update_generic_term_count',
 		);
-		register_taxonomy( $this->taxonomy_slug, $this->content_type_slug, $args );
-		register_taxonomy_for_object_type( $this->taxonomy_slug, 'post' );
-		register_taxonomy_for_object_type( $this->taxonomy_slug, 'attachment' );
-		register_taxonomy_for_object_type( $this->taxonomy_slug, 'wsu_magazine_we' );
+		register_taxonomy( $this->taxonomy_slug, array( $this->content_type_slug, 'post', 'attachment', 'wsu_magazine_we' ), $args );
+		//register_taxonomy_for_object_type( $this->taxonomy_slug, 'post' );
+		//register_taxonomy_for_object_type( $this->taxonomy_slug, 'attachment' );
+		//register_taxonomy_for_object_type( $this->taxonomy_slug, 'wsu_magazine_we' );
 	}
 
 	public function get_issue_season( $post_id ) {
@@ -300,6 +303,41 @@ class WSU_Magazine_Issue {
 			'value_field' => 'slug',
 		) );
     }
+
+    /**
+	 * Add an input for adding issue labels through the media modal.
+	 *
+	 * @param array   $fields Array of attachment form fields.
+	 * @param WP_Post $post
+	 *
+	 * @return Modified array of attachment form fields.
+	 */
+	public function media_modal_issue_labels( $fields, $post ) {
+		$taxonomy = get_taxonomy( $this->taxonomy_slug );
+		$issue_labels = wp_get_post_terms( $post->ID, $this->taxonomy_slug, array( 'fields' => 'slugs' ) );
+		$value = $issue_labels ? implode( ',', $issue_labels ) : '';
+		ob_start();
+		?>
+		<input type="text"
+		       class="text"
+		       id="attachments-<?php echo $post->ID; ?>-<?php echo $this->taxonomy_slug; ?>"
+		       name="attachments[<?php echo $post->ID; ?>][<?php echo $this->taxonomy_slug; ?>]"
+		       value="<?php echo $value; ?>" />
+		<?php
+		$metabox = ob_get_clean();
+
+
+
+		$fields[ $this->taxonomy_slug ] = array(
+			'label'        => $taxonomy->labels->singular_name,
+			'input'        => 'html',
+			'html'         => $metabox,
+			'show_in_edit' => false,
+			'helps'        => $taxonomy->labels->separate_items_with_commas,
+		);
+
+        return $fields;
+	}
 }
 
 add_action( 'after_setup_theme', 'WSU_Magazine_Issue', 11 );
