@@ -41,6 +41,7 @@ class WSU_Magazine_Issue {
 		add_filter( 'spine_builder_force_builder', array( $this, 'force_builder' ) );
 		add_filter( 'make_will_be_builder_page', array( $this, 'force_builder' ) );
 		add_action( 'pre_get_posts', array( $this, 'front_page_issue' ) );
+		add_action( 'restrict_manage_posts', array( $this, 'filter_media_by_issue' ) );
 	}
 
 	/**
@@ -271,6 +272,34 @@ class WSU_Magazine_Issue {
 			$query->set( 'posts_per_page', 1 );
 		}
 	}
+
+	/**
+	 * Add a select input for filtering media by issue.
+	 */
+    public function filter_media_by_issue() {
+		$screen = get_current_screen();
+
+		if ( 'upload' !== $screen->id ) {
+			return;
+		}
+
+		// Hmm... surely there's a better way to sneak the taxonomy parameter in?
+		echo '<input type="hidden" name="taxonomy" value="' . $this->taxonomy_slug . '"" />';
+
+		$current_issue = filter_input( INPUT_GET, 'term', FILTER_SANITIZE_STRING );
+
+		wp_dropdown_categories( array(
+			'show_option_all' => 'All issues',
+			'taxonomy' => $this->taxonomy_slug,
+			'orderby' => 'name',
+			'order' => 'DESC',
+			'hide_empty' => 0,
+			'name' => 'term',
+			'id' => 'issue-term',
+			'selected' => $current_issue,
+			'value_field' => 'slug',
+		) );
+    }
 }
 
 add_action( 'after_setup_theme', 'WSU_Magazine_Issue', 11 );
