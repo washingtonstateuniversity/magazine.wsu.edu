@@ -348,12 +348,12 @@ blockquote {
 .site-header-logo {
 	position: absolute;
 	z-index: 2;
-	right: 35px; right: 24px;
-	bottom: -62px; bottom: -70px;
+	right: 35px;
+	bottom: -62px;
 }
 
 .site-header-logo img {
-	width: auto; width: 318px;
+	width: auto;
 }
 
 
@@ -758,6 +758,16 @@ figure.article-thumbnail img {
 	width: 100%;
 	z-index: 1;
 }
+.home .site-header-logo,
+.single-wsu_magazine_issue .site-header-logo {
+	right: 24px;
+	bottom: -70px;
+}
+
+.home .site-header-logo img,
+.single-wsu_magazine_issue .site-header-logo img {
+	width: 318px;
+}
 
 .home .main-header,
 .single-wsu_magazine_issue .main-header {
@@ -999,10 +1009,15 @@ h2 + .article-section {
 		position: relative;
 	}
 
+	.home .site-header-logo,
+	.single-wsu_magazine_issue .site-header-logo {
+		bottom: 0;
+	}
+
 	.single-post.has-featured-image .site-header,
 	.single-wsu_magazine_we.has-featured-image .site-header,
 	.page.has-featured-image .site-header {
-		height: 188px;
+		height: 164px;
 	}
 
 	.sh-item {
@@ -1017,7 +1032,7 @@ h2 + .article-section {
 		text-align: right;
 		right: auto;
 		bottom: auto;
-		padding: 2rem;
+		padding: 1rem 2rem;
 	}
 
 	.main-header .header-group {
@@ -1041,7 +1056,7 @@ h2 + .article-section {
 
 	.home section:first-child .one a > div,
 	.single-wsu_magazine_issue section:first-child .one a > div {
-		margin-top: -103px;
+		margin-top: -87px;
 	}
 
 	.page .single .column.one {
