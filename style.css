@@ -109,6 +109,7 @@ blockquote {
 	background: #4f868e;
 }
 
+.season-spring .site-header-nav a.nav-emag,
 .season-spring .highlight,
 .season-spring h3,
 .season-spring cite,
@@ -117,6 +118,7 @@ blockquote {
 	color: #8f7e35;
 }
 
+.season-summer .site-header-nav a.nav-emag,
 .season-summer .highlight,
 .season-summer h3,
 .season-summer cite,
@@ -125,6 +127,7 @@ blockquote {
 	color: #c69214;
 }
 
+.season-fall .site-header-nav a.nav-emag,
 .season-fall .highlight,
 .season-fall h3,
 .season-fall cite,
@@ -133,6 +136,7 @@ blockquote {
 	color: #b67233;
 }
 
+.season-winter .site-header-nav a.nav-emag,
 .season-winter .highlight,
 .season-winter h3,
 .season-winter cite,
@@ -141,8 +145,40 @@ blockquote {
 	color: #4f868e;
 }
 
-.season-winter .site-header-nav a.nav-emag {
-	color: #4f868e;
+.season-spring .site-header-nav a.nav-emag span svg {
+	fill: #8f7e35;
+}
+
+.season-spring .site-header-nav a.nav-emag:hover {
+	color: #ada400;
+}
+
+.season-spring .site-header-nav a.nav-emag:hover span svg {
+	fill: #ada400;
+}
+
+.season-summer .site-header-nav a.nav-emag span svg {
+	fill: #c69214;
+}
+
+.season-summer .site-header-nav a.nav-emag:hover {
+	color: #ffb81c;
+}
+
+.season-summer .site-header-nav a.nav-emag:hover span svg {
+	fill: #ffb81c;
+}
+
+.season-fall .site-header-nav a.nav-emag span svg {
+	fill: #b67233;
+}
+
+.season-fall .site-header-nav a.nav-emag:hover {
+	color: #f6861f;
+}
+
+.season-fall .site-header-nav a.nav-emag:hover span svg {
+	fill: #f6861f;
 }
 
 .season-winter .site-header-nav a.nav-emag span svg {
@@ -287,8 +323,8 @@ blockquote {
 	transition: color .3s ease;
 }
 
-.site-header-nav a.nav-emag:first-letter {
-	text-transform: lowercase; /* Doesn't seem to work */
+.site-header-nav a.nav-emag {
+	text-transform: none;
 }
 
 .site-header-nav a:hover {
