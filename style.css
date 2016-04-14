@@ -1098,6 +1098,10 @@ h2 + .article-section {
 		padding: .25rem;
 	}
 
+	.article-footer {
+		padding: 2rem;
+	}
+
 }
 
 @media screen and (max-width: 382px) {
