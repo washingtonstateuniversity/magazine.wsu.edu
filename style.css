@@ -367,6 +367,7 @@ blockquote {
 }
 
 .has-featured-image .main-header {
+	background-repeat: no-repeat;
 	background-size: cover;
 	height: 450px;
 }
@@ -375,11 +376,15 @@ blockquote {
 	background: none;
 	box-sizing: border-box;
 	color: #eff0f1;
-	padding: 1.5rem 1.5rem 1rem;
+	padding: 2.8rem 1.5rem 1rem;
 	position: relative;
 	width: 100%;
 	max-width: calc(100% - 200px);
 	bottom: -3.15rem;
+}
+
+.single-post .header-group {
+	padding-top: 1.5rem;
 }
 
 .archive .main-header .header-group,
@@ -412,7 +417,12 @@ blockquote {
 	position: relative;
 }
 
-.page .main-header cite {
+cite,
+.main-header a {
+	color: #5e6a71;
+}
+
+.page cite {
 	display: none;
 }
 
@@ -1003,21 +1013,20 @@ h2 + .article-section {
 }
 
 @media screen and (max-width: 650px) {
+	.site-header {
+		height: 163px;
+	}
+
 	.home .site-header,
 	.single-wsu_magazine_issue .site-header {
 		background: none;
+		height: auto;
 		position: relative;
 	}
 
 	.home .site-header-logo,
 	.single-wsu_magazine_issue .site-header-logo {
 		bottom: 0;
-	}
-
-	.single-post.has-featured-image .site-header,
-	.single-wsu_magazine_we.has-featured-image .site-header,
-	.page.has-featured-image .site-header {
-		height: 164px;
 	}
 
 	.sh-item {
@@ -1042,8 +1051,12 @@ h2 + .article-section {
 
 	.spine-social-channels {
 		height: 25px;
-		margin: 4.45rem auto 2rem;
+		margin: 2rem auto;
 		width: 100%;
+	}
+
+	.single-post .spine-social-channels {
+		margin-top: 4.45rem;
 	}
 
 	.social-share-bar {
