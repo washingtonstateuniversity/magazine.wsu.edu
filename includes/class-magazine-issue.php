@@ -282,7 +282,7 @@ class WSU_Magazine_Issue {
     public function filter_media_by_issue() {
 		$screen = get_current_screen();
 
-		if ( 'upload' !== $screen->id ) {
+		if ( 'upload' !== $screen->id && 'edit-wsu_magazine_we' !== $screen->id ) {
 			return;
 		}
 
