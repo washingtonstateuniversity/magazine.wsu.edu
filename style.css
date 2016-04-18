@@ -145,7 +145,8 @@ blockquote {
 	color: #4f868e;
 }
 
-.season-spring .site-header-nav a.nav-emag span svg {
+.season-spring .site-header-nav a.nav-emag span svg,
+.season-spring .image-information svg path {
 	fill: #8f7e35;
 }
 
@@ -153,11 +154,13 @@ blockquote {
 	color: #ada400;
 }
 
-.season-spring .site-header-nav a.nav-emag:hover span svg {
+.season-spring .site-header-nav a.nav-emag:hover span svg,
+.season-spring .image-information:hover svg path {
 	fill: #ada400;
 }
 
-.season-summer .site-header-nav a.nav-emag span svg {
+.season-summer .site-header-nav a.nav-emag span svg,
+.season-summer .image-information svg path {
 	fill: #c69214;
 }
 
@@ -165,11 +168,13 @@ blockquote {
 	color: #ffb81c;
 }
 
-.season-summer .site-header-nav a.nav-emag:hover span svg {
+.season-summer .site-header-nav a.nav-emag:hover span svg,
+.season-summer .image-information:hover svg path {
 	fill: #ffb81c;
 }
 
-.season-fall .site-header-nav a.nav-emag span svg {
+.season-fall .site-header-nav a.nav-emag span svg,
+.season-fall .image-information svg path {
 	fill: #b67233;
 }
 
@@ -177,11 +182,13 @@ blockquote {
 	color: #f6861f;
 }
 
-.season-fall .site-header-nav a.nav-emag:hover span svg {
+.season-fall .site-header-nav a.nav-emag:hover span svg,
+.season-fall .image-information:hover svg path {
 	fill: #f6861f;
 }
 
-.season-winter .site-header-nav a.nav-emag span svg {
+.season-winter .site-header-nav a.nav-emag span svg,
+.season-winter .image-information svg path {
 	fill: #4f868e;
 }
 
@@ -189,7 +196,8 @@ blockquote {
 	color: #00a5bd;
 }
 
-.season-winter .site-header-nav a.nav-emag:hover span svg {
+.season-winter .site-header-nav a.nav-emag:hover span svg,
+.season-winter .image-information:hover svg path {
 	fill: #00a5bd;
 }
 
@@ -428,6 +436,28 @@ cite,
 
 .main-header a:hover {
 	color: #981e32;
+}
+
+.image-information {
+	bottom: 1rem;
+	position: absolute;
+	right: 1.5rem;
+}
+
+.image-information svg {
+	display: block;
+}
+
+.image-information svg circle {
+	fill: rgba(255,255,255,0.7);
+}
+
+.image-information:hover svg circle {
+	fill: #fff;
+}
+
+.image-information svg path {
+	fill: #5e6a71;
 }
 
 /* Social sharing bar */
