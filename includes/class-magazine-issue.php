@@ -286,7 +286,7 @@ class WSU_Magazine_Issue {
 			return;
 		}
 
-		$current_issue = filter_input( INPUT_GET, 'term', FILTER_SANITIZE_STRING );
+		$current_issue = sanitize_key( $_GET[ $this->taxonomy_slug ] );
 
 		wp_dropdown_categories( array(
 			'show_option_all' => 'All issues',
