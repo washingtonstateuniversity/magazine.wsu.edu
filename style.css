@@ -438,6 +438,7 @@ cite,
 	color: #981e32;
 }
 
+/* Featured image information */
 .image-information {
 	bottom: 1rem;
 	position: absolute;
@@ -458,6 +459,58 @@ cite,
 
 .image-information svg path {
 	fill: #5e6a71;
+}
+
+.wsm-box-overlay {
+	background: rgba(0,0,0,0.85);
+	height: 100%;
+	left: 0;
+	overflow: hidden;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 9999;
+}
+
+.wsm-box-content {
+	height: auto;
+	left: 50%;
+	max-height: 90%;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	width: 90%;
+}
+
+.wsm-box-image {
+	height: auto;
+	max-width: 100%;
+}
+
+.wsm-box-image-title {
+	color: #fff;
+	padding: 1rem 2rem;
+	position: relative;
+	text-align: center;
+}
+
+.wsm-box-content .wsm-box-close {
+	border: 1px solid #fff;
+	border-radius: 1.5rem;
+	color: #fff;
+	display: block;
+	font-size: 1.2rem;
+	height: 1.5rem;
+	line-height: 1.25rem;
+	position: absolute;
+	right: 0;
+	text-align: center;
+	width: 1.5rem;
+}
+
+.wsm-box-content .wsm-box-close:hover {
+	background: #fff;
+	color: #981e32;
 }
 
 /* Social sharing bar */
@@ -1076,6 +1129,14 @@ h2 + .article-section {
 
 	.main-header .header-group {
 		max-width: 100%;
+	}
+
+	.wsm-box-image {
+		display: none;
+	}
+
+	.wsm-box-content .wsm-box-close {
+		top: -0.75rem;
 	}
 
 	.spine-social-channels {
