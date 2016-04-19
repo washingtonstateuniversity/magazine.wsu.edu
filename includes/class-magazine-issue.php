@@ -113,9 +113,6 @@ class WSU_Magazine_Issue {
 			'update_count_callback' => '_update_generic_term_count',
 		);
 		register_taxonomy( $this->taxonomy_slug, array( $this->content_type_slug, 'post', 'attachment', 'wsu_magazine_we' ), $args );
-		//register_taxonomy_for_object_type( $this->taxonomy_slug, 'post' );
-		//register_taxonomy_for_object_type( $this->taxonomy_slug, 'attachment' );
-		//register_taxonomy_for_object_type( $this->taxonomy_slug, 'wsu_magazine_we' );
 	}
 
 	public function get_issue_season( $post_id ) {
