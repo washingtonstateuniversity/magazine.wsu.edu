@@ -279,7 +279,7 @@ class WSU_Magazine_Issue {
 	/**
 	 * Add a select input for filtering media by issue.
 	 */
-    public function filter_media_by_issue() {
+	public function filter_media_by_issue() {
 		$screen = get_current_screen();
 
 		if ( 'upload' !== $screen->id && 'edit-wsu_magazine_we' !== $screen->id ) {
@@ -302,9 +302,9 @@ class WSU_Magazine_Issue {
 			'selected' => $current_issue,
 			'value_field' => 'slug',
 		) );
-    }
+	}
 
-    /**
+	/**
 	 * Add an input for adding issue labels through the media modal.
 	 *
 	 * @param array   $fields Array of attachment form fields.
@@ -319,14 +319,12 @@ class WSU_Magazine_Issue {
 		ob_start();
 		?>
 		<input type="text"
-		       class="text"
-		       id="attachments-<?php echo $post->ID; ?>-<?php echo $this->taxonomy_slug; ?>"
-		       name="attachments[<?php echo $post->ID; ?>][<?php echo $this->taxonomy_slug; ?>]"
-		       value="<?php echo $value; ?>" />
+			   class="text"
+			   id="attachments-<?php echo $post->ID; ?>-<?php echo $this->taxonomy_slug; ?>"
+			   name="attachments[<?php echo $post->ID; ?>][<?php echo $this->taxonomy_slug; ?>]"
+			   value="<?php echo $value; ?>" />
 		<?php
 		$metabox = ob_get_clean();
-
-
 
 		$fields[ $this->taxonomy_slug ] = array(
 			'label'        => $taxonomy->labels->singular_name,
@@ -336,7 +334,7 @@ class WSU_Magazine_Issue {
 			'helps'        => $taxonomy->labels->separate_items_with_commas,
 		);
 
-        return $fields;
+		return $fields;
 	}
 }
 
