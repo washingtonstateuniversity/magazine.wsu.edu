@@ -286,9 +286,6 @@ class WSU_Magazine_Issue {
 			return;
 		}
 
-		// Hmm... surely there's a better way to sneak the taxonomy parameter in?
-		echo '<input type="hidden" name="taxonomy" value="' . $this->taxonomy_slug . '"" />';
-
 		$current_issue = filter_input( INPUT_GET, 'term', FILTER_SANITIZE_STRING );
 
 		wp_dropdown_categories( array(
@@ -297,7 +294,7 @@ class WSU_Magazine_Issue {
 			'orderby' => 'name',
 			'order' => 'DESC',
 			'hide_empty' => 0,
-			'name' => 'term',
+			'name' => $this->taxonomy_slug,
 			'id' => 'issue-term',
 			'selected' => $current_issue,
 			'value_field' => 'slug',
