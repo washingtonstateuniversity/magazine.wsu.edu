@@ -33,7 +33,22 @@ if ( spine_get_option( 'main_header_show' ) == 'true' ) :
 			<cite class="article-author" role="author">by <?php coauthors_posts_links(); ?></cite>
 			<?php endif; ?>
 
+			<?php if ( spine_has_featured_image() && get_post( get_post_thumbnail_id() )->post_excerpt ) : ?>
+			<?php $image_data = wp_get_attachment_image_src( get_post_thumbnail_id(), 'spine-xlarge_size' ); ?>
+			<a class="image-information"
+				href="<?php echo spine_get_featured_image_src(); ?>"
+				title="<?php echo get_post( get_post_thumbnail_id() )->post_excerpt; ?>"
+				data-img-width="<?php echo $image_data[1]; ?>"
+				data-img-height="<?php echo $image_data[2]; ?>">
+				<svg viewBox="0 0 11 11" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+					<circle cx="5.5" cy="5.5" r="5.5"/>
+					<path d="m5.38,1.92a1,1 0 1 1 -1,1a1,1 0 0 1 1,-1zm1.43,6.56l-2.58,0l0,-1.17l0.46,0l0,-1.77l-0.5,0l0,-1.17l2.16,0l0,2.94l0.46,0l0,1.17z"/>
+				</svg>
+			</a>
+			<?php endif; ?>
+
 		</div>
+
 	</header>
 <?php
 

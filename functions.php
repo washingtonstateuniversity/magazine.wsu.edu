@@ -51,7 +51,10 @@ class WSU_Magazine_Theme {
 
 	public function enqueue_scripts() {
 		wp_enqueue_script( 'wsu-magazine-typekit', 'https://use.typekit.net/auo5wsi.js', array(), false, false );
-		wp_enqueue_script( 'wsu-magainze-typekit-load', get_stylesheet_directory_uri() . '/js/magazine-primary.js', array(), false, true );
+		wp_enqueue_script( 'wsu-magazine-typekit-load', get_stylesheet_directory_uri() . '/js/magazine-primary.js', array(), false, true );
+		if ( spine_has_featured_image() && get_post( get_post_thumbnail_id() )->post_excerpt ) {
+			wp_enqueue_script( 'wsu-magazine-colorbox', get_stylesheet_directory_uri() . '/js/image-info.js', array( 'jquery' ), false, true );
+		}
 	}
 
 	/**
