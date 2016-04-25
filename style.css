@@ -512,6 +512,45 @@ cite,
 	text-decoration: underline;
 }
 
+blockquote {
+	font-family: "museo-slab";
+	font-size: 1.3rem;
+	font-weight: 300;
+	line-height: 1.5;
+	position: relative;
+	text-align: center;
+}
+
+.pullquote {
+	padding: 4rem 3rem;
+}
+
+.pullquote:before,
+.pullquote:after {
+	color: #981e32;
+	font-family: 'Arial Black', 'Arial Bold', sans-serif;
+	font-size: 3rem;
+	font-weight: 700;
+	line-height: .75;
+	position: absolute;
+}
+
+.pullquote:before {
+	content: '“';
+	top: 1.5rem;
+}
+
+.pullquote:after {
+	bottom: 1.75rem;
+	content: '”';
+}
+
+.pullquote .speaker {
+	font-family: 'Open Sans';
+	font-size: .9rem;
+	font-style: italic;
+}
+
 p.article-endcontent {
 	padding: 1.5rem 0;
 }
