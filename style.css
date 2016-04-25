@@ -405,12 +405,12 @@ blockquote {
 
 .has-featured-image .main-header .header-group:before {
 	content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: -3.15rem;
-    background: rgba(0,0,0,0.7);
-    left: 0;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: -3.15rem;
+	background: rgba(0,0,0,0.7);
+	left: 0;
 }
 
 .page.has-featured-image .main-header .header-group:before {
@@ -1071,7 +1071,7 @@ h2 + .article-section {
 	}
 
 	.has-featured-image .main-header .header-group:before {
-    	top: -3.45rem;
+		top: -3.45rem;
 	}
 
 	.home .halves .column,
@@ -1187,13 +1187,12 @@ h2 + .article-section {
 
 @media screen and (max-width: 382px) {
 	.site-header-logo img {
-    	width: auto;
-    }
-    .home section:first-child .one a > div,
-    .single-wsu_magazine_issue section:first-child .one a > div {
-    	margin-top: -94px;
-    }
-}
+		width: auto;
+	}
+	.home section:first-child .one a > div,
+	.single-wsu_magazine_issue section:first-child .one a > div {
+		margin-top: -94px;
+	}
 }
 
 /* Old WSM styles to preserve in 2015 redesign */
