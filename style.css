@@ -114,7 +114,8 @@ blockquote {
 .season-spring h3,
 .season-spring cite,
 .season-spring cite a,
-.season-spring .article-section {
+.season-spring .article-section,
+.season-spring .halves .home-headline-head-wrapper:after {
 	color: #8f7e35;
 }
 
@@ -123,7 +124,8 @@ blockquote {
 .season-summer h3,
 .season-summer cite,
 .season-summer cite a,
-.season-summer .article-section {
+.season-summer .article-section,
+.season-summer .halves .home-headline-head-wrapper:after {
 	color: #c69214;
 }
 
@@ -132,7 +134,8 @@ blockquote {
 .season-fall h3,
 .season-fall cite,
 .season-fall cite a,
-.season-fall .article-section {
+.season-fall .article-section,
+.season-fall .halves .home-headline-head-wrapper:after {
 	color: #b67233;
 }
 
@@ -141,7 +144,8 @@ blockquote {
 .season-winter h3,
 .season-winter cite,
 .season-winter cite a,
-.season-winter .article-section {
+.season-winter .article-section,
+.season-winter .halves .home-headline-head-wrapper:after {
 	color: #4f868e;
 }
 
@@ -903,6 +907,22 @@ figure.article-thumbnail img {
 	background: none;
 }
 
+.halves .home-headline-head-wrapper:after {
+	bottom: 0;
+	content: "\F500";
+	font-family: Spine-Icons;
+	left: 0;
+	position: absolute;
+	right: 0;
+	text-align: center;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.halves.secondary-articles .home-headline-head-wrapper:after {
+	content: none;
+}
+
 .secondary-articles .home-headline-head-wrapper {
 	background: none;
 	padding-left: calc(33% + 15px);
@@ -1031,6 +1051,16 @@ h2 + .article-section {
 
 }
 
+@media screen and (min-width: 792px) {
+	.halves .column:hover .home-headline-head-wrapper:after {
+		content: "\F501";
+	}
+
+	.halves.secondary-articles .column:hover .home-headline-head-wrapper:after {
+		content: none;
+	}
+}
+
 @media screen and (max-width: 791px) {
 	#binder.fluid main {
 		margin-top: 0;
@@ -1047,6 +1077,19 @@ h2 + .article-section {
 	.home .halves .column,
 	.single-wsu_magazine_issue .halves .column {
 		padding: 0;
+	}
+
+	.halves .column:hover .home-subtitle {
+		display: none;
+	}
+
+	.halves .column .open.home-headline-head-wrapper:after {
+		content: "\F501";
+	}
+
+	.halves .column .open .home-subtitle,
+	.halves.secondary-articles .column:hover .home-subtitle {
+		display: block;
 	}
 
 }
