@@ -40,6 +40,8 @@ class WSU_Magazine_Theme {
 	public function setup_hooks() {
 		add_action( 'admin_init', array( $this, 'editor_style' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		add_action( 'save_post', array( $this, 'save_post' ), 10, 2 );
+		add_filter( 'admin_post_thumbnail_html', array( $this, 'meta_wsm_banner_color' ), 10, 2 );
 		add_filter( 'pre_site_option_upload_filetypes', array( $this, 'set_upload_filetypes' ), 11, 1 );
 		add_filter( 'upload_mimes', array( $this, 'set_mime_types' ), 11, 1 );
 		add_shortcode( 'magazine_search_form', array( $this, 'display_magazine_search_form' ) );
@@ -55,6 +57,48 @@ class WSU_Magazine_Theme {
 		if ( is_home() || is_singular( 'wsu_magazine_issue' ) ) {
 			wp_enqueue_script( 'ws-magazine-issue', get_stylesheet_directory_uri() . '/js/magazine-issue.js', array( 'jquery' ) );
 		}
+	}
+
+	public function save_post( $post_id, $post ) {
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return;
+		}
+
+		if ( ! isset( $_POST['_wsm_banner_color_nonce'] ) || false === wp_verify_nonce( $_POST['_wsm_banner_color_nonce'], 'save-wsm-banner-color' ) ) {
+			return;
+		}
+
+		if ( 'auto-draft' === $post->post_status ) {
+			return;
+		}
+
+		if ( isset( $_POST['wsm_banner_color'] ) && ! empty( sanitize_html_class( $_POST['wsm_banner_color'] ) ) ) {
+			update_post_meta( $post_id, '_wsm_banner_color', 1 );
+		} else {
+			delete_post_meta( $post_id, '_wsm_banner_color' );
+		}
+	}
+
+	/**
+	 * Provide an input to manually adjust a featured image's background position.
+	 *
+	 * @param string $content HTML output for the featured image area in the post editor.
+	 * @param int    $post_id ID of the post.
+	 * @return string
+	 */
+	public function meta_wsm_banner_color( $content, $post_id ) {
+		$banner = sanitize_html_class( get_post_meta( $post_id, '_wsm_banner_color', true ) );
+
+		$content .= wp_nonce_field( 'save-wsm-banner-color', '_wsm_banner_color_nonce', true, false );
+
+		$content .= '<div class="featured-image-meta-extra">
+						<label for="wsm-banner-color">
+							<input type="checkbox" name="wsm_banner_color" id="wsm-banner-color" ' . checked( $banner, true, false ) . ' /> Use Black Banner
+						</label>
+						<p class="description">If the featured image consists primarily of light colors, check the box above to change the word "Magazine" in the WSM banner to black.</p>
+					</div>';
+
+		return $content;
 	}
 
 	/**
