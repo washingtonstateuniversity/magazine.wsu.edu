@@ -59,8 +59,8 @@
 	<g>
 		<path d="M6,17h11V4H6V17z"/>
 	</g>
-	<polygon points="2,1 11,1 11,0 0,0 0,13 2,13 	"/>
-	<polygon points="5,3 14,3 14,2 3,2 3,15 5,15 	"/>
+	<polygon points="2,1 11,1 11,0 0,0 0,13 2,13"/>
+	<polygon points="5,3 14,3 14,2 3,2 3,15 5,15"/>
 </g>
 </svg></span> Issues
 			</a>
@@ -77,5 +77,11 @@
 </span> Connect
 			</a>
 		</nav>
-		<div class="site-header-logo sh-item"><a href="<?php echo esc_url( home_url() ); ?>"><img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/images/WSM_logo.svg' ); ?>" alt="Washington State Magazine"></a></div>
+		<div class="site-header-logo sh-item"><a href="<?php echo esc_url( home_url() ); ?>"><img src="<?php
+			if ( spine_has_featured_image() ) {
+				$black_banner = sanitize_html_class( get_post_meta( get_the_ID(), '_wsm_banner_color', true ) );
+			}
+			$black = ( $black_banner ) ? '-black': '';
+		echo esc_url( get_stylesheet_directory_uri() . '/images/WSM_logo' . $black . '.svg' );
+		?>" alt="Washington State Magazine"></a></div>
 	</header>
