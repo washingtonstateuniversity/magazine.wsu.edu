@@ -78,10 +78,7 @@
 			</a>
 		</nav>
 		<div class="site-header-logo sh-item"><a href="<?php echo esc_url( home_url() ); ?>"><img src="<?php
-			if ( spine_has_featured_image() ) {
-				$black_banner = sanitize_html_class( get_post_meta( get_the_ID(), '_wsm_banner_color', true ) );
-			}
-			$black = ( $black_banner ) ? '-black': '';
+		$black = ( spine_has_featured_image() ) && get_post_meta( get_the_ID(), '_wsm_banner_color', true ) ? '-black': '';
 		echo esc_url( get_stylesheet_directory_uri() . '/images/WSM_logo' . $black . '.svg' );
 		?>" alt="Washington State Magazine"></a></div>
 	</header>
