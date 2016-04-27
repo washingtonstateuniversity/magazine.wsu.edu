@@ -10,6 +10,6 @@
 		});
 	}
 
-	$(window).on('load resize', toggle_excerpt);
+	$(window).on('load', toggle_excerpt);
 
 }(jQuery));
