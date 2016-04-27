@@ -321,7 +321,7 @@ blockquote {
 	-webkit-justify-content: center;
 	-ms-flex-pack: center;
 	justify-content: center;
-	padding-top: 1rem;
+	padding-top: 0.85rem;
 	text-transform: uppercase;
 	-webkit-transition: color .3s ease;
 	transition: color .3s ease;
