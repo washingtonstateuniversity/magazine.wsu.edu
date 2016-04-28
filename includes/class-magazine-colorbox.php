@@ -1,0 +1,107 @@
+<?php
+
+class WSU_Magazine_Colorbox {
+	/**
+	 * @var WSU_Magazine_Colorbox
+	 */
+	private static $instance;
+
+	/**
+	 * @var array Colorbox instances for the current request.
+	 */
+	protected $colorbox_instances = array();
+
+	/**
+	 * Maintain and return the one instance and initiate hooks when
+	 * called the first time.
+	 *
+	 * @return \WSU_Magazine_Colorbox
+	 */
+	public static function get_instance() {
+		if ( ! isset( self::$instance ) ) {
+			self::$instance = new WSU_Magazine_Colorbox;
+			self::$instance->setup_hooks();
+		}
+		return self::$instance;
+	}
+
+	/**
+	 * Setup hooks for the plugin.
+	 */
+	public function setup_hooks() {
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		add_action( 'wp_print_footer_scripts', array( $this, 'add_colorbox_calls' ), 11 );
+		add_shortcode( 'magazine_colorbox', array( $this, 'display_magazine_colorbox' ) );
+	}
+
+	public function enqueue_scripts() {
+		$post = get_post();
+		if ( isset( $post->post_content ) && has_shortcode( $post->post_content, 'magazine_colorbox' ) ) {
+			wp_enqueue_script( 'wsu-magazine-colorbox', get_stylesheet_directory_uri() . '/js/colorbox/jquery.colorbox-min.js', array( 'jquery-core' ) );
+		}
+	}
+
+	/**
+	 * Add JavaScript code for invoking Colorbox.
+	 */
+	public function add_colorbox_calls() {
+
+		if ( empty( $this->colorbox_instances ) ) {
+			return;
+		}
+
+		$invocations = array();
+
+		foreach ( $this->colorbox_instances as $selector => $settings ) {
+			$invocation = "$('{$selector}').colorbox({{$settings}});";
+			$invocations[] = $invocation;
+		}
+
+		if ( empty( $invocations ) ) {
+			return;
+		}
+
+		$invocations = implode( "\n\t", $invocations );
+
+		echo '<script type="text/javascript">
+(function($){
+	' . $invocations . '
+})(jQuery);
+</script>';
+	}
+
+	/**
+	 * 'Display' Colorbox.
+	 *
+	 * @return void
+	 */
+	public function display_magazine_colorbox( $atts ) {
+
+		$defaults = array(
+			'selector' => '',
+			'settings' => '',
+		);
+
+		$atts = shortcode_atts( $defaults, $atts );
+
+		$selector = esc_js( trim( $atts['selector'] ) );
+
+		$settings = wp_kses( trim( $atts['settings'] ), '' ); // @todo: Better escaping here.
+
+		if ( ! isset( $this->colorbox_instances[ $selector ] ) ) {
+			$this->colorbox_instances[ $selector ] = $settings;
+		}
+
+		return;
+	}
+}
+
+add_action( 'after_setup_theme', 'WSU_Magazine_Colorbox', 11 );
+/**
+ * Start things up.
+ *
+ * @return \WSU_Magazine_Colorbox
+ */
+function WSU_Magazine_Colorbox() {
+	return WSU_Magazine_Colorbox::get_instance();
+}
