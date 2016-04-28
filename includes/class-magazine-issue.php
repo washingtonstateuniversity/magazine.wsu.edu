@@ -283,7 +283,7 @@ class WSU_Magazine_Issue {
 			return;
 		}
 
-		$current_issue = sanitize_key( $_GET[ $this->taxonomy_slug ] );
+		$current_issue = ( isset( $_GET[ $this->taxonomy_slug ] ) ) ? sanitize_key( $_GET[ $this->taxonomy_slug ] ) : 0;
 
 		wp_dropdown_categories( array(
 			'show_option_all' => 'All issues',
