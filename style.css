@@ -114,7 +114,8 @@ blockquote {
 .season-spring h3,
 .season-spring cite,
 .season-spring cite a,
-.season-spring .article-section {
+.season-spring .article-section,
+.season-spring .halves .home-headline-head-wrapper:after {
 	color: #8f7e35;
 }
 
@@ -123,7 +124,8 @@ blockquote {
 .season-summer h3,
 .season-summer cite,
 .season-summer cite a,
-.season-summer .article-section {
+.season-summer .article-section,
+.season-summer .halves .home-headline-head-wrapper:after {
 	color: #c69214;
 }
 
@@ -132,7 +134,8 @@ blockquote {
 .season-fall h3,
 .season-fall cite,
 .season-fall cite a,
-.season-fall .article-section {
+.season-fall .article-section,
+.season-fall .halves .home-headline-head-wrapper:after {
 	color: #b67233;
 }
 
@@ -141,7 +144,8 @@ blockquote {
 .season-winter h3,
 .season-winter cite,
 .season-winter cite a,
-.season-winter .article-section {
+.season-winter .article-section,
+.season-winter .halves .home-headline-head-wrapper:after {
 	color: #4f868e;
 }
 
@@ -317,7 +321,7 @@ blockquote {
 	-webkit-justify-content: center;
 	-ms-flex-pack: center;
 	justify-content: center;
-	padding-top: 1rem;
+	padding-top: 0.85rem;
 	text-transform: uppercase;
 	-webkit-transition: color .3s ease;
 	transition: color .3s ease;
@@ -401,12 +405,12 @@ blockquote {
 
 .has-featured-image .main-header .header-group:before {
 	content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: -3.15rem;
-    background: rgba(0,0,0,0.7);
-    left: 0;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: -3.15rem;
+	background: rgba(0,0,0,0.7);
+	left: 0;
 }
 
 .page.has-featured-image .main-header .header-group:before {
@@ -510,6 +514,45 @@ cite,
 .article-sidebar a {
 	color: inherit;
 	text-decoration: underline;
+}
+
+blockquote {
+	font-family: "museo-slab";
+	font-size: 1.3rem;
+	font-weight: 300;
+	line-height: 1.5;
+	position: relative;
+	text-align: center;
+}
+
+.pullquote {
+	padding: 4rem 3rem;
+}
+
+.pullquote:before,
+.pullquote:after {
+	color: #981e32;
+	font-family: 'Arial Black', 'Arial Bold', sans-serif;
+	font-size: 3rem;
+	font-weight: 700;
+	line-height: .75;
+	position: absolute;
+}
+
+.pullquote:before {
+	content: '“';
+	top: 1.5rem;
+}
+
+.pullquote:after {
+	bottom: 1.75rem;
+	content: '”';
+}
+
+.pullquote .speaker {
+	font-family: 'Open Sans';
+	font-size: .9rem;
+	font-style: italic;
 }
 
 p.article-endcontent {
@@ -864,6 +907,22 @@ figure.article-thumbnail img {
 	background: none;
 }
 
+.halves .home-headline-head-wrapper:after {
+	bottom: 0;
+	content: "\F500";
+	font-family: Spine-Icons;
+	left: 0;
+	position: absolute;
+	right: 0;
+	text-align: center;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.halves.secondary-articles .home-headline-head-wrapper:after {
+	content: none;
+}
+
 .secondary-articles .home-headline-head-wrapper {
 	background: none;
 	padding-left: calc(33% + 15px);
@@ -992,6 +1051,16 @@ h2 + .article-section {
 
 }
 
+@media screen and (min-width: 792px) {
+	.halves .column:hover .home-headline-head-wrapper:after {
+		content: "\F501";
+	}
+
+	.halves.secondary-articles .column:hover .home-headline-head-wrapper:after {
+		content: none;
+	}
+}
+
 @media screen and (max-width: 791px) {
 	#binder.fluid main {
 		margin-top: 0;
@@ -1002,12 +1071,25 @@ h2 + .article-section {
 	}
 
 	.has-featured-image .main-header .header-group:before {
-    	top: -3.45rem;
+		top: -3.45rem;
 	}
 
 	.home .halves .column,
 	.single-wsu_magazine_issue .halves .column {
 		padding: 0;
+	}
+
+	.halves .column:hover .home-subtitle {
+		display: none;
+	}
+
+	.halves .column .open.home-headline-head-wrapper:after {
+		content: "\F501";
+	}
+
+	.halves .column .open .home-subtitle,
+	.halves.secondary-articles .column:hover .home-subtitle {
+		display: block;
 	}
 
 }
@@ -1105,13 +1187,12 @@ h2 + .article-section {
 
 @media screen and (max-width: 382px) {
 	.site-header-logo img {
-    	width: auto;
-    }
-    .home section:first-child .one a > div,
-    .single-wsu_magazine_issue section:first-child .one a > div {
-    	margin-top: -94px;
-    }
-}
+		width: auto;
+	}
+	.home section:first-child .one a > div,
+	.single-wsu_magazine_issue section:first-child .one a > div {
+		margin-top: -94px;
+	}
 }
 
 /* Old WSM styles to preserve in 2015 redesign */
