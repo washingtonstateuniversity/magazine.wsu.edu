@@ -41,6 +41,7 @@ class WSU_Magazine_Colorbox {
 		$post = get_post();
 		if ( isset( $post->post_content ) && has_shortcode( $post->post_content, 'magazine_colorbox' ) ) {
 			wp_enqueue_script( 'wsu-magazine-colorbox', get_stylesheet_directory_uri() . '/js/colorbox/jquery.colorbox-min.js', array( 'jquery-core' ) );
+			wp_enqueue_style( 'wsu-magazine-colorbox', get_stylesheet_directory_uri() . '/css/colorbox.css' );
 		}
 	}
 
