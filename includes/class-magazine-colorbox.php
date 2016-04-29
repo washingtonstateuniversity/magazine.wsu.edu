@@ -34,6 +34,9 @@ class WSU_Magazine_Colorbox {
 		add_shortcode( 'magazine_colorbox', array( $this, 'display_magazine_colorbox' ) );
 	}
 
+	/**
+	 * Load the Colorbox library.
+	 */
 	public function enqueue_scripts() {
 		$post = get_post();
 		if ( isset( $post->post_content ) && has_shortcode( $post->post_content, 'magazine_colorbox' ) ) {
@@ -53,7 +56,7 @@ class WSU_Magazine_Colorbox {
 		$invocations = array();
 
 		foreach ( $this->colorbox_instances as $selector => $settings ) {
-			$invocation = "$('{$selector}').colorbox({{$settings}});";
+			$invocation = "$('{$selector}').colorbox({$settings})";
 			$invocations[] = $invocation;
 		}
 
@@ -61,17 +64,20 @@ class WSU_Magazine_Colorbox {
 			return;
 		}
 
-		$invocations = implode( "\n\t", $invocations );
+		$invocations = implode( ";", $invocations );
 
-		echo '<script type="text/javascript">
-(function($){
-	' . $invocations . '
-})(jQuery);
-</script>';
+		echo '<script type="text/javascript">(function($){' . $invocations . '})(jQuery);</script>';
 	}
 
 	/**
-	 * 'Display' Colorbox.
+	 * Escape shortcode attribute values and add to the `colorbox_instances` array.
+	 *
+	 * @param array $atts {
+	 *     Attributes passed with the shortcode.
+	 *
+	 *     @type string $selector The `.class` or `#id` of HTML element(s) to apply Colorbox to.
+	 *     @type string $settings The key/value pairs documented at http://www.jacklmoore.com/colorbox/.
+	 * }
 	 *
 	 * @return void
 	 */
@@ -86,10 +92,86 @@ class WSU_Magazine_Colorbox {
 
 		$selector = esc_js( trim( $atts['selector'] ) );
 
-		$settings = wp_kses( trim( $atts['settings'] ), '' ); // @todo: Better escaping here.
+		$settings = explode( ',', $atts['settings'] );
+
+		$whitelist = array(
+			'transition',
+			'speed',
+			'href',
+			'title',
+			'rel',
+			'scalePhotos',
+			'scrolling',
+			'opacity',
+			'open',
+			'returnFocus',
+			'trapFocus',
+			'fastIframe',
+			'preloading',
+			'overlayClose',
+			'escKey',
+			'arrowKey',
+			'loop',
+			'data',
+			'className',
+			'fadeOut',
+			'closeButton',
+			'current',
+			'previous',
+			'next',
+			'close',
+			'xhrError',
+			'imgError',
+			'iframe',
+			'inline',
+			'html',
+			'photo',
+			'ajax',
+			'width',
+			'height',
+			'innerWidth',
+			'innerHeight',
+			'initialWidth',
+			'initialHeight',
+			'maxWidth',
+			'maxHeight',
+			'slideshow',
+			'slideshowSpeed',
+			'slideshowAuto',
+			'slideshowStart',
+			'slideshowStop',
+			'fixed',
+			'top',
+			'bottom',
+			'left',
+			'right',
+			'reposition',
+			'retinaImage',
+			'retinaUrl',
+			'retinaSuffix',
+			'onOpen',
+			'onLoad',
+			'onComplete',
+			'onCleanup',
+			'onClosed',
+		);
+
+		$sanitized_settings = array();
+
+		foreach ( $settings as $setting ) {
+			$setting =  explode( ':', $setting );
+			$key = trim( $setting[0] );
+
+			if ( in_array( $key, $whitelist, true ) ) {
+				$value = wp_kses( trim( $setting[1] ), '' );
+				$sanitized_settings[] = $key . ':' . $value;
+			}
+		}
+
+		$sanitized_settings = '{' . implode( ',', $sanitized_settings ) . '}';
 
 		if ( ! isset( $this->colorbox_instances[ $selector ] ) ) {
-			$this->colorbox_instances[ $selector ] = $settings;
+			$this->colorbox_instances[ $selector ] = $sanitized_settings;
 		}
 
 		return;
