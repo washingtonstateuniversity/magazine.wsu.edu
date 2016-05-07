@@ -95,7 +95,7 @@ class WSU_Magazine_Colorbox {
 
 		$settings = explode( ',', $atts['settings'] );
 
-		$whitelist = array(
+		$settings_whitelist = array(
 			'transition',
 			'speed',
 			'href',
@@ -150,11 +150,18 @@ class WSU_Magazine_Colorbox {
 			'retinaImage',
 			'retinaUrl',
 			'retinaSuffix',
+		);
+
+		$callbacks_whitelist = array(
 			'onOpen',
 			'onLoad',
 			'onComplete',
 			'onCleanup',
 			'onClosed',
+		);
+
+		$callback_values_whitelist = array(
+			'curtain',
 		);
 
 		$sanitized_settings = array();
@@ -163,9 +170,21 @@ class WSU_Magazine_Colorbox {
 			$setting =  explode( ':', $setting );
 			$key = trim( $setting[0] );
 
-			if ( in_array( $key, $whitelist, true ) ) {
-				$value = wp_kses( trim( $setting[1] ), '' );
-				$sanitized_settings[] = $key . ':' . $value;
+			if ( in_array( $key, $settings_whitelist, true ) ) {
+				$value = esc_js( trim( $setting[1] ) );
+
+				if ( $value == 'true' || $value == 'false' ) {
+					$sanitized_settings[] = $key . ':' . $value;
+				} else {
+					$sanitized_settings[] = $key . ':"' . $value . '"';
+				}
+			}
+
+			if ( in_array( $key, $callbacks_whitelist, true ) ) {
+				$value = esc_js( trim( $setting[1] ) );
+				if ( in_array( $value, $callback_values_whitelist, true ) ) {
+					$sanitized_settings[] = $key . ':function(){colorbox_' . $value . '()}';
+				}
 			}
 		}
 
