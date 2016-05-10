@@ -43,6 +43,11 @@ class WSU_Magazine_Issue {
 		add_action( 'pre_get_posts', array( $this, 'front_page_issue' ) );
 		add_action( 'restrict_manage_posts', array( $this, 'filter_media_by_issue' ) );
 		add_filter( 'attachment_fields_to_edit', array( $this, 'media_modal_issue_labels' ), 16, 2 );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ), 10 );
+		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ), 10 );
+		add_action( 'save_post_' . $this->content_type_slug, array( $this, 'save_post' ), 10, 2 );
+		add_action( 'wp_ajax_set_issue_articles', array( $this, 'ajax_callback' ), 10 );
+		add_action( 'wp_ajax_nopriv_set_issue_articles', array( $this, 'ajax_callback' ), 10 );
 	}
 
 	/**
@@ -73,7 +78,7 @@ class WSU_Magazine_Issue {
 			'supports' => array(
 				'title',
 				'editor',
-				'thumbnail',
+				//'thumbnail',
 				'revisions',
 			),
 			'taxonomies' => array(),
@@ -329,6 +334,178 @@ class WSU_Magazine_Issue {
 		);
 
 		return $fields;
+	}
+
+	/**
+	 * Enqueue the scripts used for managing issue building.
+	 */
+	public function admin_enqueue_scripts( $hook ) {
+		if ( ! in_array( $hook, array( 'post.php', 'post-new.php' ) ) )
+			return;
+		if ( $this->content_type_slug === get_current_screen()->id ) {
+			wp_enqueue_script( 'wsm-issue-admin', get_stylesheet_directory_uri() . '/js/issue-admin.js', array( 'jquery-ui-draggable', 'jquery-ui-sortable' ), false, true );
+			wp_enqueue_style(  'wsu-issue-admin', get_stylesheet_directory_uri() . '/css/issue-admin.css', array( 'ttfmake-builder' ) );
+		}
+	}
+
+	/**
+	 * Add the meta boxes used by the issue content type.
+	 */
+	public function add_meta_boxes() {
+		add_meta_box(
+			'wsm_issue_items',
+			'Issue Articles',
+			array( $this, 'display_issue_articles_meta_box' ),
+			$this->content_type_slug,
+			'side'
+		);
+	}
+
+	/**
+	 * Display a staging area for loading/sorting issue articles.
+	 *
+	 * @param WP_Post $post Object for the post currently being edited.
+	 */
+	public function display_issue_articles_meta_box( $post ) {
+		wp_nonce_field( 'save-wsm-issue-build', '_wsm_issue_build_nonce' );
+
+		$localized_data = array( 'post_id' => $post->ID );
+
+		// If this issue has articles assigned already, we want to make them available to our JS.
+		if ( $post_ids = get_post_meta( $post->ID, '_issue_staged_articles', true ) ) {
+			$localized_data['items'] = $this->_build_magazine_issue_response( $post_ids );
+		}
+
+		wp_localize_script( 'wsm-issue-admin', 'wsm_issue', $localized_data );
+
+		if ( $term_list = get_the_terms( $post->ID, $this->taxonomy_slug ) ) {
+			$issue_label = $term_list[0]->slug;
+		} else {
+			$issue_label = '';
+		}
+
+		wp_dropdown_categories( array(
+			'show_option_all' => 'Issue Label',
+			'taxonomy' => $this->taxonomy_slug,
+			'orderby' => 'name',
+			'order' => 'DESC',
+			'name' => 'issue_label',
+			'id' => 'issue_label_slug',
+			'echo' => 1,
+			'selected' => $issue_label,
+			'value_field' => 'slug',
+		) );
+		?>
+		<input type="button" value="Load Articles" id="load-issue-articles" class="button button-large button-secondary" />
+		<div id="issue-articles" class="wsuwp-spine-builder-column"></div>
+		<input type="hidden" id="issue-staged-articles" name="issue_staged_articles" value="" />
+		<?php
+	}
+
+	/**
+	 * Capture the build of an issue.
+	 *
+	 * @param int     $post_id ID of the current post being saved.
+	 * @param WP_Post $post    Object of the current post being saved.
+	 */
+	public function save_post( $post_id, $post ) {
+
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return;
+		}
+
+		if ( ! isset( $_POST['_wsm_issue_build_nonce'] ) ) {
+			return;
+		}
+
+		if ( ! wp_verify_nonce( $_POST['_wsm_issue_build_nonce'], 'save-wsm-issue-build' ) ) {
+			return;
+		}
+
+		if ( 'auto-draft' === $post->post_status ) {
+			return;
+		}
+
+		if ( $this->content_type_slug !== $post->post_type ) {
+			return;
+		}
+
+		if ( ! empty( $_POST['issue_staged_articles'] ) ) {
+			$issue_staged_articles = explode( ',', $_POST['issue_staged_articles'] );
+			$issue_staged_articles = array_map( 'absint', $issue_staged_articles );
+			update_post_meta( $post_id, '_issue_staged_articles', $issue_staged_articles );
+		} else {
+			delete_post_meta( $post_id, '_issue_staged_articles' );
+		}
+	}
+
+	/**
+	 * Build the list of articles that should be included in an issue.
+	 *
+	 * @param array        $post_ids    List of specific post IDs to include. Defaults to an empty array.
+	 * @param null|string  $issue_label Issue label to assign to the issue. A null default indicates no issue label.
+	 *
+	 * @return array Containing information on each issue article.
+	 */
+	private function _build_magazine_issue_response( $post_ids = array(), $issue_label = null ) {
+		$query_args = array(
+			'post_type'      => array( 'post', 'wsu_magazine_we' ),
+			'posts_per_page' => 100,
+		);
+
+		if ( $issue_label ) {
+			$query_args['tax_query'] = array(
+				array(
+					'taxonomy' => $this->taxonomy_slug,
+					'field'    => 'slug',
+					'terms'    => $issue_label,
+				)
+			);
+		}
+
+		// If an array of post IDs has been passed, use only those.
+		if ( ! empty( $post_ids ) ) {
+			$query_args['post__in'] = $post_ids;
+			$query_args['orderby']  = 'post__in';
+		}
+
+		$issue_query = get_posts( $query_args );
+		foreach ( $issue_query as $post ) :
+			setup_postdata( $post );
+			$feature = ( has_post_thumbnail( $post->ID ) ) ? wp_get_attachment_url( get_post_thumbnail_id( $post->ID ) ) : '';
+			$sections = wp_get_object_terms( $post->ID, 'wsu_magazine_section', array( 'fields' => 'names' ) );
+			$section = ( $sections ) ? $sections[0] : '';
+			$items[] = array(
+				'id'        => $post->ID,
+				'featured'  => $feature,
+				'title'     => $post->post_title,
+				'headline'  => get_post_meta( $post->ID, '_wsu_home_headline', true ),
+				'subtitle'  => get_post_meta( $post->ID, '_wsu_home_subtitle', true ),
+				'section'   => $section,
+			);
+		endforeach;
+		wp_reset_postdata();
+
+		return $items;
+	}
+
+	/**
+	 * Handle the ajax callback to push a list of articles to an issue.
+	 */
+	public function ajax_callback() {
+		if ( ! DOING_AJAX || ! isset( $_POST['action'] ) || 'set_issue_articles' !== $_POST['action'] ) {
+			die();
+		}
+
+		if ( isset( $_POST['issue_label'] ) ) {
+			$issue_label = $_POST['issue_label'];
+		} else {
+			$issue_label = false;
+		}
+
+		echo json_encode( $this->_build_magazine_issue_response( array(), $issue_label ) );
+
+		exit();
 	}
 }
 
