@@ -48,7 +48,17 @@
 }
 
 #cboxTitle {
+	box-sizing: border-box;
+	color: #fff;
+	margin: 0;
+	padding: 1rem;
+	text-align: center;
+	width: 100%;
+}
+
+.hide-title #cboxTitle {
 	font-size: 0;
+	padding: 0;
 }
 
 #cboxCurrent {
@@ -135,4 +145,14 @@
 	text-indent: initial;
 	top: 0;
 	width: 100%;
+}
+
+.featured-image-information #cboxClose {
+	top: -30px;
+}
+
+@media screen and ( max-width: 650px ) {
+	.featured-image-information #cboxLoadedContent {
+		display: none !important;
+	}
 }
