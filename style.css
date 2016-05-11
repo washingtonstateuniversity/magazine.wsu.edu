@@ -149,7 +149,8 @@ blockquote {
 	color: #4f868e;
 }
 
-.season-spring .site-header-nav a.nav-emag span svg {
+.season-spring .site-header-nav a.nav-emag span svg,
+.season-spring .image-information svg path {
 	fill: #8f7e35;
 }
 
@@ -157,11 +158,13 @@ blockquote {
 	color: #ada400;
 }
 
-.season-spring .site-header-nav a.nav-emag:hover span svg {
+.season-spring .site-header-nav a.nav-emag:hover span svg,
+.season-spring .image-information:hover svg path {
 	fill: #ada400;
 }
 
-.season-summer .site-header-nav a.nav-emag span svg {
+.season-summer .site-header-nav a.nav-emag span svg,
+.season-summer .image-information svg path {
 	fill: #c69214;
 }
 
@@ -169,11 +172,13 @@ blockquote {
 	color: #ffb81c;
 }
 
-.season-summer .site-header-nav a.nav-emag:hover span svg {
+.season-summer .site-header-nav a.nav-emag:hover span svg,
+.season-summer .image-information:hover svg path {
 	fill: #ffb81c;
 }
 
-.season-fall .site-header-nav a.nav-emag span svg {
+.season-fall .site-header-nav a.nav-emag span svg,
+.season-fall .image-information svg path {
 	fill: #b67233;
 }
 
@@ -181,11 +186,13 @@ blockquote {
 	color: #f6861f;
 }
 
-.season-fall .site-header-nav a.nav-emag:hover span svg {
+.season-fall .site-header-nav a.nav-emag:hover span svg,
+.season-fall .image-information:hover svg path {
 	fill: #f6861f;
 }
 
-.season-winter .site-header-nav a.nav-emag span svg {
+.season-winter .site-header-nav a.nav-emag span svg,
+.season-winter .image-information svg path {
 	fill: #4f868e;
 }
 
@@ -193,7 +200,8 @@ blockquote {
 	color: #00a5bd;
 }
 
-.season-winter .site-header-nav a.nav-emag:hover span svg {
+.season-winter .site-header-nav a.nav-emag:hover span svg,
+.season-winter .image-information:hover svg path {
 	fill: #00a5bd;
 }
 
@@ -398,7 +406,6 @@ blockquote {
 }
 
 .has-featured-image .main-header .header-group {
-	overflow: hidden;
 	padding-top: 2.25rem;
 	position: absolute;
 }
@@ -407,14 +414,14 @@ blockquote {
 	content: '';
 	position: absolute;
 	width: 100%;
-	height: 100%;
-	top: -3.15rem;
+	height: calc(100% - 3.15rem);
+	top: 0;
 	background: rgba(0,0,0,0.7);
 	left: 0;
 }
 
 .page.has-featured-image .main-header .header-group:before {
-	top: -1.85rem;
+	height: calc(100% - 1.85rem);
 }
 
 .has-featured-image .main-header .header-group h1 {
@@ -432,6 +439,29 @@ cite,
 
 .main-header a:hover {
 	color: #981e32;
+}
+
+/* Featured image information */
+.image-information {
+	position: absolute;
+	right: -184px;
+	top: 1.5rem;
+}
+
+.image-information svg {
+	display: block;
+}
+
+.image-information svg circle {
+	fill: rgba(255,255,255,0.7);
+}
+
+.image-information:hover svg circle {
+	fill: #fff;
+}
+
+.image-information svg path {
+	fill: #5e6a71;
 }
 
 /* Social sharing bar */
@@ -1067,11 +1097,11 @@ h2 + .article-section {
 	}
 
 	.main-header .header-group {
-		bottom: -3.45rem;
+		bottom: -3.46rem;
 	}
 
 	.has-featured-image .main-header .header-group:before {
-		top: -3.45rem;
+		height: calc(100% - 3.46rem);
 	}
 
 	.home .halves .column,
@@ -1128,6 +1158,12 @@ h2 + .article-section {
 
 	.main-header .header-group {
 		max-width: 100%;
+	}
+
+	.image-information {
+		bottom: auto;
+		right: 1rem;
+		top: -2.5rem;
 	}
 
 	.spine-social-channels {
@@ -1189,6 +1225,7 @@ h2 + .article-section {
 	.site-header-logo img {
 		width: auto;
 	}
+
 	.home section:first-child .one a > div,
 	.single-wsu_magazine_issue section:first-child .one a > div {
 		margin-top: -94px;

@@ -41,6 +41,7 @@ class WSU_Magazine_Theme {
 	public function setup_hooks() {
 		add_action( 'admin_init', array( $this, 'editor_style' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		add_action( 'wp_print_footer_scripts', array( $this, 'featured_image_colorbox' ), 11 );
 		add_action( 'save_post', array( $this, 'save_post' ), 10, 2 );
 		add_filter( 'admin_post_thumbnail_html', array( $this, 'meta_wsm_banner_color' ), 10, 2 );
 		add_filter( 'pre_site_option_upload_filetypes', array( $this, 'set_upload_filetypes' ), 11, 1 );
@@ -57,6 +58,24 @@ class WSU_Magazine_Theme {
 		wp_enqueue_script( 'wsu-magazine-typekit-load', get_stylesheet_directory_uri() . '/js/magazine-primary.js', array(), false, true );
 		if ( is_home() || is_singular( 'wsu_magazine_issue' ) ) {
 			wp_enqueue_script( 'ws-magazine-issue', get_stylesheet_directory_uri() . '/js/magazine-issue.js', array( 'jquery' ) );
+		}
+		if ( spine_has_featured_image() && get_post( get_post_thumbnail_id() )->post_excerpt ) {
+			wp_enqueue_script( 'wsu-magazine-colorbox', get_stylesheet_directory_uri() . '/js/colorbox/jquery.colorbox-min.js', array( 'jquery-core' ) );
+			wp_enqueue_style( 'wsu-magazine-colorbox', get_stylesheet_directory_uri() . '/css/colorbox.css' );
+		}
+	}
+
+	public function featured_image_colorbox() {
+		if ( spine_has_featured_image() && get_post( get_post_thumbnail_id() )->post_excerpt ) {
+			echo '<script type="text/javascript">(function($){
+				$( ".image-information" ).colorbox({
+					className: "featured-image-information",
+					width: "90%",
+					maxHeight: "90%",
+					opacity: 0.85,
+					returnFocus: false
+				});
+			})(jQuery);</script>';
 		}
 	}
 
