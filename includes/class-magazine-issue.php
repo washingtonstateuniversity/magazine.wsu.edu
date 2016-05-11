@@ -371,9 +371,12 @@ class WSU_Magazine_Issue {
 
 		$localized_data = array( 'post_id' => $post->ID );
 
+		$stage_articles = '';
+
 		// If this issue has articles assigned already, we want to make them available to our JS.
 		if ( $post_ids = get_post_meta( $post->ID, '_issue_staged_articles', true ) ) {
 			$localized_data['items'] = $this->_build_magazine_issue_response( $post_ids );
+			$stage_articles = implode( ',', $post_ids );
 		}
 
 		wp_localize_script( 'wsm-issue-admin', 'wsm_issue', $localized_data );
@@ -398,7 +401,7 @@ class WSU_Magazine_Issue {
 		?>
 		<input type="button" value="Load Articles" id="load-issue-articles" class="button button-large button-secondary" />
 		<div id="issue-articles" class="wsuwp-spine-builder-column"></div>
-		<input type="hidden" id="issue-staged-articles" name="issue_staged_articles" value="" />
+		<input type="hidden" id="issue-staged-articles" name="issue_staged_articles" value="<?php echo esc_attr( $stage_articles ); ?>" />
 		<?php
 	}
 
