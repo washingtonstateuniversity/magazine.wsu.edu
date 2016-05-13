@@ -43,6 +43,7 @@ class WSU_Magazine_Theme {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		add_action( 'wp_print_footer_scripts', array( $this, 'featured_image_colorbox' ), 11 );
 		add_action( 'save_post', array( $this, 'save_post' ), 10, 2 );
+		add_action( 'pre_get_posts', array( $this, 'web_extras_in_archives' ) );
 		add_filter( 'admin_post_thumbnail_html', array( $this, 'meta_wsm_banner_color' ), 10, 2 );
 		add_filter( 'pre_site_option_upload_filetypes', array( $this, 'set_upload_filetypes' ), 11, 1 );
 		add_filter( 'upload_mimes', array( $this, 'set_mime_types' ), 11, 1 );
@@ -96,6 +97,20 @@ class WSU_Magazine_Theme {
 			update_post_meta( $post_id, '_wsm_banner_color', 1 );
 		} else {
 			delete_post_meta( $post_id, '_wsm_banner_color' );
+		}
+	}
+
+	/**
+	 * Include the Web Extra post type in the query for Category and Tag archive pages.
+	 *
+	 * @param WP_Query $query Query object.
+	 */
+	public function web_extras_in_archives( $query ) {
+		if ( ( ! is_admin() && $query->is_main_query() ) && ( $query->is_category() || $query->is_tag() ) ) {
+			$query->set( 'post_type', array(
+				'post',
+				'wsu_magazine_we',
+			) );
 		}
 	}
 
