@@ -3,10 +3,11 @@ label[for="tagsdiv-wsu_mag_issue_tax-hide"] {
 	display: none;
 }
 
-.ttfmake-section .ttfmake-section-body {
+.ttfmake-section-body {
 	float: none;
 	margin: 0 auto;
 	max-width: 1030px;
+	overflow: hidden;
 }
 
 .ttfmake-section .wsuwp-spine-builder-column {
@@ -53,8 +54,7 @@ label[for="tagsdiv-wsu_mag_issue_tax-hide"] {
 	border: 1px dotted #222;
 	height: 30px;
 }
-/* Maybe kind of goofy */
-#ttfmake-stage .wsuwp-spine-builder-column:before {
+.ttfmake-section-open .wsuwp-spine-builder-column:before {
     content: 'Drag an article here';
     position: absolute;
     line-height: 30px;
