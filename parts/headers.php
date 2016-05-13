@@ -33,7 +33,7 @@ if ( spine_get_option( 'main_header_show' ) == 'true' ) :
 			<cite class="article-author" role="author">by <?php coauthors_posts_links(); ?></cite>
 			<?php endif; ?>
 
-			<?php if ( spine_has_featured_image() && get_post( get_post_thumbnail_id() )->post_excerpt ) : ?>
+			<?php if ( is_singular() && spine_has_featured_image() && get_post( get_post_thumbnail_id() )->post_excerpt ) : ?>
 			<?php $image_data = wp_get_attachment_image_src( get_post_thumbnail_id(), 'spine-xlarge_size' ); ?>
 			<a class="image-information"
 				href="<?php echo esc_url( spine_get_featured_image_src() ); ?>"
