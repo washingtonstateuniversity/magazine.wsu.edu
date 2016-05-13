@@ -445,7 +445,7 @@ cite,
 .image-information {
 	position: absolute;
 	right: -184px;
-	top: 1.5rem;
+	bottom: 4rem;
 }
 
 .image-information svg {
@@ -1102,6 +1102,10 @@ h2 + .article-section {
 
 	.has-featured-image .main-header .header-group:before {
 		height: calc(100% - 3.46rem);
+	}
+
+	.image-information {
+		bottom: 4.5rem;
 	}
 
 	.home .halves .column,
