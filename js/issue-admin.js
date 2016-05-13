@@ -37,7 +37,7 @@ try{Typekit.load({ async: true });}catch(e){}
 
 		// Append the results to the existing build of items.
 		$.each( raw_data, function( index, val ) {
-			var headline = val.headline,
+			var headline = val.headline ? val.headline : val.title,
 				bg_image = val.featured;
 				position = '';
 
