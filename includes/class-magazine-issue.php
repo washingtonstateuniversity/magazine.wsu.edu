@@ -506,7 +506,13 @@ class WSU_Magazine_Issue {
 			$issue_label = false;
 		}
 
-		echo json_encode( $this->_build_magazine_issue_response( array(), $issue_label ) );
+		if ( isset( $_POST['post_ids'] ) ) {
+			$post_ids = explode( ',', $_POST['post_ids'] );
+		} else {
+			$post_ids = array();
+		}
+
+		echo json_encode( $this->_build_magazine_issue_response( $post_ids, $issue_label ) );
 
 		exit();
 	}
