@@ -125,10 +125,10 @@ try{Typekit.load({ async: true });}catch(e){}
 	$( '#load-issue-articles' ).on( 'click', function( e ) {
 		e.preventDefault();
 
+		var issue_label = $( '#issue_label_slug' ).val();
+
 		// Copy selected issue label into default Issue Label field.
 		$( '#new-tag-wsu_mag_issue_tax' ).val( issue_label );
-
-		var issue_label = $( '#issue_label_slug' ).val();
 
 		// Cache the issue build area for future use.
 		var data = {
