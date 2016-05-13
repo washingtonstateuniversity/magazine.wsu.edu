@@ -12,7 +12,7 @@ try{Typekit.load({ async: true });}catch(e){}
 	var $issue_articles = $( '#issue-articles' );
 
 	if ( window.wsm_issue.items instanceof Array ) {
-		load_issue_articles( window.wsm_issue.items );
+		load_issue_articles( window.wsm_issue.items, 'staged', null );
 	}
 
 	/**
@@ -32,18 +32,28 @@ try{Typekit.load({ async: true });}catch(e){}
 	 *
 	 * @param raw_data
 	 */
-	function load_issue_articles( raw_data ) {
+	function load_issue_articles( raw_data, context, shortcode ) {
 		var data = '';
 
 		// Append the results to the existing build of items.
 		$.each( raw_data, function( index, val ) {
-			var featured_img = val.featured ? ' has-featured-img" style="background-image: url(' + val.featured + ')' : '';
+			var headline = val.headline,
+				bg_image = val.featured;
+				position = '';
+
+			if ( 'sorted' === context ) {
+				var headline = shortcode['headline'] ? shortcode['headline'] : headline,
+					bg_image = shortcode['bg_img'] ? shortcode['bg_img'] : bg_image,
+					position = shortcode['bg_pos'] ? '; background-position: ' + shortcode['bg_pos'] : '';
+			}
+
+			var title = headline ? headline : title,
+				featured_img = bg_image ? ' has-featured-img" style="background-image: url(' + bg_image + ')' + position : '';
+
 			data += '<div id="issue-article-' + val.id + '" class="issue-article" ' +
-				'data-headline="' + val.title + '" ' +
-				'data-background="' + val.featured + '" ' +
-				'data-background-position=""' +
-				'data-section="' + val.section + '"' +
-				'data-subtitle="' + val.subtitle + '">' +
+				'data-headline="' + headline + '" ' +
+				'data-background="' + bg_image + '" ' +
+				'data-background-position="">' +
 				'<div class="ttfmake-sortable-handle" title="Drag-and-drop this article into place">' +
 					'<a href="#" class="spine-builder-column-configure"><span>Configure this column</span></a>' +
 					'<a href="#" class="wsuwp-column-toggle" title="Click to toggle"><div class="handlediv "></div></a>' +
@@ -51,7 +61,7 @@ try{Typekit.load({ async: true });}catch(e){}
 				'</div>' +
 				'<div class="wsm-article-body wsuwp-column-content' + featured_img + '">' +
 					'<div class="home-headline-head-wrapper">' +
-						'<h2>' + val.title + '</h2>' +
+						'<h2>' + headline + '</h2>' +
 						'<div class="article-section">' + val.section + '</div>' +
 						'<div class="home-subtitle">' + val.subtitle + '</div>' +
 					'</div>' +
@@ -59,7 +69,12 @@ try{Typekit.load({ async: true });}catch(e){}
 			'</div>';
 		} );
 
-		$issue_articles.html( data );
+		if ( 'staged' === context ) {
+			$issue_articles.html( data );
+		} else if ( 'sorted' === context ) {
+			$( shortcode['column'] ).append( data );
+		}
+
 
 		sortable_layout();
 	}
@@ -87,7 +102,7 @@ try{Typekit.load({ async: true });}catch(e){}
 					background  = article.data( 'background' ),
 					section     = article.data( 'section' ),
 					subtitle    = article.data( 'subtitle' ),
-					shortcode   = '[home_headline id="' + new_val + '" headline="' + headline + '" background="' + background + '" section="' + section + '" subtitle="' + subtitle + '" background_position="" wrapper="a"]';
+					shortcode   = '[home_headline id="' + new_val + '" headline="' + headline + '" background="' + background + '" background_position="" wrapper="a"]';
 				editor.setContent( shortcode );
 			} else {
 				editor.setContent( '' );
@@ -110,25 +125,24 @@ try{Typekit.load({ async: true });}catch(e){}
 	$( '#load-issue-articles' ).on( 'click', function( e ) {
 		e.preventDefault();
 
+		// Copy selected issue label into default Issue Label field.
+		$( '#new-tag-wsu_mag_issue_tax' ).val( issue_label );
+
 		var issue_label = $( '#issue_label_slug' ).val();
 
 		// Cache the issue build area for future use.
 		var data = {
 			action: 'set_issue_articles',
-			issue_type: this.id,
-			post_id: window.wsm_issue.post_id,
+			//post_id: window.wsm_issue.post_id,
 			issue_label: issue_label
 		};
-
-		// Copy issue label into issue label thing
-		$( '#new-tag-wsu_mag_issue_tax' ).val( issue_label );
 
 		// Make the ajax call
 		$.post( window.ajaxurl, data, function( response ) {
 			var data = '',
 				response_data = $.parseJSON( response );
 
-			load_issue_articles( response_data );
+			load_issue_articles( response_data, 'staged', null );
 			process_sorted_data();
 		} );
 	} );
@@ -167,42 +181,42 @@ try{Typekit.load({ async: true });}catch(e){}
 		process_sorted_data();
 	});
 
+	function just_testing ( shortcode ) {
+		return function( response ) {
+			var response_data = $.parseJSON( response );
+			load_issue_articles( response_data, 'sorted', shortcode );
+		};
+	};
+
 	// Apply section classes and 'render' shortcodes on page load.
 	$(window).load(function () {
 		$( '.wsuwp-builder-section-classes' ).blur();
 
 		// Render shortcodes. Pretty rough.
-		for (i=0; i < tinyMCE.editors.length; i++) {
+		for ( i=1; i < tinyMCE.editors.length; i++ ) {
 			var editor  = tinyMCE.editors[i],
 				content = editor.getContent();
 
 			if ( content ) {
-				id           = editor.id.replace( 'ttfmakeeditortext', '' ),
-				section      = 'ttfmake-section-' + id.substr(0, id.length - 1),
-				column       = 'wsuwp-spine-builder-column-position-' + id.substr(id.length - 1),
-				shortcode    = content.split('"'),
-				featured_img = shortcode[5] ? ' has-featured-img" style="background-image: url(' + shortcode[5] + ')' : '';
+				var id        = editor.id.replace( 'ttfmakeeditortext', '' ),
+					section   = 'ttfmake-section-' + id.substr(0, id.length - 1),
+					column    = 'wsuwp-spine-builder-column-position-' + id.substr(id.length - 1),
+					post_id   = content.match(/id=([^\s]+)/)[1].replace(/"/g, ""),
+					headline  = content.match(/headline="(.*?)"/),
+					bg_img    = content.match(/background="(.*?)"/),
+					bg_pos    = content.match(/background_position="(.*?)"/),
+					shortcode = { column: '#' + section + ' .' + column };
 
-				data = '<div id="issue-article-' + shortcode[1] + '" class="issue-article" ' +
-					'data-headline="' + shortcode[3] + '" ' +
-					'data-background="' + shortcode[5] + '" ' +
-					'data-background-position=""' +
-					'data-section="' + shortcode[7] + '"' +
-					'data-subtitle="' + shortcode[9] + '">' +
-					'<div class="ttfmake-sortable-handle" title="Drag-and-drop this article into place">' +
-						'<a href="#" class="spine-builder-column-configure"><span>Configure this column</span></a>' +
-						'<a href="#" class="wsuwp-column-toggle" title="Click to toggle"><div class="handlediv "></div></a>' +
-						'<div class="wsuwp-builder-column-title">' + shortcode[3] + '</div>' +
-					'</div>' +
-					'<div class="wsm-article-body wsuwp-column-content' + featured_img + '">' +
-						'<div class="home-headline-head-wrapper">' +
-							'<h2>' + shortcode[3] + '</h2>' +
-							'<div class="article-section">' + shortcode[7] + '</div>' +
-							'<div class="home-subtitle">' + shortcode[9] + '</div>' +
-						'</div>' +
-					'</div>' +
-				'</div>';
-				$( '#' + section + ' .' + column ).append( data );
+					if ( headline ) { shortcode['headline'] = headline[1]; }
+					if ( bg_img ) { shortcode['bg_img'] = bg_img[1]; }
+					if ( bg_pos ) { shortcode['bg_pos'] = bg_pos[1]; }
+
+				var data = {
+					action: 'set_issue_articles',
+					post_ids: post_id,
+				};
+
+				$.post( window.ajaxurl, data, just_testing( shortcode ) );
 			}
 		}
 	});
