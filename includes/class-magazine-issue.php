@@ -266,11 +266,10 @@ class WSU_Magazine_Issue {
 	}
 
 	/**
-	 * Force builder to be used on every magazine issue.
+	 * Hide the checkbox used to disable the page builder.
 	 *
-	 * Hides the checkbox to disable the builder if an issue has been saved
-	 * with the builder interface already. In the future, this will be removed
-	 * in favor of a new issue building interface.
+	 * The page builder interface is forced via meta key. Returning true
+	 * here will force the checkbox to be hidden as well.
 	 *
 	 * @param bool $use_builder Whether the page builder show be used.
 	 *
@@ -281,13 +280,7 @@ class WSU_Magazine_Issue {
 			return $use_builder;
 		}
 
-		$using_builder = get_post_meta( get_the_ID(), '_ttfmake-use-builder', true );
-
-		if ( $using_builder ) {
-			return true;
-		} else {
-			return false;
-		}
+		return true;
 	}
 
 	/**
