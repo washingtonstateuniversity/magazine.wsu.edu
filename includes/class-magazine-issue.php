@@ -491,6 +491,7 @@ class WSU_Magazine_Issue {
 			$query_args['orderby']  = 'post__in';
 		}
 
+		$items = array();
 		$issue_query = get_posts( $query_args );
 		foreach ( $issue_query as $post ) :
 			setup_postdata( $post );
