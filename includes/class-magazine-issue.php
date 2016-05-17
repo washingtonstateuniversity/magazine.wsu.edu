@@ -502,8 +502,8 @@ class WSU_Magazine_Issue {
 				'id'        => $post->ID,
 				'featured'  => $feature,
 				'title'     => $post->post_title,
-				'headline'  => get_post_meta( $post->ID, '_wsu_home_headline', true ),
-				'subtitle'  => get_post_meta( $post->ID, '_wsu_home_subtitle', true ),
+				'headline'  => esc_js( get_post_meta( $post->ID, '_wsu_home_headline', true ) ),
+				'subtitle'  => esc_js( get_post_meta( $post->ID, '_wsu_home_subtitle', true ) ),
 				'section'   => $section,
 			);
 		}
