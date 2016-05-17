@@ -357,8 +357,10 @@ class WSU_Magazine_Issue {
 	 * Enqueue the scripts used for managing issue building.
 	 */
 	public function admin_enqueue_scripts( $hook ) {
-		if ( ! in_array( $hook, array( 'post.php', 'post-new.php' ) ) )
+		if ( ! in_array( $hook, array( 'post.php', 'post-new.php' ), true ) ) {
 			return;
+		}
+
 		if ( $this->content_type_slug === get_current_screen()->id ) {
 			wp_enqueue_script( 'wsm-issue-admin', get_stylesheet_directory_uri() . '/js/issue-admin.js', array( 'jquery-ui-draggable', 'jquery-ui-sortable' ), false, true );
 			wp_enqueue_style(  'wsu-issue-admin', get_stylesheet_directory_uri() . '/css/issue-admin.css', array( 'ttfmake-builder' ) );
