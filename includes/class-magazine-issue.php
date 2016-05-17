@@ -38,6 +38,7 @@ class WSU_Magazine_Issue {
 		add_action( 'init', array( $this, 'register_taxonomy' ), 15 );
 		add_filter( 'body_class', array( $this, 'season_body_class' ) );
 		add_action( 'admin_init', array( $this, 'register_builder_support' ) );
+		add_filter( 'get_post_metadata', array( $this, 'force_page_builder_meta' ), 10, 3 );
 		add_filter( 'spine_builder_force_builder', array( $this, 'force_builder' ) );
 		add_filter( 'make_will_be_builder_page', array( $this, 'force_builder' ) );
 		add_action( 'pre_get_posts', array( $this, 'front_page_issue' ) );
@@ -239,6 +240,29 @@ class WSU_Magazine_Issue {
 	 */
 	public function register_builder_support() {
 		add_post_type_support( $this->content_type_slug, 'make-builder' );
+	}
+
+	/**
+	 * Force the page builder to be enabled for this content type.
+	 *
+	 * @param null|int $check     Whether to short circuit the meta check. Null by default.
+	 * @param int      $object_id ID of the post being saved.
+	 * @param string   $meta_key  The current meta key being saved.
+	 *
+	 * @return null|int Unchanged check value or 1.
+	 */
+	public function force_page_builder_meta( $check, $object_id, $meta_key ) {
+		if ( '_ttfmake-use-builder' !== $meta_key ) {
+			return $check;
+		}
+
+		$post = get_post( $object_id );
+
+		if ( $this->content_type_slug === $post->post_type ) {
+			return 1;
+		}
+
+		return $check;
 	}
 
 	/**
