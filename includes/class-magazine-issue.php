@@ -493,7 +493,7 @@ class WSU_Magazine_Issue {
 
 		$items = array();
 		$issue_query = get_posts( $query_args );
-		foreach ( $issue_query as $post ) :
+		foreach ( $issue_query as $post ) {
 			setup_postdata( $post );
 			$feature = ( has_post_thumbnail( $post->ID ) ) ? wp_get_attachment_url( get_post_thumbnail_id( $post->ID ) ) : '';
 			$sections = wp_get_object_terms( $post->ID, 'wsu_magazine_section', array( 'fields' => 'names' ) );
@@ -506,7 +506,7 @@ class WSU_Magazine_Issue {
 				'subtitle'  => get_post_meta( $post->ID, '_wsu_home_subtitle', true ),
 				'section'   => $section,
 			);
-		endforeach;
+		}
 		wp_reset_postdata();
 
 		return $items;
