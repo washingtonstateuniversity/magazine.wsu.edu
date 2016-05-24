@@ -15,15 +15,27 @@ try{Typekit.load({ async: true });}catch(e){}
 		load_issue_articles( window.wsm_issue.items );
 	}
 
+	sortable_layout();
 	/**
 	 * Use jQuery UI Sortable to add sorting functionality to issue articles.
 	 */
 	function sortable_layout() {
+		var article_parent;
 		$('.wsuwp-spine-builder-column').sortable( {
 			connectWith: '.wsuwp-spine-builder-column',
 			handle: '.ttfmake-sortable-handle',
 			opacity: 0.6,
 			placeholder: 'wsm-item-placeholder',
+			start: function(event, ui) {
+				article_parent = $(ui.item).parent();
+			},
+			stop: function(event, ui) {
+				var existing_article = ui.item.siblings('.issue-article');
+				if ( existing_article ) {
+					$( existing_article ).appendTo(article_parent);
+				}
+				process_sorted_data();
+			},
 		} );
 	}
 
@@ -152,9 +164,6 @@ try{Typekit.load({ async: true });}catch(e){}
 			process_sorted_data();
 		} );
 	} );
-
-	// Fire an event any time sorting has stopped after a move.
-	$( '#issue-articles, #ttfmake-stage' ).on( "sortstop", process_sorted_data );
 
 	// Make sure newly-added Page Builder elements are made sortable.
 	$( '.ttfmake-menu-list' ).on( 'click', '.ttfmake-menu-list-item', function() {
