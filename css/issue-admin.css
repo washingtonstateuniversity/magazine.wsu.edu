@@ -2,6 +2,30 @@
 label[for="tagsdiv-wsu_mag_issue_tax-hide"] {
 	display: none;
 }
+.wsuwp-builder-meta .hide-if-no-js {
+	margin: 0;
+}
+.spine-builder-column-set-background-image img {
+	display: block;
+	height: auto;
+	margin-bottom: 1em;
+	max-width: 100%;
+}
+
+.ttfmake-menu-list-item {
+	width: 33.33%;
+	width: calc( 100% / 3);
+}
+@media screen and (min-width: 1160px) {
+	.ttfmake-menu-list-item {
+		width: 33.33%;
+		width: calc( 100% / 3);
+	}
+}
+.section-type-description p {
+	margin: 0 0 0 -4px;
+	width: 100%;
+}
 
 .ttfmake-section-body {
 	float: none;
@@ -16,15 +40,17 @@ label[for="tagsdiv-wsu_mag_issue_tax-hide"] {
 	margin-bottom: 0;
 	min-height: 30px;
 	padding: 0;
-}
-.ttfmake-section-wsuwphalves .wsuwp-spine-builder-column {
 	width: 50%;
 }
-.ttfmake-section-wsuwphalves .wsuwp-spine-builder-column-position-1 {
+.ttfmake-section .wsuwp-spine-builder-column-position-1 {
 	padding-right: 5px;
 }
-.ttfmake-section-wsuwphalves .wsuwp-spine-builder-column-position-2 {
+.ttfmake-section .wsuwp-spine-builder-column-position-2 {
 	padding-left: 5px;
+}
+.ttfmake-section-wsuwpsingle .wsuwp-spine-builder-column-position-1 {
+	padding: 0;
+	width: 100%;
 }
 #issue-articles {
 	float: none;
@@ -75,7 +101,7 @@ label[for="tagsdiv-wsu_mag_issue_tax-hide"] {
 	box-sizing: border-box;
 	margin: 0;
 	overflow: hidden;
-	padding: 0 60px 0 1rem;
+	padding: 0 70px 0 1rem;
 	text-align: left;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -88,10 +114,6 @@ label[for="tagsdiv-wsu_mag_issue_tax-hide"] {
 	display: none;
 }
 
-.wsm-article-body {
-	background-size: cover;
-	position: relative;
-}
 .ttfmake-section .ui-sortable-helper {
 	width: 254px;
 }
@@ -102,39 +124,17 @@ label[for="tagsdiv-wsu_mag_issue_tax-hide"] {
 .ttfmake-section .wsm-article-body {
 	display: block;
 }
-.ttfmake-section-wsuwpsingle .wsm-article-body {
-	height: 450px;
-	text-align: right;
-}
-.ttfmake-section-wsuwphalves .wsm-article-body {
-	position: relative;
-	padding-bottom: 60%;
-}
-.secondary-articles .wsm-article-body {
+.wsm-article-body {
 	background-color: #edf3f4;
 	background-size: 33%;
 	background-repeat: no-repeat;
 	padding-bottom: 32%;
-	-webkit-transition: background-color .3s ease;
-	transition: background-color .3s ease;
+	position: relative;
 }
 .home-headline-head-wrapper {
-	bottom: 0;
-	box-sizing: border-box;
-	padding: 0 2rem 1rem 1rem;
-	width: 100%;
-}
-.ttfmake-section .home-headline-head-wrapper {
-	position: absolute;
-}
-.ttfmake-section-wsuwphalves .home-headline-head-wrapper {
-	background: rgba(0,0,0,.7);
-	color: #fff;
-}
-.secondary-articles .home-headline-head-wrapper {
-	background: none;
 	color: #2a3033;
-	padding-left: calc(33% + 15px);
+	padding: 0 2rem 0 calc(33% + 15px);
+	position: absolute;
 	top: 0;
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -147,48 +147,77 @@ label[for="tagsdiv-wsu_mag_issue_tax-hide"] {
 	flex-direction: column;
 }
 #poststuff .wsm-article-body h2 {
+	color: #5e6a71;
 	font-family: "museo-slab";
-	font-size: 1.6rem;
+	font-size: 1.2rem;
 	font-weight: 900;
 	letter-spacing: 0;
 	line-height: 1.1em;
 	margin-bottom: .5rem;
-	padding: .5em 0 .2em 0;
-}
-#poststuff .has-featured-img h2,
-#poststuff .ttfmake-section-wsuwphalves h2 {
-	color: #fff;
-}
-#poststuff .secondary-articles h2 {
-	color: #5e6a71;
-	font-size: 1.2rem;
 	padding: .5rem 0 0;
 	-webkit-box-ordinal-group: 3;
 	-webkit-order: 2;
 	-ms-flex-order: 2;
 	order: 2;
 }
-h2 + .article-section {
-	margin-top: -.5rem;
-}
 .article-section {
-	text-transform: uppercase;
-}
-.secondary-articles .article-section {
 	-webkit-box-ordinal-group: 2;
 	-webkit-order: 1;
 	-ms-flex-order: 1;
 	order: 1;
 	margin-top: .6rem;
+	text-transform: uppercase;
 }
 .home-subtitle {
-	display: none;
-}
-.secondary-articles .home-subtitle {
 	display: block;
 	font-weight: 300;
 	-webkit-box-ordinal-group: 4;
 	-webkit-order: 3;
 	-ms-flex-order: 3;
 	order: 3;
+}
+.ttfmake-section-wsuwpsingle .wsm-article-body {
+	background-size: cover;
+	height: 450px;
+	padding: 0;
+	text-align: right;
+}
+.ttfmake-section-wsuwphalves .wsm-article-body {
+	background-size: cover;
+	position: relative;
+	padding-bottom: 60%;
+}
+#poststuff .ttfmake-section-wsuwpsingle h2,
+#poststuff .ttfmake-section-wsuwphalves h2 {
+	font-size: 1.6rem;
+	padding: .5em 0 .2em 0;
+}
+#poststuff .ttfmake-section-wsuwpsingle .has-featured-img h2,
+#poststuff .ttfmake-section-wsuwphalves .has-featured-img h2 {
+	color: #fff;
+}
+.ttfmake-section-wsuwpsingle h2 + .article-section,
+.ttfmake-section-wsuwphalves h2 + .article-section {
+	margin-top: -.5rem;
+}
+.ttfmake-section-wsuwpsingle .home-headline-head-wrapper,
+.ttfmake-section-wsuwphalves .home-headline-head-wrapper {
+	bottom: 0;
+	box-sizing: border-box;
+	display: block;
+	padding: 0 2rem 1rem 1rem;
+	top: auto;
+	width: 100%
+}
+.ttfmake-section-wsuwphalves .home-headline-head-wrapper {
+	background: rgba(0,0,0,.7);
+	color: #fff;
+}
+.ttfmake-section-wsuwpsingle .home-subtitle,
+.ttfmake-section-wsuwphalves .home-subtitle {
+	display: none;
+}
+.ttfmake-section-wsuwpsingle .wsuwp-spine-builder-column .wsuwp-builder-meta:nth-child(2),
+.ttfmake-section-wsuwpsecondary .wsuwp-spine-builder-column .wsuwp-builder-meta:last-child {
+	display: none;
 }
