@@ -51,6 +51,11 @@ try{Typekit.load({ async: true });}catch(e){}
 		$.each( raw_data, function( index, val ) {
 			var headline = val.headline ? val.headline : val.title,
 				fallback = val.headline ? '' : val.title; // Web Extras don't have the headline meta field, so provide the title.
+				classes  = ' season-' + $( '#issue_label_slug' ).val().split('-')[0];
+
+				if ( 'Web Extra' === val.section ) {
+					classes += ' web-extra';
+				}
 
 			data += '<div id="issue-article-' + val.id + '" class="issue-article" ' +
 				'data-headline="' + fallback + '"' +
@@ -60,7 +65,7 @@ try{Typekit.load({ async: true });}catch(e){}
 					'<a href="#" class="wsuwp-column-toggle" title="Click to toggle"><div class="handlediv "></div></a>' +
 					'<div class="wsuwp-builder-column-title">' + val.title + '</div>' +
 				'</div>' +
-				'<div class="wsm-article-body wsuwp-column-content">' +
+				'<div class="wsm-article-body wsuwp-column-content' + classes + '">' +
 					'<div class="home-headline-head-wrapper">' +
 						'<h2>' + headline + '</h2>' +
 						'<div class="article-section">' + val.section + '</div>' +

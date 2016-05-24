@@ -61,38 +61,52 @@ $section_order  = ( ! empty( $ttfmake_section_data['data']['columns-order'] ) ) 
 
 				<?php if ( $article_id ) : ?>
 				<?php
-					$headline = ( isset( $ttfmake_section_data['data']['columns'][ $i ]['headline'] ) ) ? $ttfmake_section_data['data']['columns'][ $i ]['headline'] : '';
-					$title    = ( '' !== $headline ) ? $headline : get_the_title( $article_id );
+					$headline            = ( isset( $ttfmake_section_data['data']['columns'][ $i ]['headline'] ) ) ? $ttfmake_section_data['data']['columns'][ $i ]['headline'] : '';
+					$subtitle            = ( isset( $ttfmake_section_data['data']['columns'][ $i ]['subtitle'] ) ) ? $ttfmake_section_data['data']['columns'][ $i ]['subtitle'] : '';
+					$background_image    = ( isset( $ttfmake_section_data['data']['columns'][ $i ]['background-image'] ) ) ? $ttfmake_section_data['data']['columns'][ $i ]['background-image'] : '';
+					$background_position = ( isset( $ttfmake_section_data['data']['columns'][ $i ]['background-position'] ) ) ? $ttfmake_section_data['data']['columns'][ $i ]['background-position'] : '';
+					$display_headline    = ( ! empty( $headline ) ) ? $headline : get_post_meta( $article_id, '_wsu_home_headline', true );
+					$display_subtitle    = ( ! empty( $subtitle ) ) ? $subtitle : get_post_meta( $article_id, '_wsu_home_subtitle', true );
+					$sections            = wp_get_object_terms( $article_id, 'wsu_magazine_section', array( 'fields' => 'names' ) );
+					$section             = ( $sections ) ? $sections[0] : '';
+					$article_classes     = '';
+					$article_styles      = '';
 
-					$subtitle= ( isset( $ttfmake_section_data['data']['columns'][ $i ]['subtitle'] ) ) ? $ttfmake_section_data['data']['columns'][ $i ]['subtitle'] : '';
+					if ( ! empty( $background_image ) ) {
+						$article_classes .= ' has-featured-img';
+						$article_styles  .= ' background-image: url(' . esc_url( $background_image ) . ');';
+					}
 
-					$featured_image   = ( has_post_thumbnail( $article_id ) ) ? wp_get_attachment_url( get_post_thumbnail_id( $article_id ) ) : '';
-					$set_background   = ( isset( $ttfmake_section_data['data']['columns'][ $i ]['background-image'] ) ) ? $ttfmake_section_data['data']['columns'][ $i ]['background-image'] : '';
-					$background_image = ( '' !== $set_background ) ? $set_background : $featured_image;
+					if ( ! empty( $background_position ) ) {
+						$article_styles  .= ' background-position: ' . esc_attr( str_replace( "-", " ", $background_position ) ) . ';';
+					}
 
-					$bg_position     = ( isset( $ttfmake_section_data['data']['columns'][ $i ]['background-position'] ) ) ? $ttfmake_section_data['data']['columns'][ $i ]['background-position'] : '';
-					$position_value  = ( '' !== $bg_position ) ? ' background-position: ' . str_replace( "-", " ", $bg_position ) . ';' : '';
-					$background_atts = ( '' !== $background_image ) ? ' has-featured-img" style="background-image: url(' . esc_url( $background_image ) . ');' . $position_value : '';
+					if ( ! empty( $section ) && 'Web Extra' === $section ) {
+						$article_classes .= ' web-extra';
+					}
 
-					$sections = wp_get_object_terms( $article_id, 'wsu_magazine_section', array( 'fields' => 'names' ) );
-					$section = ( $sections ) ? $sections[0] : '';
+					$issues = wp_get_object_terms( $article_id, 'wsu_mag_issue_tax' );
+					if ( 1 >= count( $issues ) ) {
+						$issue = explode( ' ', $issues[0]->name );
+						$article_classes .= ' season-' . esc_attr( strtolower( $issue[0] ) );
+					}
 				?>
 				<div id="issue-article-<?php echo esc_attr( $article_id ); ?>"
 					 class="issue-article"
 					 data-headline="<?php echo esc_attr( $headline ); ?>"
 					 data-subtitle="<?php echo esc_attr( $subtitle ); ?>"
 					 data-background-image="<?php echo esc_url( $background_image ); ?>"
-					 data-background-position="<?php echo esc_attr( $bg_position ); ?>">
+					 data-background-position="<?php echo esc_attr( $background_position ); ?>">
 					<div class="ttfmake-sortable-handle ui-sortable-handle" title="Drag-and-drop this article into place">
 						<a href="#" class="spine-builder-column-configure"><span>Configure this column</span></a>
 						<a href="#" class="wsuwp-column-toggle" title="Click to toggle"><div class="handlediv<?php echo $toggle_class; ?>" aria-expanded="true"></div></a>
 						<div class="wsuwp-builder-column-title"><?php echo get_the_title( $article_id ); ?></div>
 					</div>
-					<div class="wsm-article-body wsuwp-column-content<?php echo $background_atts . $column_style; ?>">
+					<div class="wsm-article-body wsuwp-column-content<?php echo $article_classes; ?>" style="<?php echo $article_styles; ?>">
 						<div class="home-headline-head-wrapper">
-							<h2><?php echo esc_html( $title ); ?></h2>
+							<h2><?php echo esc_html( $display_headline ); ?></h2>
 							<div class="article-section"><?php echo esc_html( $section ); ?></div>
-							<div class="home-subtitle"><?php echo esc_html( get_post_meta( $article_id, '_wsu_home_subtitle', true ) ); ?></div>
+							<div class="home-subtitle"><?php echo esc_html( $display_subtitle ); ?></div>
 						</div>
 					</div>
 				</div>
