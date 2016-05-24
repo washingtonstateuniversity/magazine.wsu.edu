@@ -38,6 +38,8 @@ class WSU_Magazine_Issue {
 		add_action( 'init', array( $this, 'register_taxonomy' ), 15 );
 		add_filter( 'body_class', array( $this, 'season_body_class' ) );
 		add_action( 'admin_init', array( $this, 'register_builder_support' ) );
+		add_action( 'current_screen', array( $this, 'remove_builder_sections' ) );
+		add_action( 'current_screen', array( $this, 'add_builder_sections' ) );
 		add_filter( 'get_post_metadata', array( $this, 'force_page_builder_meta' ), 10, 3 );
 		add_filter( 'spine_builder_force_builder', array( $this, 'force_builder' ) );
 		add_filter( 'make_will_be_builder_page', array( $this, 'force_builder' ) );
@@ -79,7 +81,6 @@ class WSU_Magazine_Issue {
 			'supports' => array(
 				'title',
 				'editor',
-				//'thumbnail',
 				'revisions',
 			),
 			'taxonomies' => array(),
@@ -240,6 +241,126 @@ class WSU_Magazine_Issue {
 	 */
 	public function register_builder_support() {
 		add_post_type_support( $this->content_type_slug, 'make-builder' );
+	}
+
+	/**
+	 * Remove sections defined for the default implemenation of the page builder.
+	 */
+	public function remove_builder_sections( $current_screen ) {
+		if ( $this->content_type_slug !== $current_screen->id ) {
+			return;
+		}
+		ttfmake_remove_section( 'wsuwpsingle' );
+		ttfmake_remove_section( 'wsuwphalves' );
+		ttfmake_remove_section( 'wsuwpsidebarleft' );
+		ttfmake_remove_section( 'wsuwpsidebarright' );
+		ttfmake_remove_section( 'wsuwpthirds' );
+		ttfmake_remove_section( 'wsuwpquarters' );
+		ttfmake_remove_section( 'wsuwpheader' );
+		ttfmake_remove_section( 'banner' );
+	}
+
+	/**
+	 * Add the custom sections used in the magazine issue implementation of the page builder.
+	 */
+	public function add_builder_sections( $current_screen ) {
+		if ( $this->content_type_slug !== $current_screen->id ) {
+			return;
+		}
+		ttfmake_add_section(
+			'wsuwpsingle',
+			'First Words',
+			get_template_directory_uri() . '/inc/builder/sections/css/images/blank.png',
+			'A single column.',
+			array( $this, 'save_columns' ),
+			'admin/issue-columns',
+			'front-end/issue-columns',
+			100,
+			'builder-templates/'
+		);
+		ttfmake_add_section(
+			'wsuwphalves',
+			'Halves',
+			get_template_directory_uri() . '/inc/builder-custom/images/halves.png',
+			'Two equal columns.',
+			array( $this, 'save_columns' ),
+			'admin/issue-columns',
+			'front-end/issue-columns',
+			200,
+			'builder-templates/'
+		);
+		ttfmake_add_section(
+			'wsuwpsecondary',
+			'Secondary',
+			get_template_directory_uri() . '/inc/builder-custom/images/halves.png',
+			'Two equal columns.',
+			array( $this, 'save_columns' ),
+			'admin/issue-columns',
+			'front-end/issue-columns',
+			300,
+			'builder-templates/'
+		);
+	}
+
+	/**
+	 * Clean the data being passed from the save of a columns layout.
+	 *
+	 * @param array $data Array of data inputs being passed.
+	 *
+	 * @return array Clean data.
+	 */
+	public function save_columns( $data ) {
+		$clean_data = array();
+		if ( isset( $data['columns-number'] ) ) {
+			if ( in_array( $data['columns-number'], range( 1, 4 ) ) ) {
+				$clean_data['columns-number'] = $data['columns-number'];
+			}
+		}
+		if ( isset( $data['columns-order'] ) ) {
+			$clean_data['columns-order'] = array_map( array( 'TTFMake_Builder_Save', 'clean_section_id' ), explode( ',', $data['columns-order'] ) );
+		}
+		if ( isset( $data['columns'] ) && is_array( $data['columns'] ) ) {
+			$i = 1;
+			$background_positions = array(
+				'center',
+				'center-top',
+				'right-top',
+				'right-center',
+				'right-bottom',
+				'center-bottom',
+				'left-bottom',
+				'left-center',
+				'left-top',
+			);
+			foreach ( $data['columns'] as $id => $item ) {
+				if ( isset( $item['toggle'] ) ) {
+					if ( in_array( $item['toggle'], array( 'visible', 'invisible' ) ) ) {
+						$clean_data['columns'][ $id ]['toggle'] = $item['toggle'];
+					}
+				}
+				if ( isset( $item['post-id'] ) ) {
+					$clean_data['columns'][ $id ]['post-id'] = sanitize_text_field( $item['post-id'] );
+				}
+				if ( isset( $item['headline'] ) ) {
+					$clean_data['columns'][ $id ]['headline'] = sanitize_text_field( $item['headline'] );
+				}
+				if ( isset( $item['subtitle'] ) ) {
+					$clean_data['columns'][ $id ]['subtitle'] = sanitize_text_field( $item['subtitle'] );
+				}
+				if ( isset( $item['background-image'] ) ) {
+					$clean_data['columns'][ $id ]['background-image'] = esc_url_raw( $item['background-image'] );
+				}
+				if ( isset( $item['background-position'] ) && in_array( $item['background-position'], $background_positions ) ) {
+					$clean_data['columns'][ $id ]['background-position'] = $item['background-position'];
+				}
+				$i++;
+			}
+		}
+		if ( isset( $data['label'] ) ) {
+			$clean_data['label'] = sanitize_text_field( $data['label'] );
+		}
+		$clean_data = apply_filters( 'spine_builder_save_columns', $clean_data, $data );
+		return $clean_data;
 	}
 
 	/**
@@ -567,4 +688,78 @@ function magazine_get_issue_season_class( $post_id, $prefix = '' ) {
 	}
 
 	return '';
+}
+
+/**
+ * Output the input fields for configuring article displays.
+ *
+ * @param string $column_name
+ * @param array $section_data
+ * @param int $column
+ */
+function wsm_issue_article_configuration_output( $column_name, $section_data, $column = false ) {
+	if ( $column ) {
+		$headline    = ( isset( $section_data['data']['columns'][ $column ]['headline'] ) ) ? $section_data['data']['columns'][ $column ]['headline'] : '';
+		$subtitle    = ( isset( $section_data['data']['columns'][ $column ]['subtitle'] ) ) ? $section_data['data']['columns'][ $column ]['subtitle'] : '';
+		$background  = ( isset( $section_data['data']['columns'][ $column ]['background-image'] ) ) ? $section_data['data']['columns'][ $column ]['background-image'] : '';
+		$bg_position = ( isset( $section_data['data']['columns'][ $column ]['background-position'] ) ) ? $section_data['data']['columns'][ $column ]['background-position'] : '';
+	} else {
+		$headline    = ( isset( $section_data['data']['headline'] ) ) ? $section_data['data']['headline'] : '';
+		$subtitle    = ( isset( $section_data['data']['subtitle'] ) ) ? $section_data['data']['subtitle'] : '';
+		$background  = ( isset( $section_data['data']['background-image'] ) ) ? $section_data['data']['background-image'] : '';
+		$bg_position = ( isset( $section_data['data']['background-position'] ) ) ? $section_data['data']['background-position'] : '';
+	}
+	?>
+	<div class="wsuwp-builder-meta">
+		<label for="<?php echo $column_name; ?>[headline]">Headline</label>
+		<input type="text"
+			   id="<?php echo $column_name; ?>[headline]"
+			   name="<?php echo $column_name; ?>[headline]"
+			   class="spine-builder-column-headline wsm-article-meta widefat"
+			   value="<?php echo esc_attr( $headline ); ?>"/>
+		<p class="description">Enter text to display in place of the original article headline or title.</p>
+	</div>
+	<div class="wsuwp-builder-meta">
+		<label for="<?php echo $column_name; ?>[subtitle]">Subtitle</label>
+		<input type="text"
+			   id="<?php echo $column_name; ?>[subtitle]"
+			   name="<?php echo $column_name; ?>[subtitle]"
+			   class="spine-builder-column-subtitle wsm-article-meta widefat"
+			   value="<?php echo esc_attr( $subtitle ); ?>"/>
+		<p class="description">Enter text to display as the article subtitle.</p>
+	</div>
+	<div class="wsuwp-builder-meta">
+		<label>Background Image</label>
+		<p class="hide-if-no-js">
+			<input type="hidden"
+				   id="<?php echo $column_name; ?>[background-image]"
+				   name="<?php echo $column_name; ?>[background-image]"
+				   class="spine-builder-column-background-image wsm-article-meta"
+				   value="<?php echo esc_attr( $background ); ?>" />
+			<a href="#" class="spine-builder-column-set-background-image"><?php
+				echo ( $background ) ? '<img src="' . $background . '" />' : 'Set background image';
+			?></a>
+			<a href="#" class="spine-builder-column-remove-background-image"<?php if ( ! $background ) { echo 'style="display:none;"'; } ?>>Remove background image</a>
+		</p>
+		<p class="description">Select an image to apply as the article background (will take the place of the featured image).</p>
+	</div>
+	<div class="wsuwp-builder-meta">
+		<label for="<?php echo $column_name; ?>[background-position]">Background Position</label>
+		<select id="<?php echo $column_name; ?>[background-position]"
+			    name="<?php echo $column_name; ?>[background-position]"
+			    class="spine-builder-column-background-position wsm-article-meta">
+			<option value="">Select</option>
+			<option value="center" <?php selected( esc_attr( $bg_position ), 'center' ); ?>>Center</option>
+			<option value="center-top" <?php selected( esc_attr( $bg_position ), 'center-top' ); ?>>Center-Top</option>
+			<option value="right-top" <?php selected( esc_attr( $bg_position ), 'right-top' ); ?>>Right-Top</option>
+			<option value="right-center" <?php selected( esc_attr( $bg_position ), 'right-center' ); ?>>Right-Center</option>
+			<option value="right-bottom" <?php selected( esc_attr( $bg_position ), 'right-bottom' ); ?>>Right-Bottom</option>
+			<option value="center-bottom" <?php selected( esc_attr( $bg_position ), 'center-bottom' ); ?>>Center-Bottom</option>
+			<option value="left-bottom" <?php selected( esc_attr( $bg_position ), 'left-bottom' ); ?>>Left-Bottom</option>
+			<option value="left-center" <?php selected( esc_attr( $bg_position ), 'left-center' ); ?>>Left-Center</option>
+			<option value="left-top" <?php selected( esc_attr( $bg_position ), 'left-top' ); ?>>Left-Top</option>
+		</select>
+		<p class="description">Change the positioning of the background image.</p>
+	</div>
+	<?php
 }
