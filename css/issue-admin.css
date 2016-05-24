@@ -2,16 +2,6 @@
 label[for="tagsdiv-wsu_mag_issue_tax-hide"] {
 	display: none;
 }
-.wsuwp-builder-meta .hide-if-no-js {
-	margin: 0;
-}
-.spine-builder-column-set-background-image img {
-	display: block;
-	height: auto;
-	margin-bottom: 1em;
-	max-width: 100%;
-}
-
 .ttfmake-menu-list-item {
 	width: 33.33%;
 	width: calc( 100% / 3);
@@ -22,59 +12,63 @@ label[for="tagsdiv-wsu_mag_issue_tax-hide"] {
 		width: calc( 100% / 3);
 	}
 }
+.wsuwp-builder-meta .hide-if-no-js {
+	margin: 0;
+}
+.spine-builder-column-set-background-image img {
+	display: block;
+	height: auto;
+	margin-bottom: 1em;
+	max-width: 100%;
+}
+.ttfmake-section-wsuwpsingle .wsuwp-spine-builder-column .wsuwp-builder-meta:nth-child(2),
+.ttfmake-section-wsuwpsecondary .wsuwp-spine-builder-column .wsuwp-builder-meta:last-child {
+	display: none;
+}
 .section-type-description p {
 	margin: 0 0 0 -4px;
 	width: 100%;
 }
-
 .ttfmake-section-body {
 	float: none;
 	margin: 0 auto;
 	max-width: 1030px;
 	overflow: hidden;
 }
-
 .ttfmake-section .wsuwp-spine-builder-column {
 	background: content-box #f5f5f5;
-	height: auto;
 	margin-bottom: 0;
 	min-height: 30px;
 	padding: 0;
+}
+.ttfmake-section-wsuwphalves .wsuwp-spine-builder-column-position-1,
+.ttfmake-section-wsuwpsecondary .wsuwp-spine-builder-column-position-1 {
+	padding-right: 5px;
 	width: 50%;
 }
-.ttfmake-section .wsuwp-spine-builder-column-position-1 {
-	padding-right: 5px;
-}
-.ttfmake-section .wsuwp-spine-builder-column-position-2 {
+.ttfmake-section-wsuwphalves .wsuwp-spine-builder-column-position-2,
+.ttfmake-section-wsuwpsecondary .wsuwp-spine-builder-column-position-2 {
 	padding-left: 5px;
+	width: 50%;
 }
-.ttfmake-section-wsuwpsingle .wsuwp-spine-builder-column-position-1 {
-	padding: 0;
-	width: 100%;
+@media screen and (max-width: 1159px) {
+	.ttfmake-section-wsuwphalves .wsuwp-spine-builder-column-position-1,
+	.ttfmake-section-wsuwpsecondary .wsuwp-spine-builder-column-position-1,
+	.ttfmake-section-wsuwphalves .wsuwp-spine-builder-column-position-2,
+	.ttfmake-section-wsuwpsecondary .wsuwp-spine-builder-column-position-2 {
+		box-sizing: content-box;
+		padding: 0;
+		width: 100%;
+	}
+	.ttfmake-section-wsuwphalves .wsuwp-spine-builder-column-position-1,
+	.ttfmake-section-wsuwpsecondary .wsuwp-spine-builder-column-position-1 {
+		padding-bottom: 20px;
+	}
 }
 #issue-articles {
 	float: none;
-	font-family: 'Lucida Grande', 'Lucida Sans Unicode', Arial, sans-serif;
-	font-size: 100%;
-	margin: 0 auto;
 	padding: 12px 0 0;
-	position: relative;
 	margin: 0;
-}
-#issue-articles.ttfmake-section-body {
-	height: auto;
-	min-height: 0;
-}
-.wsuwp-spine-builder-column > div {
-	border: none;
-	height: 0;
-	margin-bottom: 0;
-	overflow: hidden;
-}
-.wsuwp-spine-builder-column > .issue-article,
-.wsuwp-spine-builder-column > .wsm-item-placeholder,
-.wsuwp-spine-builder-column > .spine-builder-overlay-open {
-	height: auto;
 }
 .wsuwp-spine-builder-column > .wsm-item-placeholder {
 	border: 1px dotted #222;
@@ -113,7 +107,6 @@ label[for="tagsdiv-wsu_mag_issue_tax-hide"] {
 #issue-articles .ttfmake-sortable-handle a {
 	display: none;
 }
-
 .ttfmake-section .ui-sortable-helper {
 	width: 254px;
 }
@@ -122,7 +115,9 @@ label[for="tagsdiv-wsu_mag_issue_tax-hide"] {
 	display: none;
 }
 .ttfmake-section .wsm-article-body {
-	display: block;
+	font-family: 'Open Sans', 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
+	font-size: 14px;
+	overflow: hidden;
 }
 .wsm-article-body {
 	background-color: #edf3f4;
@@ -161,6 +156,8 @@ label[for="tagsdiv-wsu_mag_issue_tax-hide"] {
 	order: 2;
 }
 .article-section {
+	font-size: .8rem;
+	line-height: 1;
 	-webkit-box-ordinal-group: 2;
 	-webkit-order: 1;
 	-ms-flex-order: 1;
@@ -213,11 +210,68 @@ label[for="tagsdiv-wsu_mag_issue_tax-hide"] {
 	background: rgba(0,0,0,.7);
 	color: #fff;
 }
+@font-face {
+    font-family: Spine-Icons;
+    src: url(//repo.wsu.edu/spine/1/icons/wsu-spine-icons-regular.eot);
+    src: url(//repo.wsu.edu/spine/1/icons/wsu-spine-icons-regular.eot?#iefix) format("embedded-opentype"),url(//repo.wsu.edu/spine/1/icons/wsu-spine-icons-regular.ttf) format("font/truetype"),url(//repo.wsu.edu/spine/1/icons/wsu-spine-icons-regular.woff) format("woff");
+    font-weight: 400;
+    font-style: normal
+}
+.ttfmake-section-wsuwphalves .home-headline-head-wrapper:after {
+    bottom: 0;
+    content: "\F500";
+    font-family: Spine-Icons;
+    left: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 .ttfmake-section-wsuwpsingle .home-subtitle,
 .ttfmake-section-wsuwphalves .home-subtitle {
 	display: none;
 }
-.ttfmake-section-wsuwpsingle .wsuwp-spine-builder-column .wsuwp-builder-meta:nth-child(2),
-.ttfmake-section-wsuwpsecondary .wsuwp-spine-builder-column .wsuwp-builder-meta:last-child {
-	display: none;
+.ttfmake-section-wsuwphalves .wsm-article-body:hover .home-subtitle {
+	display: block;
+}
+.season-spring .article-section,
+.ttfmake-section-wsuwphalves .season-spring .home-headline-head-wrapper:after {
+    color: #8f7e35;
+}
+.season-summer .article-section,
+.ttfmake-section-wsuwphalves .season-summer .home-headline-head-wrapper:after {
+	color: #c69214;
+}
+.season-fall .article-section,
+.ttfmake-section-wsuwphalves .season-fall .home-headline-head-wrapper:after {
+	color: #b67233;
+}
+.season-winter .article-section,
+.season-winter .ttfmake-section-wsuwphalves .home-headline-head-wrapper:after {
+	color: #4f868e;
+}
+.ttfmake-section-wsuwpsecondary .season-fall.wsm-article-body {
+	background-color: #f8f1eb;
+}
+.ttfmake-section-wsuwpsecondary .season-fall.wsm-article-body.web-extra {
+	background-color: #eddccc;
+}
+.ttfmake-section-wsuwpsecondary .season-winter.wsm-article-body {
+	background-color: #edf3f4;
+}
+.ttfmake-section-wsuwpsecondary .season-winter.wsm-article-body.web-extra {
+	background-color: #d3e1e3;
+}
+.ttfmake-section-wsuwpsecondary .season-spring.wsm-article-body {
+	background-color: #f4f2eb;
+}
+.ttfmake-section-wsuwpsecondary .season-spring.wsm-article-body.web-extra {
+	background-color: #e3dfcd;
+}
+.ttfmake-section-wsuwpsecondary .season-summer.wsm-article-body {
+	background-color: #f9f4e7;
+}
+.ttfmake-section-wsuwpsecondary .season-summer.wsm-article-body.web-extra {
+	background-color: #f1e4c4;
 }
