@@ -168,6 +168,7 @@ label[for="tagsdiv-wsu_mag_issue_tax-hide"] {
 .home-subtitle {
 	display: block;
 	font-weight: 300;
+	line-height: 1.5;
 	-webkit-box-ordinal-group: 4;
 	-webkit-order: 3;
 	-ms-flex-order: 3;
@@ -228,6 +229,9 @@ label[for="tagsdiv-wsu_mag_issue_tax-hide"] {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+.ttfmake-section-wsuwphalves .wsm-article-body:hover .home-headline-head-wrapper:after {
+    content: "\F501";
+}
 .ttfmake-section-wsuwpsingle .home-subtitle,
 .ttfmake-section-wsuwphalves .home-subtitle {
 	display: none;
@@ -248,7 +252,7 @@ label[for="tagsdiv-wsu_mag_issue_tax-hide"] {
 	color: #b67233;
 }
 .season-winter .article-section,
-.season-winter .ttfmake-section-wsuwphalves .home-headline-head-wrapper:after {
+.ttfmake-section-wsuwphalves .season-winter .home-headline-head-wrapper:after {
 	color: #4f868e;
 }
 .ttfmake-section-wsuwpsecondary .season-fall.wsm-article-body {
