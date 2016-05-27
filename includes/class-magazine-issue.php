@@ -347,8 +347,8 @@ class WSU_Magazine_Issue {
 				if ( isset( $item['subtitle'] ) ) {
 					$clean_data['columns'][ $id ]['subtitle'] = sanitize_text_field( $item['subtitle'] );
 				}
-				if ( isset( $item['background-image'] ) ) {
-					$clean_data['columns'][ $id ]['background-image'] = esc_url_raw( $item['background-image'] );
+				if ( isset( $item['background-id'] ) ) {
+					$clean_data['columns'][ $id ]['background-id'] = sanitize_text_field( $item['background-id'] );
 				}
 				if ( isset( $item['background-position'] ) && in_array( $item['background-position'], $background_positions ) ) {
 					$clean_data['columns'][ $id ]['background-position'] = $item['background-position'];
@@ -701,12 +701,13 @@ function wsm_issue_article_configuration_output( $column_name, $section_data, $c
 	if ( $column ) {
 		$headline    = ( isset( $section_data['data']['columns'][ $column ]['headline'] ) ) ? $section_data['data']['columns'][ $column ]['headline'] : '';
 		$subtitle    = ( isset( $section_data['data']['columns'][ $column ]['subtitle'] ) ) ? $section_data['data']['columns'][ $column ]['subtitle'] : '';
-		$background  = ( isset( $section_data['data']['columns'][ $column ]['background-image'] ) ) ? $section_data['data']['columns'][ $column ]['background-image'] : '';
+		$bg_id       = ( isset( $section_data['data']['columns'][ $column ]['background-id'] ) ) ? $section_data['data']['columns'][ $column ]['background-id'] : '';
+		$bg_image    = ( ! empty( $bg_id ) ) ? wp_get_attachment_image_src( $bg_id, 'full' )[0] : '';
 		$bg_position = ( isset( $section_data['data']['columns'][ $column ]['background-position'] ) ) ? $section_data['data']['columns'][ $column ]['background-position'] : '';
 	} else {
 		$headline    = ( isset( $section_data['data']['headline'] ) ) ? $section_data['data']['headline'] : '';
 		$subtitle    = ( isset( $section_data['data']['subtitle'] ) ) ? $section_data['data']['subtitle'] : '';
-		$background  = ( isset( $section_data['data']['background-image'] ) ) ? $section_data['data']['background-image'] : '';
+		$background  = ( isset( $section_data['data']['background-id'] ) ) ? $section_data['data']['background-id'] : '';
 		$bg_position = ( isset( $section_data['data']['background-position'] ) ) ? $section_data['data']['background-position'] : '';
 	}
 	?>
@@ -732,14 +733,14 @@ function wsm_issue_article_configuration_output( $column_name, $section_data, $c
 		<label>Background Image</label>
 		<p class="hide-if-no-js">
 			<input type="hidden"
-				   id="<?php echo $column_name; ?>[background-image]"
-				   name="<?php echo $column_name; ?>[background-image]"
-				   class="spine-builder-column-background-image wsm-article-meta"
-				   value="<?php echo esc_attr( $background ); ?>" />
+				   id="<?php echo $column_name; ?>[background-id]"
+				   name="<?php echo $column_name; ?>[background-id]"
+				   class="spine-builder-column-background-id wsm-article-meta"
+				   value="<?php echo esc_attr( $bg_id ); ?>" />
 			<a href="#" class="spine-builder-column-set-background-image"><?php
-				echo ( $background ) ? '<img src="' . $background . '" />' : 'Set background image';
+				echo ( $bg_image ) ? '<img src="' . $bg_image . '" />' : 'Set background image';
 			?></a>
-			<a href="#" class="spine-builder-column-remove-background-image"<?php if ( ! $background ) { echo 'style="display:none;"'; } ?>>Remove background image</a>
+			<a href="#" class="spine-builder-column-remove-background-image"<?php if ( ! $bg_image ) { echo 'style="display:none;"'; } ?>>Remove background image</a>
 		</p>
 		<p class="description">Select an image to apply as the article background (will take the place of the featured image).</p>
 	</div>
