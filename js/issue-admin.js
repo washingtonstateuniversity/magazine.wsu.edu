@@ -31,9 +31,13 @@ try{Typekit.load({ async: true });}catch(e){}
 			},
 			stop: function(event, ui) {
 				var existing_article = ui.item.siblings('.issue-article'),
-					builder_stage    = ui.item.closest('#ttfmake-stage');
+					builder_stage    = ui.item.closest('#ttfmake-stage'),
+					staging_area     = ui.item.closest('#issue-articles');
 				if ( existing_article && builder_stage.length ) {
 					$( existing_article ).appendTo(article_parent);
+				}
+				if ( staging_area.length ) {
+					ui.item.find('.wsm-article-body').css('display', '');
 				}
 				process_sorted_data();
 			},
