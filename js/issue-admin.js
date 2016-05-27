@@ -30,8 +30,9 @@ try{Typekit.load({ async: true });}catch(e){}
 				article_parent = $(ui.item).parent();
 			},
 			stop: function(event, ui) {
-				var existing_article = ui.item.siblings('.issue-article');
-				if ( existing_article ) {
+				var existing_article = ui.item.siblings('.issue-article'),
+					builder_stage    = ui.item.closest('#ttfmake-stage');
+				if ( existing_article && builder_stage.length ) {
 					$( existing_article ).appendTo(article_parent);
 				}
 				process_sorted_data();
