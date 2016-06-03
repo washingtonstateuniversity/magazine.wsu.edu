@@ -37,6 +37,7 @@ try{Typekit.load({ async: true });}catch(e){}
 					$( existing_article ).appendTo(article_parent);
 				}
 				if ( staging_area.length ) {
+					ui.item.find('.handlediv').removeClass('wsuwp-toggle-closed');
 					ui.item.find('.wsm-article-body').css('display', '');
 				}
 				process_sorted_data();
