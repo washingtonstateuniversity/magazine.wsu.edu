@@ -47,8 +47,10 @@ if ( '' === $section_id ) {
 			$subtitle = isset( $column['subtitle'] ) && ! empty( $column['subtitle'] );
 			$subtitle_attribute = ( $subtitle ) ? ' subtitle="' . esc_html( $column['subtitle'] ) . '"': '';
 
+			$background_size = ( isset( $column['background-size'] ) && ! empty( $column['background-size'] ) ) ? esc_html( $column['background-size'] ) : 'full';
+
 			$background_image = isset( $column['background-id'] ) && ! empty( $column['background-id'] );
-			$background_attribute = ( $background_image ) ? ' background="' . esc_url( wp_get_attachment_image_src( $column['background-id'], 'full' )[0] ) . '"': '';
+			$background_attribute = ( $background_image ) ? ' background="' . esc_url( wp_get_attachment_image_src( $column['background-id'], $background_size )[0] ) . '"': '';
 
 			$background_position = isset( $column['background-position'] ) && ! empty( $column['background-position'] );
 			$background_position_attribute = ( $background_position && 'wsuwpsecondary' !== $section_type ) ? ' background_position="' . esc_html( $column['background-position'] ) . '"': '';

@@ -64,7 +64,9 @@ $section_order  = ( ! empty( $ttfmake_section_data['data']['columns-order'] ) ) 
 					$headline            = ( isset( $ttfmake_section_data['data']['columns'][ $i ]['headline'] ) ) ? $ttfmake_section_data['data']['columns'][ $i ]['headline'] : '';
 					$subtitle            = ( isset( $ttfmake_section_data['data']['columns'][ $i ]['subtitle'] ) ) ? $ttfmake_section_data['data']['columns'][ $i ]['subtitle'] : '';
 					$background_id       = ( isset( $ttfmake_section_data['data']['columns'][ $i ]['background-id'] ) ) ? $ttfmake_section_data['data']['columns'][ $i ]['background-id'] : '';
-					$background_image    = ( ! empty( $background_id ) ) ? wp_get_attachment_image_src( $background_id, 'full' )[0] : '';
+					$background_size     = ( isset( $ttfmake_section_data['data']['columns'][ $i ]['background-size'] ) ) ? $ttfmake_section_data['data']['columns'][ $i ]['background-size'] : '';
+					$background_image    = ( ! empty( $background_id ) ) ? wp_get_attachment_image_src( $background_id, $background_size )[0] : '';
+					$background_full     = ( ! empty( $background_id ) ) ? wp_get_attachment_image_src( $background_id, 'full' )[0] : '';
 					$background_position = ( isset( $ttfmake_section_data['data']['columns'][ $i ]['background-position'] ) ) ? $ttfmake_section_data['data']['columns'][ $i ]['background-position'] : '';
 					$display_headline    = ( ! empty( $headline ) ) ? $headline : get_post_meta( $article_id, '_wsu_home_headline', true );
 					$display_subtitle    = ( ! empty( $subtitle ) ) ? $subtitle : get_post_meta( $article_id, '_wsu_home_subtitle', true );
@@ -91,6 +93,21 @@ $section_order  = ( ! empty( $ttfmake_section_data['data']['columns-order'] ) ) 
 						$issue = explode( ' ', $issues[0]->name );
 						$article_classes .= ' season-' . esc_attr( strtolower( $issue[0] ) );
 					}
+
+					$background_sizes = '';
+					if ( ! empty( $background_id ) ) {
+						$sizes = array( 'thumbnail', 'medium', 'large', 'spine-large_size' );
+
+						foreach ( $sizes as $size ) {
+							$image = wp_get_attachment_image_src( $background_id, $size );
+
+							if ( ! empty( $image ) ) {
+								$name = ucfirst( $size ) . ' (' . $image[1] . 'x' . $image[2] . ')';
+								$background_sizes .= $size . ':' . $name . ',';
+							}
+						}
+						$background_sizes = rtrim( $background_sizes, ',' );
+					}
 				?>
 				<div id="issue-article-<?php echo esc_attr( $article_id ); ?>"
 					 class="issue-article"
@@ -98,7 +115,10 @@ $section_order  = ( ! empty( $ttfmake_section_data['data']['columns-order'] ) ) 
 					 data-subtitle="<?php echo esc_attr( $subtitle ); ?>"
 					 data-background-id="<?php echo esc_attr( $background_id ); ?>"
 					 data-background-position="<?php echo esc_attr( $background_position ); ?>"
-					 data-background-image="<?php echo esc_url( $background_image ); ?>">
+					 data-background-image="<?php echo esc_url( $background_image ); ?>"
+					 data-background-image-full="<?php echo esc_url( $background_full ); ?>"
+					 data-background-sizes="<?php echo esc_attr( $background_sizes ); ?>"
+					 data-background-size="<?php echo esc_attr( $background_size ); ?>">
 					<div class="ttfmake-sortable-handle ui-sortable-handle" title="Drag-and-drop this article into place">
 						<a href="#" class="spine-builder-column-configure"><span>Configure this column</span></a>
 						<a href="#" class="wsuwp-column-toggle" title="Click to toggle"><div class="handlediv<?php echo $toggle_class; ?>" aria-expanded="true"></div></a>

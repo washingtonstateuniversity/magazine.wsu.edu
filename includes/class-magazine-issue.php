@@ -321,6 +321,12 @@ class WSU_Magazine_Issue {
 		}
 		if ( isset( $data['columns'] ) && is_array( $data['columns'] ) ) {
 			$i = 1;
+			$background_sizes = array(
+				'thumbnail',
+				'medium',
+				'large',
+				'spine-large_size',
+			);
 			$background_positions = array(
 				'center',
 				'center-top',
@@ -349,6 +355,9 @@ class WSU_Magazine_Issue {
 				}
 				if ( isset( $item['background-id'] ) ) {
 					$clean_data['columns'][ $id ]['background-id'] = sanitize_text_field( $item['background-id'] );
+				}
+				if ( isset( $item['background-size'] ) && in_array( $item['background-size'], $background_sizes ) ) {
+					$clean_data['columns'][ $id ]['background-size'] = $item['background-size'];
 				}
 				if ( isset( $item['background-position'] ) && in_array( $item['background-position'], $background_positions ) ) {
 					$clean_data['columns'][ $id ]['background-position'] = $item['background-position'];
@@ -703,11 +712,13 @@ function wsm_issue_article_configuration_output( $column_name, $section_data, $c
 		$subtitle    = ( isset( $section_data['data']['columns'][ $column ]['subtitle'] ) ) ? $section_data['data']['columns'][ $column ]['subtitle'] : '';
 		$bg_id       = ( isset( $section_data['data']['columns'][ $column ]['background-id'] ) ) ? $section_data['data']['columns'][ $column ]['background-id'] : '';
 		$bg_image    = ( ! empty( $bg_id ) ) ? wp_get_attachment_image_src( $bg_id, 'full' )[0] : '';
+		$bg_size     = ( isset( $section_data['data']['columns'][ $column ]['background-size'] ) ) ? $section_data['data']['columns'][ $column ]['background-size'] : '';
 		$bg_position = ( isset( $section_data['data']['columns'][ $column ]['background-position'] ) ) ? $section_data['data']['columns'][ $column ]['background-position'] : '';
 	} else {
 		$headline    = ( isset( $section_data['data']['headline'] ) ) ? $section_data['data']['headline'] : '';
 		$subtitle    = ( isset( $section_data['data']['subtitle'] ) ) ? $section_data['data']['subtitle'] : '';
 		$background  = ( isset( $section_data['data']['background-id'] ) ) ? $section_data['data']['background-id'] : '';
+		$bg_size     = ( isset( $section_data['data']['background-size'] ) ) ? $section_data['data']['background-size'] : '';
 		$bg_position = ( isset( $section_data['data']['background-position'] ) ) ? $section_data['data']['background-position'] : '';
 	}
 	?>
@@ -742,7 +753,33 @@ function wsm_issue_article_configuration_output( $column_name, $section_data, $c
 			?></a>
 			<a href="#" class="spine-builder-column-remove-background-image"<?php if ( ! $bg_image ) { echo 'style="display:none;"'; } ?>>Remove background image</a>
 		</p>
-		<p class="description">Select an image to apply as the article background (will take the place of the featured image).</p>
+		<p class="description">Select an image to apply as the article background.</p>
+	</div>
+	<div class="wsuwp-builder-meta">
+		<label for="<?php echo $column_name; ?>[background-size]">Background Size</label>
+		<select id="<?php echo $column_name; ?>[background-size]"
+			    name="<?php echo $column_name; ?>[background-size]"
+			    class="spine-builder-column-background-size wsm-article-meta">
+			<option value="">Full</option>
+			<?php
+			$sizes = array(
+				'thumbnail',
+				'medium',
+				'large',
+				'spine-large_size'
+			);
+
+			foreach ( $sizes as $size ) {
+				$image = wp_get_attachment_image_src( $bg_id, $size );
+
+				if ( ! empty( $image ) ) {
+					$name = ucfirst( $size ) . ' (' . $image[1] . 'x' . $image[2] . ')';
+					?><option value="<?php echo $size; ?>" <?php selected( esc_attr( $bg_size ), $size ); ?>><?php echo $name; ?></option><?php
+				}
+			}
+			?>
+		</select>
+		<p class="description">Set the size of the background image.</p>
 	</div>
 	<div class="wsuwp-builder-meta">
 		<label for="<?php echo $column_name; ?>[background-position]">Background Position</label>

@@ -65,7 +65,7 @@ try{Typekit.load({ async: true });}catch(e){}
 
 			data += '<div id="issue-article-' + val.id + '" class="issue-article" ' +
 				'data-headline="' + fallback + '"' +
-				'data-subtitle="" data-background-id="" data-background-position="" data-background-image="">' +
+				'data-subtitle="" data-background-id="" data-background-position="" data-background-image="" data-background-image-full="" data-background-sizes="" data-background-size="">' +
 				'<div class="ttfmake-sortable-handle" title="Drag-and-drop this article into place">' +
 					'<a href="#" class="spine-builder-column-configure"><span>Configure this column</span></a>' +
 					'<a href="#" class="wsuwp-column-toggle" title="Click to toggle"><div class="handlediv "></div></a>' +
@@ -100,12 +100,15 @@ try{Typekit.load({ async: true });}catch(e){}
 				article = column.children( '.issue-article' );
 
 			if ( article.length ) {
-				var new_val    = article[0].id.replace( 'issue-article-', '' ),
-					headline   = article.data( 'headline' ),
-					subtitle   = article.data( 'subtitle' ),
-					bg_id      = article.data( 'background-id' ),
-					bg_url     = article.data( 'background-image' ),
-					position   = article.data( 'background-position' );
+				var new_val     = article[0].id.replace( 'issue-article-', '' ),
+					headline    = article.data( 'headline' ),
+					subtitle    = article.data( 'subtitle' ),
+					bg_id       = article.data( 'background-id' ),
+					bg_url      = article.data( 'background-image' ),
+					bg_sizes    = article.data( 'background-sizes' ),
+					bg_size     = article.data( 'background-size' ),
+					position    = article.data( 'background-position' ),
+					size_select = column.find( '.spine-builder-column-background-size' );
 
 				// Always set Post ID and Headline values.
 				column.children( '.wsuwp-column-post-id' ).val( new_val );
@@ -117,12 +120,31 @@ try{Typekit.load({ async: true });}catch(e){}
 				} else {
 					column.find( '.spine-builder-column-subtitle' ).val( subtitle );
 				}
-console.log();
+
 				// Set the background value and update the HTML if needed.
 				column.find( '.spine-builder-column-background-id' ).val( bg_id );
 				if ( bg_url.length ) {
 					column.find('.spine-builder-column-set-background-image').html('<img src="' + bg_url + '" />').
 						next('.spine-builder-column-remove-background-image').show();
+				} else {
+					column.find('.spine-builder-column-set-background-image').html('Set background image').
+						next('.spine-builder-column-remove-background-image').hide();
+				}
+
+				// Set the background size options.
+				size_select.find('option:gt(0)').remove();
+				if ( bg_sizes.length ) {
+					var sizes       = bg_sizes.split(',');
+
+					$.each( sizes, function(index, value) {
+						var size   = value.split(':'),
+							option = '<option value="' + size[0] + '">' + size[1] + '</option>';
+
+						size_select.append(option);
+					} );
+				}
+				if ( bg_size.length ) {
+					size_select.val(bg_size);
 				}
 
 				// Set background position value if not in a "Secondary Articles" section.
@@ -195,12 +217,22 @@ console.log();
 		} else if ( input.hasClass('spine-builder-column-subtitle') ) {
 			article.data('subtitle', value ).
 				find( '.home-subtitle' ).html( value );
-		/*} else if ( input.hasClass('spine-builder-column-background-image') ) {
-			article.data('background-image', value ).
-				find( '.wsm-article-body' ).
-				css('background-image', 'url(' + value + ')').
-				addClass( 'has-featured-img' );
-		*/} else if ( input.hasClass('spine-builder-column-background-position') ) {
+		} else if ( input.hasClass('spine-builder-column-background-size') ) {
+			article.data('background-size', value );
+			if ( article.data('background-image').length ) {
+				var new_bg = article.data('background-image-full');
+				if ( '' !== value )  {
+					var image_path = new_bg.substring(0, new_bg.lastIndexOf('.')),
+						size       = input.find('option:selected').text(),
+						dimensions = '-' + size.substring(size.lastIndexOf('(') + 1, size.lastIndexOf(')')),
+						ext        = new_bg.substring(new_bg.lastIndexOf('.'), new_bg.length);
+
+					new_bg = image_path + dimensions + ext;
+				}
+				article.data('background-image', new_bg).
+					find( '.wsm-article-body' ).css('background-image', 'url(' + new_bg + ')');
+			}
+		} else if ( input.hasClass('spine-builder-column-background-position') ) {
 			article.data('background-position', value ).
 				find( '.wsm-article-body' ).
 				css('background-position', value.replace(/-/g, ' ') );
@@ -208,7 +240,6 @@ console.log();
 	});
 
 }( jQuery, window ));
-
 
 /**
  * Handle Background Image media modal.
@@ -235,7 +266,26 @@ console.log();
 
 		media_modal.on('select', function () {
 			var attachment     = media_modal.state().get('selection').first().toJSON(),
-				attachment_url = attachment.sizes.hasOwnProperty('medium') ? attachment.sizes.medium.url : attachment.url;
+				attachment_url = attachment.sizes.hasOwnProperty('medium') ? attachment.sizes.medium.url : attachment.url,
+				size_select    = set_image_link.closest('.spine-builder-overlay-body').find('.spine-builder-column-background-size'),
+				image_sizes    = '';
+
+			size_select.find('option:gt(0)').remove();
+
+			$.each( attachment.sizes, function( index, val ) {
+				if ( 'full' === index && 990 < val.width ) {
+					index = 'spine-large_size';
+					val['height'] = Math.round(990 * val.height / val.width);
+					val['width'] = 990;
+				}
+
+				var option_name = index.charAt(0).toUpperCase() + index.slice(1) + ' (' + val.width + 'x' + val.height + ')',
+					option      = '<option value="' + index + '">' + option_name + '</option>';
+
+				image_sizes += index + ':' + option_name + ',';
+
+				size_select.append(option);
+			} );
 
 			set_image_link.html('<img src="' + attachment_url + '" />').
 				prev('.spine-builder-column-background-id').val(attachment.id).trigger('change').
@@ -243,6 +293,8 @@ console.log();
 				closest('.wsuwp-spine-builder-column').find('.issue-article').
 					data('background-id', attachment.id ).
 					data('background-image', attachment_url ).
+					data('background-image-full', attachment.url ).
+					data('background-sizes', image_sizes.substring(0, image_sizes.length - 1) ).
 					find( '.wsm-article-body' ).
 					css('background-image', 'url(' + attachment_url + ')').
 					addClass( 'has-featured-img' );
@@ -252,12 +304,24 @@ console.log();
 	});
 
 	$('#ttfmake-stage').on('click', '.spine-builder-column-remove-background-image', function (e) {
-
 		e.preventDefault();
+
+		var column = $(this).closest('.wsuwp-spine-builder-column');
 
 		$(this).hide()
 			.prev('.spine-builder-column-set-background-image').html('Set background image')
 			.prev('.spine-builder-column-background-id').val('');
+
+		column.find('.spine-builder-column-background-size').val('').find('option:gt(0)').remove();
+		column.find('.spine-builder-column-background-position').val('');
+		column.find('.issue-article').
+			data('background-id', '' ).
+			data('background-position', '' ).
+			data('background-image', '' ).
+			data('background-image-full', '' ).
+			data('background-sizes', '' ).
+			data('background-size', '' ).
+			find('.wsm-article-body').css('background-image', '');
 	});
 
 }(jQuery));
