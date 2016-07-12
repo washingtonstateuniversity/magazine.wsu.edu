@@ -59,8 +59,8 @@ $section_order  = ( ! empty( $ttfmake_section_data['data']['columns-order'] ) ) 
 					</div>
 				</div>
 
-				<?php if ( $article_id ) : ?>
-				<?php
+				<?php if ( $article_id ) :
+
 					$headline            = ( isset( $ttfmake_section_data['data']['columns'][ $i ]['headline'] ) ) ? $ttfmake_section_data['data']['columns'][ $i ]['headline'] : '';
 					$subtitle            = ( isset( $ttfmake_section_data['data']['columns'][ $i ]['subtitle'] ) ) ? $ttfmake_section_data['data']['columns'][ $i ]['subtitle'] : '';
 					$background_id       = ( isset( $ttfmake_section_data['data']['columns'][ $i ]['background-id'] ) ) ? $ttfmake_section_data['data']['columns'][ $i ]['background-id'] : '';
@@ -81,7 +81,7 @@ $section_order  = ( ! empty( $ttfmake_section_data['data']['columns-order'] ) ) 
 					}
 
 					if ( ! empty( $background_position ) ) {
-						$article_styles  .= ' background-position: ' . esc_attr( str_replace( "-", " ", $background_position ) ) . ';';
+						$article_styles  .= ' background-position: ' . esc_attr( str_replace( '-', ' ', $background_position ) ) . ';';
 					}
 
 					if ( ! empty( $section ) && 'Web Extra' === $section ) {

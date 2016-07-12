@@ -51,7 +51,7 @@
 
 		// Display site level categories attached to the post.
 		if ( has_category() ) {
-			foreach( get_the_category() as $category ) {
+			foreach ( get_the_category() as $category ) {
 				$post_category_display_combined[] = '<dd><a href="' . get_category_link( $category->cat_ID ) . '">' . $category->cat_name . '</a></dd>';
 			}
 		}
@@ -71,7 +71,7 @@
 
 		if ( ! empty( $post_category_display_combined ) ) {
 			echo '<dl class="categorized">';
-			foreach( $post_category_display_combined as $post_category_display ) {
+			foreach ( $post_category_display_combined as $post_category_display ) {
 				echo $post_category_display;
 			}
 			echo '</dl>';
@@ -80,7 +80,7 @@
 		// Display University tags attached to the post.
 		if ( has_tag() ) {
 			echo '<dl class="tagged">';
-			foreach( get_the_tags() as $tag ) {
+			foreach ( get_the_tags() as $tag ) {
 				echo '<dd><a href="' . get_tag_link( $tag->term_id ) . '">' . $tag->name . '</a></dd>';
 			}
 			echo '</dl>';

@@ -65,7 +65,7 @@ class WSU_Magazine_Colorbox {
 			return;
 		}
 
-		$invocations = implode( ";", $invocations );
+		$invocations = implode( ';', $invocations );
 
 		echo '<script type="text/javascript">(function($){' . $invocations . '})(jQuery);</script>';
 	}
@@ -167,7 +167,7 @@ class WSU_Magazine_Colorbox {
 		$sanitized_settings = array();
 
 		foreach ( $settings as $setting ) {
-			$setting =  explode( ':', $setting );
+			$setting = explode( ':', $setting );
 			$key = trim( $setting[0] );
 
 			if ( in_array( $key, $settings_whitelist, true ) ) {

@@ -26,7 +26,7 @@ $wsu_magazine_section = WSU_Magazine_Section();
 
 				$column_class = array( 'one', 'two' );
 				$column = 0;
-				foreach( $magazine_articles as $article ) {
+				foreach ( $magazine_articles as $article ) {
 					if ( 0 === $column ) {
 						echo '<section class="row halves secondary-articles">';
 					}

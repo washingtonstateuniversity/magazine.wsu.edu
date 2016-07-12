@@ -105,7 +105,7 @@ class WSU_Magazine_Issue {
 			'add_new_item'  => 'Add New Issue Label',
 			'new_item_name' => 'New Issue Label Name',
 			'menu_name'     => 'Issue Labels',
-			'separate_items_with_commas' => 'Separate issue labels with commas'
+			'separate_items_with_commas' => 'Separate issue labels with commas',
 		);
 		$args = array(
 			'labels'            => $labels,
@@ -493,7 +493,7 @@ class WSU_Magazine_Issue {
 
 		if ( $this->content_type_slug === get_current_screen()->id ) {
 			wp_enqueue_script( 'wsm-issue-admin', get_stylesheet_directory_uri() . '/js/issue-admin.js', array( 'jquery-ui-draggable', 'jquery-ui-sortable' ), false, true );
-			wp_enqueue_style(  'wsu-issue-admin', get_stylesheet_directory_uri() . '/css/issue-admin.css', array( 'ttfmake-builder' ) );
+			wp_enqueue_style( 'wsu-issue-admin', get_stylesheet_directory_uri() . '/css/issue-admin.css', array( 'ttfmake-builder' ) );
 		}
 	}
 
@@ -613,7 +613,7 @@ class WSU_Magazine_Issue {
 					'taxonomy' => $this->taxonomy_slug,
 					'field'    => 'slug',
 					'terms'    => $issue_label,
-				)
+				),
 			);
 		}
 
@@ -766,7 +766,7 @@ function wsm_issue_article_configuration_output( $column_name, $section_data, $c
 				'thumbnail',
 				'medium',
 				'large',
-				'spine-large_size'
+				'spine-large_size',
 			);
 
 			foreach ( $sizes as $size ) {
