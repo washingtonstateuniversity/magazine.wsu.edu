@@ -4,7 +4,7 @@ module.exports = function(grunt) {
 
         phpcs: {
             plugin: {
-                src: './'
+                src: [ '*.php', '**/*.php', '!import/index.php' ]
             },
             options: {
                 bin: "vendor/bin/phpcs --extensions=php --ignore=\"*/vendor/*,*/node_modules/*\"",
