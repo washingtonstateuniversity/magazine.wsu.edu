@@ -27,7 +27,7 @@ if ( spine_get_option( 'main_header_show' ) == 'true' ) :
 ?>
 	<header class="main-header <?php echo $featured_image_position; ?>">
 		<div class="header-group hgroup">
-			<h1 class="h1-header" data-sitename="<?php echo $spine_main_header_values['site_name']; ?>" data-pagetitle="<?php echo $spine_main_header_values['page_title']; ?>" data-posttitle="<?php echo $spine_main_header_values['post_title']; ?>" data-default="<?php echo esc_html($spine_main_header_values['sub_header_default']); ?>" data-alternate="<?php echo esc_html($spine_main_header_values['sub_header_alternate']); ?>"><?php echo strip_tags( $spine_main_header_values['sub_header_default'], '<a>' ); ?></h1>
+			<h1 class="h1-header" data-sitename="<?php echo $spine_main_header_values['site_name']; ?>" data-pagetitle="<?php echo $spine_main_header_values['page_title']; ?>" data-posttitle="<?php echo $spine_main_header_values['post_title']; ?>" data-default="<?php echo esc_html( $spine_main_header_values['sub_header_default'] ); ?>" data-alternate="<?php echo esc_html( $spine_main_header_values['sub_header_alternate'] ); ?>"><?php echo strip_tags( $spine_main_header_values['sub_header_default'], '<a>' ); ?></h1>
 
 			<?php if ( is_singular() ) : ?>
 			<cite class="article-author" role="author">by <?php coauthors_posts_links(); ?></cite>

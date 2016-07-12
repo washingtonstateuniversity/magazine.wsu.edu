@@ -21,7 +21,7 @@ class WSU_Magazine_Command extends WP_CLI_Command {
 			$query->the_post();
 
 			$old_author_name = get_the_title();
-			$old_author_slug = explode( "’", $old_author_name );
+			$old_author_slug = explode( '’', $old_author_name );
 			$old_author_slug = esc_attr( trim( $old_author_slug[0] ) );
 			$old_author_id = get_post_meta( get_the_ID(), '_magazine_author_id', true );
 
@@ -51,7 +51,7 @@ class WSU_Magazine_Command extends WP_CLI_Command {
 
 		$all_data = $wpdb->get_results( "SELECT post_id, meta_value FROM $wpdb->postmeta WHERE meta_key = '_magazine_author_id'" );
 
-		foreach( $all_data as $data ) {
+		foreach ( $all_data as $data ) {
 			$author = get_post( $data->post_id );
 
 			if ( 'guest-author' !== $author->post_type ) {
@@ -75,7 +75,7 @@ class WSU_Magazine_Command extends WP_CLI_Command {
 			if ( isset( $authors[ $author_article_id ] ) ) {
 				$coauthor = $coauthors_plus->get_coauthor_by( 'id', $authors[ $author_article_id ] );
 				$coauthors_plus->add_coauthors( $data->post_id, array( $coauthor->user_nicename ), $append = true );
-				WP_CLI::line( "Assign " . $authors[ $author_article_id ] . ' to ' . $data->post_id );
+				WP_CLI::line( 'Assign ' . $authors[ $author_article_id ] . ' to ' . $data->post_id );
 			}
 		}
 	}
@@ -1296,7 +1296,7 @@ class WSU_Magazine_Command extends WP_CLI_Command {
 			'1213' => 'Last Words',
 		);
 
-		foreach( $section_data as $k => $v ) {
+		foreach ( $section_data as $k => $v ) {
 			$results = $wpdb->get_results( "SELECT $wpdb->posts.id FROM $wpdb->postmeta LEFT JOIN $wpdb->posts ON $wpdb->postmeta.post_id = $wpdb->posts.id WHERE $wpdb->postmeta.meta_key = '_magazine_article_id' AND $wpdb->postmeta.meta_value = $k" );
 			if ( isset( $results[0] ) && isset( $results[0]->id ) ) {
 				$post_id = absint( $results[0]->id );
@@ -1304,6 +1304,6 @@ class WSU_Magazine_Command extends WP_CLI_Command {
 			}
 		}
 
-		WP_CLI::line( "Done." );
+		WP_CLI::line( 'Done.' );
 	}
 }
