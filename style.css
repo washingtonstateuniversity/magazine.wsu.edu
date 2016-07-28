@@ -468,9 +468,8 @@ cite,
 .spine-social-channels {
 	position: relative;
 	height: 55px;
-
 	margin-left: auto;
-	width: 19.2rem;
+	width: 20rem;
 }
 
 .social-share-bar {
@@ -1176,7 +1175,8 @@ h2 + .article-section {
 		width: 100%;
 	}
 
-	.single-post .spine-social-channels {
+	.single-post .spine-social-channels,
+	.single-wsu_magazine_we .spine-social-channels {
 		margin-top: 4.45rem;
 	}
 
