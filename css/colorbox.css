@@ -121,38 +121,33 @@
 }
 
 #cboxClose {
-	border: 1px solid #fff;
-	border-radius: 12px;
+	border: none;
 	display: block;
 	height: 24px;
 	overflow: hidden;
 	position: absolute;
 	right: 5px;
 	top: 10px;
-	text-indent: -9999px;
+	text-indent: -100px;
 	width: 24px;
 }
 
 #cboxClose:after {
 	color: #fff;
-	content: 'X';
-	font-size: 14px;
+	content: url('../images/plus_icon.svg');
 	height: 100%;
 	left: 0;
-	line-height: 22px;
 	position: absolute;
-	text-align: center;
 	text-indent: initial;
 	top: 0;
 	width: 100%;
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	transform: rotate(45deg);
 }
 
 .featured-image-information #cboxClose {
 	top: -30px;
-}
-
-@media screen and ( max-width: 650px ) {
-	.featured-image-information #cboxLoadedContent {
-		display: none !important;
-	}
 }
