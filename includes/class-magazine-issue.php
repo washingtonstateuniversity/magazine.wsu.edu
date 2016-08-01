@@ -50,7 +50,6 @@ class WSU_Magazine_Issue {
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ), 10 );
 		add_action( 'save_post_' . $this->content_type_slug, array( $this, 'save_post' ), 10, 2 );
 		add_action( 'wp_ajax_set_issue_articles', array( $this, 'ajax_callback' ), 10 );
-		add_action( 'wp_ajax_nopriv_set_issue_articles', array( $this, 'ajax_callback' ), 10 );
 	}
 
 	/**
