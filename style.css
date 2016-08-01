@@ -671,56 +671,49 @@ figcaption.wp-caption-text {
 }
 
 .sss {
-	height: 0;
-	margin: 0;
-	padding: 0;
-	position: relative;
 	display: block;
+	height: 0;
+	position: relative;
 }
 
 .sss .ssslide {
-	width: 100%;
-	margin: 0 auto;
-	padding: 0;
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
 	display: none;
 	overflow: hidden;
-}
-
-.ssslide img {
-	max-width: 100%;
-	height: auto;
-	margin: 0;
 	padding: 0;
-	position: relative;
-	display: block;
-}
-
-.sssnext, .sssprev {
-	width: 25px;
-	height: 100%;
-	margin: 0;
 	position: absolute;
 	top: 0;
+	width: 100%;
+}
+
+.ssslide-inner {
+	display: table;
+	margin: 0 auto;
+}
+
+.ssslide figcaption {
+	caption-side: bottom;
+	display: table-caption;
+	width: auto;
+}
+
+.sssnext,
+.sssprev {
+	background: center no-repeat;
+	cursor: pointer;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	width: 1.8rem;
 }
 
 .sssprev {
 	left: -1.8rem;
-	background: url('https://magazine.wsu.edu/wp-content/themes/wsu-magazine-theme/images/left-arrow_icon.svg') no-repeat;
-	background-position: 10px;
+	background-image: url('https://magazine.wsu.edu/wp-content/themes/wsu-magazine-theme/images/left-arrow_icon.svg');
 }
 
 .sssnext {
 	right: -1.8rem;
-	background: url('https://magazine.wsu.edu/wp-content/themes/wsu-magazine-theme/images/right-arrow_icon.svg') no-repeat;
-	background-position: 5px;
-}
-
-.sssprev:hover, .sssnext:hover {
-	cursor: pointer;
+	background-image: url('https://magazine.wsu.edu/wp-content/themes/wsu-magazine-theme/images/right-arrow_icon.svg');
 }
 
 /* Main Footer */
