@@ -185,7 +185,8 @@ try{Typekit.load({ async: true });}catch(e){}
 		// Cache the issue build area for future use.
 		var data = {
 			action: 'set_issue_articles',
-			issue_label: issue_label
+			issue_label: issue_label,
+			nonce: wsm_issue.nonce
 		};
 
 		// Make the ajax call

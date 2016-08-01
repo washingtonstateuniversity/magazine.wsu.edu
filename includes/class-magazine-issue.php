@@ -517,7 +517,10 @@ class WSU_Magazine_Issue {
 	public function display_issue_articles_meta_box( $post ) {
 		wp_nonce_field( 'save-wsm-issue-build', '_wsm_issue_build_nonce' );
 
-		$localized_data = array( 'post_id' => $post->ID );
+		$localized_data = array(
+			'post_id' => $post->ID,
+			'nonce' => wp_create_nonce( 'wsm-issue' ),
+		);
 
 		$stage_articles = '';
 
@@ -645,6 +648,8 @@ class WSU_Magazine_Issue {
 	 * Handle the ajax callback to push a list of articles to an issue.
 	 */
 	public function ajax_callback() {
+		check_ajax_referer( 'wsm-issue', 'nonce' );
+
 		if ( ! DOING_AJAX || ! isset( $_POST['action'] ) || 'set_issue_articles' !== $_POST['action'] ) {
 			die();
 		}
