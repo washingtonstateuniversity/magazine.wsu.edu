@@ -630,13 +630,44 @@ class WSU_Magazine_Issue {
 		foreach ( $issue_query as $post ) {
 			setup_postdata( $post );
 			$sections = wp_get_object_terms( $post->ID, 'wsu_magazine_section', array( 'fields' => 'names' ) );
-			$section = ( $sections ) ? $sections[0] : '';
+			$section  = ( $sections ) ? $sections[0] : '';
+			$bg_id    = '';
+			$bg_url   = '';
+			$bg_full  = '';
+			$bg_sizes = array();
+
+			if ( class_exists( 'MultiPostThumbnails' ) && MultiPostThumbnails::has_post_thumbnail( get_post_type( $post->ID ), 'thumbnail-image', $post->ID ) ) {
+				$bg_id    = MultiPostThumbnails::get_post_thumbnail_id( get_post_type( $post->ID ), 'thumbnail-image', $post->ID );
+				$bg_url   = MultiPostThumbnails::get_post_thumbnail_url( get_post_type( $post->ID ), 'thumbnail-image', $post->ID, 'post-thumbnail' );
+				$bg_full  = MultiPostThumbnails::get_post_thumbnail_url( get_post_type( $post->ID ), 'thumbnail-image', $post->ID );
+				$sizes    = array(
+					'thumbnail',
+					'medium',
+					'large',
+					'spine-large_size',
+				);
+
+				foreach ( $sizes as $size ) {
+					$image = MultiPostThumbnails::get_post_thumbnail_url( get_post_type( $post->ID ), 'thumbnail-image', $post->ID, $size );
+
+					if ( ! empty( $image ) ) {
+						$bg_sizes[] = $size . ':' . ucfirst( $size );
+					}
+				}
+
+				$bg_sizes = implode( ',', $bg_sizes );
+			}
+
 			$items[] = array(
 				'id'        => $post->ID,
 				'title'     => $post->post_title,
 				'headline'  => esc_attr( get_post_meta( $post->ID, '_wsu_home_headline', true ) ),
 				'subtitle'  => esc_attr( get_post_meta( $post->ID, '_wsu_home_subtitle', true ) ),
 				'section'   => $section,
+				'bg_id'     => $bg_id,
+				'bg_url'    => $bg_url,
+				'bg_full'   => $bg_full,
+				'bg_sizes'   => $bg_sizes,
 			);
 		}
 		wp_reset_postdata();
