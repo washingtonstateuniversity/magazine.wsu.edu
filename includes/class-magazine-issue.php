@@ -648,10 +648,18 @@ class WSU_Magazine_Issue {
 				);
 
 				foreach ( $sizes as $size ) {
-					$image = MultiPostThumbnails::get_post_thumbnail_url( get_post_type( $post->ID ), 'thumbnail-image', $post->ID, $size );
+					$image = MultiPostThumbnails::get_the_post_thumbnail( get_post_type( $post->ID ), 'thumbnail-image', $post->ID, $size );
 
 					if ( ! empty( $image ) ) {
-						$bg_sizes[] = $size . ':' . ucfirst( $size );
+						$dom = new DOMDocument();
+						$dom->loadHTML( $image );
+						$width = $dom->getElementsByTagName('img')->item(0)->getAttribute('width');
+						$height = $dom->getElementsByTagName('img')->item(0)->getAttribute('height');
+						$src = $dom->getElementsByTagName('img')->item(0)->getAttribute('src');
+						$resized = preg_match( '(-\d+x\d+\.)', $src );
+						if ( $resized ) {
+							$bg_sizes[] = $size . ':' . ucfirst( $size ) . ' (' . $width . 'x' . $height . ')';
+						}
 					}
 				}
 
