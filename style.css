@@ -708,12 +708,12 @@ figcaption.wp-caption-text {
 
 .sssprev {
 	left: -1.8rem;
-	background-image: url('https://magazine.wsu.edu/wp-content/themes/wsu-magazine-theme/images/left-arrow_icon.svg');
+	background-image: url('./images/left-arrow_icon.svg');
 }
 
 .sssnext {
 	right: -1.8rem;
-	background-image: url('https://magazine.wsu.edu/wp-content/themes/wsu-magazine-theme/images/right-arrow_icon.svg');
+	background-image: url('./images/right-arrow_icon.svg');
 }
 
 /* Main Footer */
