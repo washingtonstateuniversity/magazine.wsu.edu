@@ -50,7 +50,6 @@ class WSU_Magazine_Issue {
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ), 10 );
 		add_action( 'save_post_' . $this->content_type_slug, array( $this, 'save_post' ), 10, 2 );
 		add_action( 'wp_ajax_set_issue_articles', array( $this, 'ajax_callback' ), 10 );
-		add_action( 'wp_ajax_nopriv_set_issue_articles', array( $this, 'ajax_callback' ), 10 );
 	}
 
 	/**
@@ -518,7 +517,10 @@ class WSU_Magazine_Issue {
 	public function display_issue_articles_meta_box( $post ) {
 		wp_nonce_field( 'save-wsm-issue-build', '_wsm_issue_build_nonce' );
 
-		$localized_data = array( 'post_id' => $post->ID );
+		$localized_data = array(
+			'post_id' => $post->ID,
+			'nonce' => wp_create_nonce( 'wsm-issue' ),
+		);
 
 		$stage_articles = '';
 
@@ -628,13 +630,52 @@ class WSU_Magazine_Issue {
 		foreach ( $issue_query as $post ) {
 			setup_postdata( $post );
 			$sections = wp_get_object_terms( $post->ID, 'wsu_magazine_section', array( 'fields' => 'names' ) );
-			$section = ( $sections ) ? $sections[0] : '';
+			$section  = ( $sections ) ? $sections[0] : '';
+			$bg_id    = '';
+			$bg_url   = '';
+			$bg_full  = '';
+			$bg_sizes = array();
+
+			if ( class_exists( 'MultiPostThumbnails' ) && MultiPostThumbnails::has_post_thumbnail( get_post_type( $post->ID ), 'thumbnail-image', $post->ID ) ) {
+				$bg_id    = MultiPostThumbnails::get_post_thumbnail_id( get_post_type( $post->ID ), 'thumbnail-image', $post->ID );
+				$bg_url   = MultiPostThumbnails::get_post_thumbnail_url( get_post_type( $post->ID ), 'thumbnail-image', $post->ID, 'post-thumbnail' );
+				$bg_full  = MultiPostThumbnails::get_post_thumbnail_url( get_post_type( $post->ID ), 'thumbnail-image', $post->ID );
+				$sizes    = array(
+					'thumbnail',
+					'medium',
+					'large',
+					'spine-large_size',
+				);
+
+				foreach ( $sizes as $size ) {
+					$image = MultiPostThumbnails::get_the_post_thumbnail( get_post_type( $post->ID ), 'thumbnail-image', $post->ID, $size );
+
+					if ( ! empty( $image ) ) {
+						$dom = new DOMDocument();
+						$dom->loadHTML( $image );
+						$width = $dom->getElementsByTagName('img')->item(0)->getAttribute('width');
+						$height = $dom->getElementsByTagName('img')->item(0)->getAttribute('height');
+						$src = $dom->getElementsByTagName('img')->item(0)->getAttribute('src');
+						$resized = preg_match( '(-\d+x\d+\.)', $src );
+						if ( $resized ) {
+							$bg_sizes[] = $size . ':' . ucfirst( $size ) . ' (' . $width . 'x' . $height . ')';
+						}
+					}
+				}
+
+				$bg_sizes = implode( ',', $bg_sizes );
+			}
+
 			$items[] = array(
 				'id'        => $post->ID,
 				'title'     => $post->post_title,
 				'headline'  => esc_attr( get_post_meta( $post->ID, '_wsu_home_headline', true ) ),
 				'subtitle'  => esc_attr( get_post_meta( $post->ID, '_wsu_home_subtitle', true ) ),
 				'section'   => $section,
+				'bg_id'     => $bg_id,
+				'bg_url'    => $bg_url,
+				'bg_full'   => $bg_full,
+				'bg_sizes'   => $bg_sizes,
 			);
 		}
 		wp_reset_postdata();
@@ -646,6 +687,8 @@ class WSU_Magazine_Issue {
 	 * Handle the ajax callback to push a list of articles to an issue.
 	 */
 	public function ajax_callback() {
+		check_ajax_referer( 'wsm-issue', 'nonce' );
+
 		if ( ! DOING_AJAX || ! isset( $_POST['action'] ) || 'set_issue_articles' !== $_POST['action'] ) {
 			die();
 		}

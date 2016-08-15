@@ -57,21 +57,36 @@ try{Typekit.load({ async: true });}catch(e){}
 		$.each( raw_data, function( index, val ) {
 			var headline = val.headline ? val.headline : val.title,
 				fallback = val.headline ? '' : val.title; // Web Extras don't have the headline meta field, so provide the title.
-				classes  = ' season-' + $( '#issue_label_slug' ).val().split('-')[0];
+				classes  = ' season-' + $( '#issue_label_slug' ).val().split('-')[0],
+				bg_id    = val.bg_id,
+				bg_url   = val.bg_url,
+				bg_full  = val.bg_full,
+				bg_sizes = val.bg_sizes,
+				bg_style = bg_url ? ' style=" background-image: url(' + bg_url + ');"' : '';
 
 				if ( 'Web Extra' === val.section ) {
 					classes += ' web-extra';
 				}
 
+				if ( '' !== bg_style ) {
+					classes += ' has-featured-img';
+				}
+
 			data += '<div id="issue-article-' + val.id + '" class="issue-article" ' +
-				'data-headline="' + fallback + '"' +
-				'data-subtitle="" data-background-id="" data-background-position="" data-background-image="" data-background-image-full="" data-background-sizes="" data-background-size="">' +
+				'data-headline="' + fallback + '" ' +
+				'data-subtitle="" ' +
+				'data-background-id="' + bg_id + '" ' +
+				'data-background-position="" ' +
+				'data-background-image="' + bg_url + '" ' +
+				'data-background-image-full="' + bg_full + '" ' +
+				'data-background-sizes="' + bg_sizes + '" ' +
+				'data-background-size="thumbnail">' +
 				'<div class="ttfmake-sortable-handle" title="Drag-and-drop this article into place">' +
 					'<a href="#" class="spine-builder-column-configure"><span>Configure this column</span></a>' +
-					'<a href="#" class="wsuwp-column-toggle" title="Click to toggle"><div class="handlediv "></div></a>' +
+					'<a href="#" class="wsuwp-column-toggle" title="Click to toggle"><div class="handlediv"></div></a>' +
 					'<div class="wsuwp-builder-column-title">' + val.title + '</div>' +
 				'</div>' +
-				'<div class="wsm-article-body wsuwp-column-content' + classes + '">' +
+				'<div class="wsm-article-body wsuwp-column-content' + classes + '"' + bg_style + '>' +
 					'<div class="home-headline-head-wrapper">' +
 						'<h2>' + headline + '</h2>' +
 						'<div class="article-section">' + val.section + '</div>' +
@@ -185,7 +200,8 @@ try{Typekit.load({ async: true });}catch(e){}
 		// Cache the issue build area for future use.
 		var data = {
 			action: 'set_issue_articles',
-			issue_label: issue_label
+			issue_label: issue_label,
+			nonce: wsm_issue.nonce
 		};
 
 		// Make the ajax call
