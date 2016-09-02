@@ -21,7 +21,7 @@ if ( spine_get_option( 'main_header_show' ) == 'true' ) :
 
 	$featured_image_position = get_post_meta( get_the_ID(), '_featured_image_position', true );
 
-	if ( ! $featured_image_position || $featured_image_position !== sanitize_html_class( $featured_image_position ) ) {
+	if ( ! $featured_image_position || sanitize_html_class( $featured_image_position ) !== $featured_image_position ) {
 		$featured_image_position = 'background-position-center';
 	}
 ?>

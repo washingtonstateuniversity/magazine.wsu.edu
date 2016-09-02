@@ -65,7 +65,7 @@ $wsu_magazine_section = WSU_Magazine_Section();
 					if ( 1 === $column ) {
 						echo '</section>';
 					}
-					$column = $column === 0 ? 1 : 0; // Alternate columns
+					$column = 0 === $column ? 1 : 0; // Alternate columns
 				}
 			}
 			?>
