@@ -1297,7 +1297,7 @@ class WSU_Magazine_Command extends WP_CLI_Command {
 		);
 
 		foreach ( $section_data as $k => $v ) {
-			$results = $wpdb->get_results( "SELECT $wpdb->posts.id FROM $wpdb->postmeta LEFT JOIN $wpdb->posts ON $wpdb->postmeta.post_id = $wpdb->posts.id WHERE $wpdb->postmeta.meta_key = '_magazine_article_id' AND $wpdb->postmeta.meta_value = $k" );
+			$results = $wpdb->get_results( "SELECT $wpdb->posts.id FROM $wpdb->postmeta LEFT JOIN $wpdb->posts ON $wpdb->postmeta.post_id = $wpdb->posts.id WHERE $wpdb->postmeta.meta_key = '_magazine_article_id' AND $wpdb->postmeta.meta_value = $k" ); // WPCS: unprepared SQL OK.
 			if ( isset( $results[0] ) && isset( $results[0]->id ) ) {
 				$post_id = absint( $results[0]->id );
 				wp_set_object_terms( $post_id, $v, 'wsu_magazine_section' );

@@ -173,7 +173,7 @@ class WSU_Magazine_Colorbox {
 			if ( in_array( $key, $settings_whitelist, true ) ) {
 				$value = esc_js( trim( $setting[1] ) );
 
-				if ( $value == 'true' || $value == 'false' ) {
+				if ( 'true' == $value || 'false' == $value ) {
 					$sanitized_settings[] = $key . ':' . $value;
 				} else {
 					$sanitized_settings[] = $key . ':"' . $value . '"';

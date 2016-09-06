@@ -8,6 +8,7 @@
         <exclude name="WordPress.XSS.EscapeOutput" />
         <exclude name="Generic.Formatting.DisallowMultipleStatements" />
         <exclude name="WordPress.PHP.StrictComparisons" />
+        <exclude name="WordPress.PHP.StrictInArray" />
         <exclude name="WordPress.WP.EnqueuedResources" />
     </rule>
 </ruleset>

@@ -21,7 +21,7 @@
 	 M19.681,14.332c-0.702-0.184-2.812-0.277-4.218-0.277c-1.405,0-2.811,0.094-4.217,0.277V1.694c2.812-0.386,6.326-0.386,8.435,0
 	V14.332z"/>
 </svg>
- </span>eMAG</a>
+</span>eMAG</a>
 			<a class="nav-media" href="<?php echo esc_url( home_url( '/video/' ) ); ?>">
 				<span><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="18.611px" height="14.486px" viewBox="0 0 18.611 14.486" enable-background="new 0 0 18.611 14.486" xml:space="preserve">

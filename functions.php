@@ -2,6 +2,13 @@
 
 class WSU_Magazine_Theme {
 	/**
+	 * @since 0.10.1
+	 *
+	 * @var string String used for busting cache on scripts.
+	 */
+	var $script_version = '0.10.1';
+
+	/**
 	 * @var WSU_Magazine_Theme
 	 */
 	private static $instance;
@@ -39,6 +46,7 @@ class WSU_Magazine_Theme {
 	}
 
 	public function setup_hooks() {
+		add_filter( 'spine_child_theme_version', array( $this, 'theme_version' ) );
 		add_action( 'admin_init', array( $this, 'editor_style' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		add_action( 'wp_print_footer_scripts', array( $this, 'featured_image_colorbox' ), 11 );
@@ -48,6 +56,17 @@ class WSU_Magazine_Theme {
 		add_filter( 'pre_site_option_upload_filetypes', array( $this, 'set_upload_filetypes' ), 11, 1 );
 		add_filter( 'upload_mimes', array( $this, 'set_mime_types' ), 11, 1 );
 		add_shortcode( 'magazine_search_form', array( $this, 'display_magazine_search_form' ) );
+	}
+
+	/**
+	 * Provide a theme version for use in cache busting.
+	 *
+	 * @since 0.10.1
+	 *
+	 * @return string
+	 */
+	public function theme_version() {
+		return $this->script_version;
 	}
 
 	public function editor_style() {

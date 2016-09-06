@@ -405,7 +405,7 @@ class WSU_Magazine_Issue {
 	 * @return bool True if the magazine issue content type. False if not.
 	 */
 	public function force_builder( $use_builder ) {
-		if ( $this->content_type_slug !== get_post_type() ) {
+		if ( get_post_type() !== $this->content_type_slug ) {
 			return $use_builder;
 		}
 
@@ -490,7 +490,7 @@ class WSU_Magazine_Issue {
 			return;
 		}
 
-		if ( $this->content_type_slug === get_current_screen()->id ) {
+		if ( get_current_screen()->id === $this->content_type_slug ) {
 			wp_enqueue_script( 'wsm-issue-admin', get_stylesheet_directory_uri() . '/js/issue-admin.js', array( 'jquery-ui-draggable', 'jquery-ui-sortable' ), false, true );
 			wp_enqueue_style( 'wsu-issue-admin', get_stylesheet_directory_uri() . '/css/issue-admin.css', array( 'ttfmake-builder' ) );
 		}
@@ -653,9 +653,9 @@ class WSU_Magazine_Issue {
 					if ( ! empty( $image ) ) {
 						$dom = new DOMDocument();
 						$dom->loadHTML( $image );
-						$width = $dom->getElementsByTagName('img')->item(0)->getAttribute('width');
-						$height = $dom->getElementsByTagName('img')->item(0)->getAttribute('height');
-						$src = $dom->getElementsByTagName('img')->item(0)->getAttribute('src');
+						$width = $dom->getElementsByTagName( 'img' )->item( 0 )->getAttribute( 'width' );
+						$height = $dom->getElementsByTagName( 'img' )->item( 0 )->getAttribute( 'height' );
+						$src = $dom->getElementsByTagName( 'img' )->item( 0 )->getAttribute( 'src' );
 						$resized = preg_match( '(-\d+x\d+\.)', $src );
 						if ( $resized ) {
 							$bg_sizes[] = $size . ':' . ucfirst( $size ) . ' (' . $width . 'x' . $height . ')';
@@ -705,7 +705,7 @@ class WSU_Magazine_Issue {
 			$post_ids = array();
 		}
 
-		echo json_encode( $this->_build_magazine_issue_response( $post_ids, $issue_label ) );
+		echo wp_json_encode( $this->_build_magazine_issue_response( $post_ids, $issue_label ) );
 
 		exit();
 	}
