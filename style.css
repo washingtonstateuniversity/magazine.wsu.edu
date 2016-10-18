@@ -490,7 +490,8 @@ cite,
 }
 
 /* Articles */
-.article-body > p:first-child {
+.article-body > p:first-child,
+.article-emphasis {
 	font-family: "museo-slab";
 	font-size: 1.3rem;
 	line-height: 1.5;
