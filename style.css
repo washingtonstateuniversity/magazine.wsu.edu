@@ -5,7 +5,7 @@
  Author:         WSU University Communications
  Author URI:     https://web.wsu.edu/
  Template:       spine
- Version:        0.10.4
+ Version:        0.10.5
 */
 
 /* Spine overrides */
@@ -400,7 +400,6 @@ blockquote {
 }
 
 .archive .main-header .header-group,
-.page .main-header .header-group,
 .search .main-header .header-group {
 	bottom: -1.85rem;
 }
@@ -420,10 +419,6 @@ blockquote {
 	left: 0;
 }
 
-.page.has-featured-image .main-header .header-group:before {
-	height: calc(100% - 1.85rem);
-}
-
 .has-featured-image .main-header .header-group h1 {
 	position: relative;
 }
@@ -434,7 +429,7 @@ cite,
 }
 
 .page cite {
-	display: none;
+	opacity: 0;
 }
 
 .main-header a:hover {
