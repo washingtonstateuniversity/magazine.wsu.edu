@@ -6,7 +6,7 @@ class WSU_Magazine_Theme {
 	 *
 	 * @var string String used for busting cache on scripts.
 	 */
-	var $script_version = '0.10.5';
+	var $script_version = '0.10.6';
 
 	/**
 	 * @var WSU_Magazine_Theme
