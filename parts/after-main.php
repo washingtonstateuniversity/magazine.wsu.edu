@@ -15,3 +15,6 @@
 		<a href="https://foundation.wsu.edu">Give to WSU</a>
 	</nav>
 </footer>
+<footer class="wsu-footer">
+	<p>Copyright © <?php echo esc_html( date_i18n( 'Y' ) ); ?> Board of Regents, Washington State University | <a href="https://access.wsu.edu/">Accessibility</a> | <a href="https://policies.wsu.edu/privacy-policy/">Privacy</a> | <a href="https://ucomm.wsu.edu/wsu-copyright-policy/">Copyright</a></p>
+</footer>
