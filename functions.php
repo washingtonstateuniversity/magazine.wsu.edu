@@ -6,7 +6,7 @@ class WSU_Magazine_Theme {
 	 *
 	 * @var string String used for busting cache on scripts.
 	 */
-	var $script_version = '0.10.5';
+	var $script_version = '0.10.6';
 
 	/**
 	 * @var WSU_Magazine_Theme
@@ -56,6 +56,7 @@ class WSU_Magazine_Theme {
 		add_filter( 'pre_site_option_upload_filetypes', array( $this, 'set_upload_filetypes' ), 11, 1 );
 		add_filter( 'upload_mimes', array( $this, 'set_mime_types' ), 11, 1 );
 		add_shortcode( 'magazine_search_form', array( $this, 'display_magazine_search_form' ) );
+		add_action( 'wp_head', array( $this, 'description_meta_tag' ) );
 	}
 
 	/**
@@ -192,6 +193,25 @@ class WSU_Magazine_Theme {
 	 */
 	public function display_magazine_search_form() {
 		return get_search_form( false );
+	}
+
+	/**
+	 * Outputs a posts excerpt as the value of a "description" meta tag.
+	 *
+	 * @since 0.10.6
+	 */
+	public function description_meta_tag() {
+		if ( ! is_single() ) {
+			return;
+		}
+
+		if ( ! has_excerpt() ) {
+			return;
+		}
+
+		?>
+		<meta name="description" content="<?php echo esc_attr( strip_tags( get_the_excerpt() ) ); ?>" />
+		<?php
 	}
 }
 

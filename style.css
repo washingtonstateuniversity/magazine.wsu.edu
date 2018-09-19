@@ -5,7 +5,7 @@
  Author:         WSU University Communications
  Author URI:     https://web.wsu.edu/
  Template:       spine
- Version:        0.10.5
+ Version:        0.10.6
 */
 
 /* Spine overrides */
@@ -764,6 +764,16 @@ figcaption.wp-caption-text {
 
 .main-footer .wsu-nav {
 	background: #981e32;
+}
+
+/* WSU footer */
+.wsu-footer {
+	padding: .5em 1em;
+}
+
+.wsu-footer p {
+	font-size: .65em;
+	padding: 0;
 }
 
 /* Archives */
