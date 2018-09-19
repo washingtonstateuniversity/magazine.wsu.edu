@@ -766,6 +766,16 @@ figcaption.wp-caption-text {
 	background: #981e32;
 }
 
+/* WSU footer */
+.wsu-footer {
+	padding: .5em 1em;
+}
+
+.wsu-footer p {
+	font-size: .65em;
+	padding: 0;
+}
+
 /* Archives */
 .archive section {
 	box-sizing: border-box;
