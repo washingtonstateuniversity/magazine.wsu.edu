@@ -57,6 +57,8 @@ class WSU_Magazine_Theme {
 		add_filter( 'upload_mimes', array( $this, 'set_mime_types' ), 11, 1 );
 		add_shortcode( 'magazine_search_form', array( $this, 'display_magazine_search_form' ) );
 		add_action( 'wp_head', array( $this, 'description_meta_tag' ) );
+		
+		add_filter( 'wp_lazy_loading_enabled', '__return_false' );
 	}
 
 	/**
